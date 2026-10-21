@@ -9,7 +9,7 @@ import { fileURLToPath } from "node:url";
 
 /* ---------- settings ---------- */
 const SITE = "https://metey.in";
-/* Paste the Google Apps Script web-app URL here (see google-apps-script/README.md).
+/* Paste the Google Apps Script web-app URL here (see integrations/google-apps-script/README.md).
    While it is empty, the form hands the enquiry over to email or WhatsApp instead. */
 const ENQUIRY_ENDPOINT = "";
 const SHARE_IMAGE = "/assets/og-image.jpg";
@@ -45,6 +45,9 @@ const PAGES = [
   { route: "insights", src: "insights", nav: "insights",
     title: `Insights &amp; Publications | ${BRAND}`,
     description: "Technical papers by METEY on precast connections, monolithic housing and green building technologies, and talks at national conferences." },
+  { route: "3d-lab", src: "3d-lab", nav: "3d-lab", standalone: true,
+    title: `3D Engineering Lab | ${BRAND}`,
+    description: "Explore interactive building models with structural X-ray, floor separation, precast assembly, camera and lighting controls." },
   { route: "careers", src: "careers", nav: "careers",
     title: `Careers &amp; Internships | ${BRAND}`,
     description: "Internships and careers for architects and structural engineers at METEY, Hyderabad, under the mentorship of chartered engineers." },
@@ -60,7 +63,7 @@ M.PROJECTS.forEach(p => PAGES.push({
 }));
 
 /* ---------- shared pieces ---------- */
-const NAV = [["firm","The Firm"],["practice","Practice"],["projects","Projects"],["insights","Insights"],["careers","Careers"]];
+const NAV = [["firm","The Firm"],["practice","Practice"],["projects","Projects"],["insights","Insights"],["3d-lab","3D Lab"],["careers","Careers"]];
 const MENU = [["home","Home"]].concat(NAV, [["contact","Contact"]]);
 const SCHEMA = {
   "@context": "https://schema.org",
@@ -94,7 +97,7 @@ const LIGHTBOX = `<dialog class="lb" id="lb" aria-label="Photograph">
 
 /* content tokens in src/pages/*.html */
 const TOKENS = {
-  heroArt: R.hero, mqTypes: () => R.marquee(M.TYPES), mqBig: () => R.marquee(M.BIG),
+  mqTypes: () => R.marquee(M.TYPES),
   stats: R.stats, typesRow: R.types, sysTabs: R.sysTabs, sysStage: R.sysStage, sysCap: R.sysCap,
   tiles: R.tiles, life: R.life, wm: () => read("src/map.svg").trim(), places: R.places,
   carFrame: () => R.carFrame(0), carBody: () => R.carBody(0), carDots: R.carDots,
@@ -119,14 +122,15 @@ const year = new Date().getFullYear();
 for (const pg of PAGES){
   const url = SITE + M.href(pg.route);
   const tokens = Object.assign({}, TOKENS, pg.project ? { projDetail: () => R.project(pg.project) } : {});
-  const content = fill(read(`src/pages/${pg.src}.html`), tokens);
+  const content = pg.standalone ? "" : fill(read(`src/pages/${pg.src}.html`), tokens);
   const isHome = pg.route === "home";
-  const html = fill(layout, {
+  const html = fill(pg.standalone ? read(`src/pages/${pg.src}.html`) : layout, {
     title: pg.title,
     description: attr(pg.description),
     url,
     image: SITE + encodeURI(pg.image || SHARE_IMAGE),
     head: isHome ? `<script type="application/ld+json">\n${JSON.stringify(SCHEMA, null, 2)}\n</script>\n${OLD_HASH}` : "",
+    styles: isHome ? '<link rel="stylesheet" href="/assets/css/home.css">' : "",
     gradients: R.gradients(),
     intro: isHome ? INTRO : "",
     nav: NAV.map(n => `<a href="${M.href(n[0])}"${n[0] === pg.nav ? ' aria-current="page"' : ""}>${n[1]}</a>`).join("\n    "),
@@ -134,7 +138,7 @@ for (const pg of PAGES){
     content,
     year,
     after: pg.project ? LIGHTBOX : "",
-    scripts: (isHome ? `<script src="/assets/js/render.js" defer></script>\n` : "") + `<script src="/assets/js/site.js" defer></script>`
+    scripts: (isHome ? `<script src="/assets/js/render.js" defer></script>\n<script src="/assets/js/hero-model.js" defer></script>\n` : "") + `<script src="/assets/js/site.js" defer></script>`
   });
   write(outFile(pg.route), html);
 }
@@ -142,7 +146,7 @@ for (const pg of PAGES){
 /* not-found page, served by Vercel for unknown paths */
 write("404.html", fill(layout, {
   title: `Page not found | ${BRAND}`, description: "This page could not be found.", url: SITE + "/",
-  image: SITE + SHARE_IMAGE, head: '<meta name="robots" content="noindex">', gradients: R.gradients(), intro: "",
+  styles: "", image: SITE + SHARE_IMAGE, head: '<meta name="robots" content="noindex">', gradients: R.gradients(), intro: "",
   nav: NAV.map(n => `<a href="${M.href(n[0])}">${n[1]}</a>`).join("\n    "),
   menu: MENU.map((n, i) => `<a href="${M.href(n[0])}" style="--i:${i}">${n[1]}</a>`).join("\n  "),
   content: `<section class="banner navy grid-bg"><div class="wrap"><div class="stack"><p class="eyebrow">Error 404</p><h1>This page could not be <em>found</em></h1><p class="lead">The link may be out of date. Try the <a href="/projects/">projects</a> or go back to the <a href="/">home page</a>.</p></div></div></section>`,

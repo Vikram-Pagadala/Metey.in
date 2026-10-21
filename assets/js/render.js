@@ -89,7 +89,6 @@ const STATS = [
   [5, 0, "Fast-build systems we design in", "blue"]
 ];
 const TYPES = ["Offices","Commercial","Educational institutions","Hospitals","Shopping malls","Residential","Industrial structures"];
-const BIG = ["Architecture","Structure","Interiors","Precast"];
 const SECTORS = [["all","All"],["housing","Affordable housing"],["residential","Residential"],["civic","Commercial and civic"],["institutional","Institutional"],["industrial","Industrial"]];
 const STATE_NAMES = { telangana:"Telangana", "andhra-pradesh":"Andhra Pradesh", karnataka:"Karnataka", goa:"Goa", odisha:"Odisha", assam:"Assam" };
 const seq = (pre, a, b) => { const o = []; for (let i = a; i <= b; i++) o.push(pre + i); return o; };
@@ -233,46 +232,6 @@ const ART = {
     return s;
   }
 };
-
-/* ---- hero: a portico framing a precast block under construction ---- */
-function heroScene(){
-  const GY = 548;
-  const col = x => {
-    let c = R(x-29,592,58,12,"st dr") + R(x-25,582,50,10,"st dr",5);
-    c += P(`M${x-19} 582C${x-19} 420 ${x-17} 280 ${x-16} 176L${x+16} 176C${x+17} 280 ${x+19} 420 ${x+19} 582Z`,"st dr");
-    [-11,-5.5,0,5.5,11].forEach(o => { c += L(x + o, 186, x + o * 1.12, 574, "fl"); });
-    return c + P(`M${x-16} 176Q${x-20} 166 ${x-25} 162L${x+25} 162Q${x+20} 166 ${x+16} 176Z`,"st dr") + R(x-28,150,56,12,"st dr");
-  };
-  let sc = R(112,150,376,442,"sky");
-  sc += `<g class="par p1"><g class="sun">${C(396,468,120,"glow")}${C(396,468,40,"disc")}</g></g>`;
-  let far = "M112 548", x = 112;
-  [40,62,48,86,58,104,70,52,92,64,44,78,56,96,60,46].forEach(h => { far += `V${548 - h}H${f(x + 23.5)}`; x += 23.5; });
-  sc += `<g class="par p2">${P(far + "V548Z","far")}</g>`;
-  [0,1,2].forEach(i => { sc += `<g transform="translate(${130 + i * 26} ${236 + i * 16})"><path d="M0 0q4-4 8 0q4-4 8 0" class="bird" style="--b:${i}"/></g>`; });
-  let fin = R(128,326,70,222,"bd");
-  for (let r = 0; r < 13; r++) for (let c = 0; c < 4; c++) fin += R(134 + c * 16, 334 + r * 16.4, 10, 9, "bw");
-  fin += R(184,326,14,222,"shade") + R(128,326,70,5,"acc");
-  let pc = "", n = 0;
-  for (let i = 0; i < 9; i++) for (let j = 0; j < 4; j++){ const px = 214 + j * 44, py = GY - (i + 1) * 26; pc += `<g class="hp" style="--n:${n++}">${R(px,py,44,26,"pan")}${R(px+11,py+7,22,12,i % 2 ? "pw pw2" : "pw")}</g>`; }
-  let cr = L(414,GY,414,236,"cl") + L(426,GY,426,236,"cl");
-  for (let y = 236; y < GY; y += 24) cr += L(414,y,426,y+24,"ct") + L(426,y,414,y+24,"ct");
-  cr += L(232,236,470,236,"cl") + L(232,243,470,243,"cl") + L(420,212,232,236,"ct") + L(420,212,470,236,"ct") + L(414,236,420,212,"cl") + L(426,236,420,212,"cl") + R(446,243,24,13,"cw");
-  for (let k = 244; k < 414; k += 14) cr += L(k,236,k+7,243,"ct") + L(k+7,243,k+14,236,"ct");
-  cr += `<g transform="translate(322 0)"><g class="trol">${R(-7,243,14,6,"cw")}<line x1="0" y1="249" x2="0" y2="283" class="cl cable"/><g class="load">${R(-21,283,42,20,"pan")}${R(-10,288,20,10,"pw")}</g></g></g>`;
-  let gr = R(112,GY,376,44,"gnd") + L(112,GY,488,GY,"gl");
-  for (let k = 118; k < 488; k += 11) gr += L(k,GY+8,k-6,GY+14,"gh");
-  const tree = (tx, r) => L(tx,GY,tx,GY-r*1.6,"tr") + C(tx,GY-r*2.1,r,"tc");
-  gr += tree(206,7) + tree(398,9) + tree(446,6) + tree(468,8);
-  let s = `<defs><clipPath id="hsClip"><rect x="112" y="150" width="376" height="442"/></clipPath></defs>`;
-  s += C(300,380,292,"ring") + C(300,380,268,"ring2");
-  s += `<g clip-path="url(#hsClip)">${sc}<g class="par p3">${fin}${pc}<g class="crane">${cr}</g></g>${gr}</g>` + R(112,150,376,442,"frame");
-  s += P("M24 84L300 18L576 84Z","st dr") + P("M66 78L300 32L534 78Z","fl") + C(300,60,13,"st dr") + T(300,65.5,"M","med");
-  s += R(24,84,552,12,"st dr") + R(36,96,528,30,"st dr") + T(300,117,"METEY &#183; MMXIII","ins") + R(36,126,528,24,"st dr") + L(36,138,564,138,"fl");
-  s += col(78) + col(522);
-  s += R(36,604,528,12,"st dr") + R(22,616,556,12,"st dr") + R(8,628,584,12,"st dr");
-  s += T(300,668,"FIG. I &#183; PRECAST HOUSING, ERECTED FLOOR BY FLOOR","cap");
-  return `<svg class="hs" viewBox="0 0 600 684" preserveAspectRatio="xMidYMid meet" role="img" aria-label="A classical portico framing a precast housing block under construction, with a tower crane placing wall panels">${s}</svg>`;
-}
 
 /* ---- project elevations ---- */
 const G = 172;
@@ -457,7 +416,6 @@ const more = (r, t) => `<a class="more" href="${href(r)}">${t} ${ARR}</a>`;
 const FEAT = PROJECTS.filter(p => p.feat);
 
 const render = {
-  hero: heroScene,
   marquee: items => { const one = items.map(t => `<span>${t}</span>`).join(""); return one + one + one + one; },
   gradients: () => Object.keys(SKY).map(k => grad("gSky-" + k, SKY[k])).join("") + TYPES2.map((t, i) => grad("gType-" + i, t.sky)).join(""),
   art: k => `<svg viewBox="0 0 520 220" aria-hidden="true">${ART[k]()}</svg>`,
@@ -522,5 +480,5 @@ const render = {
   }
 };
 
-globalThis.METEY = { STATE_NAMES, ARR, PAL, SEC_C, PROJECTS, FEAT, SYSTEMS, TYPES, BIG, sectorName, href, diagram, render };
+globalThis.METEY = { STATE_NAMES, ARR, PAL, SEC_C, PROJECTS, FEAT, SYSTEMS, TYPES, sectorName, href, diagram, render };
 })();

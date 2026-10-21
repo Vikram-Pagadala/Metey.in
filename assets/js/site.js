@@ -197,10 +197,6 @@ if (typesRow){
   typesRow.addEventListener("click", e => { if (moved > 5){ e.preventDefault(); e.stopPropagation(); } }, true);
 }
 
-/* hero parallax */
-const hero = $(".hero"), heroArt = $("#heroArt");
-if (!RM && hero && heroArt) hero.addEventListener("pointermove", e => { const r = hero.getBoundingClientRect(); heroArt.style.setProperty("--px", ((e.clientX - r.left) / r.width - .5).toFixed(3)); heroArt.style.setProperty("--py", ((e.clientY - r.top) / r.height - .5).toFixed(3)); });
-
 /* ======================= projects: sector filter, and state filter from the map ======================= */
 const chips = $("#chips"), grid = $("#projGrid"), stateNote = $("#stateNote");
 function showCards(test){
@@ -243,7 +239,6 @@ function onScroll(){
   const y = window.pageYOffset || 0, max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
   topBar.classList.toggle("solid", y > 30);
   prog.style.setProperty("--p", Math.min(1, y / max).toFixed(4));
-  if (!RM && heroArt && y < 1400) heroArt.style.setProperty("--sy", (y * .09).toFixed(1) + "px");
 }
 window.addEventListener("scroll", onScroll, { passive:true });
 window.addEventListener("resize", onScroll);

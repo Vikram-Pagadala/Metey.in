@@ -19,7 +19,7 @@ Until the script is connected, the form doesn't claim to have sent anything. It 
    - **Who has access:** Anyone
    - Click **Deploy**, then **Authorize access** and allow the permissions. Google may say the app isn't verified. That's expected for your own script: choose **Advanced → Go to (project name)**.
 6. Copy the **Web app URL**. It ends in `/exec`. Open it in a browser and you should see "METEY enquiry endpoint is running."
-7. In this repository, open [`tools/build.mjs`](../tools/build.mjs) and paste the URL in:
+7. In this repository, open [`tools/build.mjs`](../../tools/build.mjs) and paste the URL in:
 
    ```js
    const ENQUIRY_ENDPOINT = "https://script.google.com/macros/s/XXXX/exec";

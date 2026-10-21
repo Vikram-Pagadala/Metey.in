@@ -7,12 +7,25 @@
       <p class="hero-sub" data-rv style="--d:.35s">Specializing in Precast, Monolithic &amp; Advanced Structural Systems</p>
       <p class="lead" data-rv style="--d:.5s">METEY delivers comprehensive architectural planning, structural engineering, and fast-track construction consultancy across commercial, residential, healthcare, and industrial developments throughout India.</p>
       <div class="actions" data-rv style="--d:.65s">
-        <a class="btn" href="/projects/">Explore Landmark Projects <svg aria-hidden="true"><use href="#arr"/></svg></a>
+        <a class="btn" href="/3d-lab/">3D Engineering Lab <svg aria-hidden="true"><use href="#arr"/></svg></a>
         <a class="more" href="/practice/">Practice &amp; Engineering Disciplines <svg aria-hidden="true"><use href="#arr"/></svg></a>
       </div>
       <p class="cue" data-rv style="--d:.9s" aria-hidden="true"><i></i>Scroll</p>
     </div>
-    <div class="hero-art" id="heroArt" data-in>{{heroArt}}</div>
+    <figure class="hero-model" aria-label="Interactive building preview">
+      <div class="hero-model-stage">
+        <div id="hero-model-viewport"></div>
+        <img class="hero-model-fallback" src="/assets/uploads/2018/09/Jindal-corporate-tower-2-400x284.jpg" alt="Jindal corporate building" width="640" height="420">
+      </div>
+      <div class="hero-model-controls" role="group" aria-label="Building preview controls" hidden>
+        <span class="hero-model-control-label">View</span>
+        <button type="button" data-preview-mode="blend" aria-pressed="true">50 / 50<span>Arch + structure</span></button>
+        <button type="button" data-preview-mode="architecture" aria-pressed="false">Architecture</button>
+        <button type="button" data-preview-mode="structure" aria-pressed="false">Structure</button>
+        <button type="button" id="hero-model-spin" aria-pressed="true">Pause spin</button>
+      </div>
+      <figcaption class="hero-model-caption"><span id="hero-model-hint">Conceptual building model</span><span class="hero-model-note">Jindal · 3D study</span></figcaption>
+    </figure>
   </div>
   <div class="frieze" aria-hidden="true"></div>
   <div class="arcade" aria-hidden="true"></div>
@@ -57,6 +70,31 @@
       <div class="sys-svg" id="sysStage" role="tabpanel">{{sysStage}}</div>
       <p class="sys-cap" id="sysCap">{{sysCap}}</p>
     </div>
+  </div>
+</section>
+
+<section class="sec navy grid-bg" id="lab">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow" data-rv>3D Engineering Lab</p>
+      <h2 data-split>Explore the Architecture. <em>Reveal the Structure.</em></h2>
+      <p class="lead" data-rv>Step inside three interactive building models. Orbit the facade, reveal the structural frame, separate the floors and explore precast assembly.</p>
+    </div>
+    <div class="lab-cards">
+      <a class="lab-card" href="/3d-lab/?model=jindal" data-rv>
+        <img src="/assets/uploads/2018/09/Jindal-corporate-tower-2-400x284.jpg" alt="Jindal corporate building" width="640" height="420" loading="lazy">
+        <div><span class="label">01 / Commercial</span><h3>Jindal Corporate Tower</h3><p>Explore the facade and structural frame.</p><span class="more">Explore in 3D <svg aria-hidden="true"><use href="#arr"/></svg></span></div>
+      </a>
+      <a class="lab-card" href="/3d-lab/?model=dundigal" data-rv>
+        <img src="/assets/uploads/2018/11/EWS-Housing-Dundigal1-400x284.jpg" alt="Dundigal housing development" width="640" height="420" loading="lazy">
+        <div><span class="label">02 / Residential</span><h3>Dundigal Housing</h3><p>Inspect the floors and precast assembly.</p><span class="more">Explore in 3D <svg aria-hidden="true"><use href="#arr"/></svg></span></div>
+      </a>
+      <a class="lab-card" href="/3d-lab/?model=sailife" data-rv>
+        <img src="/assets/uploads/2020/09/WhatsApp-Image-2020-09-02-at-11.10.06-AM-400x284.jpeg" alt="Sai Life Sciences facility" width="640" height="420" loading="lazy">
+        <div><span class="label">03 / Research &amp; Industrial</span><h3>Sai Life Sciences</h3><p>Discover the long-span structural system.</p><span class="more">Explore in 3D <svg aria-hidden="true"><use href="#arr"/></svg></span></div>
+      </a>
+    </div>
+    <p class="lab-note">The Lab uses conceptual models and illustrative specifications.</p>
   </div>
 </section>
 
@@ -132,19 +170,5 @@
       </div>
     </div>
     <div class="canvas-box" data-rv="s"><canvas id="frame3d" role="img" aria-label="A structural frame rising floor by floor"></canvas></div>
-  </div>
-</section>
-
-<section class="sec" style="padding-bottom:0">
-  <div class="mq big" aria-hidden="true"><div class="mq-track" id="mqBig">{{mqBig}}</div></div>
-  <div class="wrap" style="padding-top:clamp(3rem,6vw,5rem)">
-    <div class="niche" data-rv>
-      <img class="niche-logo" src="/assets/logo.png" alt="" width="116" height="150">
-      <p class="eyebrow">Client Consultations</p>
-      <h2>Initiate a Consultation with Our <em>Principal Engineers</em></h2>
-      <p class="soft">Discuss architectural master planning, structural design, peer review, or value engineering for your upcoming development.</p>
-      <a class="btn" href="/contact/">Schedule a Consultation <svg aria-hidden="true"><use href="#arr"/></svg></a>
-    </div>
-    <div class="plinth" aria-hidden="true"></div>
   </div>
 </section>

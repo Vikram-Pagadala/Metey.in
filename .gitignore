@@ -5,3 +5,10 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Local tooling and generated reports
+node_modules/
+test-results/
+playwright-report/
+*.log
+.vercel/

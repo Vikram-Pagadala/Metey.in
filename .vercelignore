@@ -1,4 +1,9 @@
 src
 tools
-google-apps-script
+integrations
 README.md
+node_modules
+test-results
+playwright-report
+package.json
+package-lock.json
