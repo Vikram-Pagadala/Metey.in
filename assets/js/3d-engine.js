@@ -865,6 +865,8 @@
         dirLight.color.setHex(0x38bdf8);
         amberFillLight.intensity = 3.0; // bright internal office lights
       }
+      // keep the ground haze the same colour as the sky
+      if (scene.fog && scene.background) scene.fog.color.copy(scene.background);
     }
 
     // Camera Presets

@@ -9,6 +9,10 @@
   "scripts": {
     "build": "node tools/build.mjs",
     "check": "node tools/check.mjs",
-    "dev": "node tools/serve.mjs"
+    "dev": "node tools/serve.mjs",
+    "test": "node tests/ui.mjs"
+  },
+  "devDependencies": {
+    "playwright-core": "1.56.1"
   }
 }

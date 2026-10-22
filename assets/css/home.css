@@ -6,7 +6,7 @@
 .lab-card>div{display:grid;gap:1rem;padding:1.5rem;flex:1;align-content:start}
 .lab-card h3{font-size:1.8rem}
 .lab-card p{color:var(--ivory-soft)}
-.lab-card .more{justify-self:start;font-size:.65rem}
+.lab-card .more{justify-self:start;font-size:.72rem}
 .lab-note{color:var(--ivory-soft);font:400 .8rem/1.6 var(--f-ui);margin-top:1.5rem}
 @media(max-width:48rem){.lab-cards{grid-template-columns:minmax(0,1fr)}}
 
@@ -20,12 +20,12 @@
 #hero-model-viewport canvas:active{cursor:grabbing}
 .hero-model-fallback{position:absolute;inset:12% 6%;width:88%;height:76%;object-fit:cover;border-radius:2px}
 .hero-model-controls{grid-column:2;grid-row:1;display:flex;flex-direction:column;align-items:stretch;gap:.4rem;position:relative;z-index:1}
-.hero-model-control-label{padding:0 .65rem .6rem;color:var(--ivory-soft);font:400 .6rem/1.4 var(--f-ui);letter-spacing:.2em;text-transform:uppercase}
+.hero-model-control-label{padding:0 .65rem .6rem;color:var(--ivory-soft);font:400 .66rem/1.4 var(--f-ui);letter-spacing:.2em;text-transform:uppercase}
 .hero-model-controls button{border:0;border-left:2px solid transparent;background:transparent;padding:.75rem .65rem;min-height:44px;color:var(--ivory-soft);font:400 .7rem/1.4 var(--f-ui);letter-spacing:.03em;text-align:left;cursor:pointer}
-.hero-model-controls button span{display:block;margin-top:.25rem;font-size:.58rem;letter-spacing:0}
+.hero-model-controls button span{display:block;margin-top:.25rem;font-size:.64rem;letter-spacing:0}
 .hero-model-controls [data-preview-mode][aria-pressed="true"]{border-color:var(--brass-bright);color:var(--brass-bright);background:linear-gradient(90deg,rgba(217,178,95,.1),transparent)}
 #hero-model-spin{margin-top:.7rem;border-top:1px solid var(--navy-line);font-size:.65rem}
-.hero-model-caption{grid-column:1;display:flex;justify-content:center;flex-wrap:wrap;gap:.35rem 1.2rem;color:var(--ivory-soft);font:400 .65rem/1.6 var(--f-ui);letter-spacing:.06em;text-align:center}
+.hero-model-caption{grid-column:1;display:flex;justify-content:center;flex-wrap:wrap;gap:.35rem 1.2rem;color:var(--ivory-soft);font:400 .72rem/1.6 var(--f-ui);letter-spacing:.06em;text-align:center}
 .hero-model-note{opacity:.7}
 /* Use the available viewport, with natural scrolling on very short screens. */
 .hero{min-height:100svh;display:flex;flex-direction:column;padding-top:calc(env(safe-area-inset-top,0px) + clamp(5.5rem,10svh,7.5rem))}
@@ -57,10 +57,10 @@
  .hero-model{grid-template-columns:minmax(0,1fr) 5.6rem;max-width:28rem}
  .hero-model-stage{height:clamp(13.5rem,calc(100svh - 34rem),23rem)}
  .hero-model-controls{gap:0}
- .hero-model-controls button{padding:.5rem .4rem;font-size:.62rem}
+ .hero-model-controls button{padding:.5rem .4rem;font-size:.68rem}
  .hero-model-control-label{padding:0 .4rem .2rem}
  #hero-model-spin{margin-top:.3rem}
- .hero-model-caption{font-size:.58rem;gap:0 .6rem}
+ .hero-model-caption{font-size:.66rem;gap:0 .6rem}
  .hero>.frieze{height:16px}
  .hero>.arcade{height:24px;background-size:auto 24px}
 }
@@ -72,7 +72,7 @@
  .hero .lead{font-size:.9rem}
  .hero-model-stage{height:20rem}
  .hero-model{grid-template-columns:minmax(0,1fr) 5.6rem}
- .hero-model-controls button{font-size:.62rem;padding-inline:.4rem}
+ .hero-model-controls button{font-size:.68rem;padding-inline:.4rem}
 }
 
 /* Keep homepage sections close together, including the transition to the footer. */

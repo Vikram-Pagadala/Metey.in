@@ -1,53 +1,104 @@
-# metey.in
+# METEY Engineering & Consultancy
 
-METEY Engineering & Consultancy's static website, including the interactive 3D Engineering Lab. Built with HTML, CSS and JavaScript. Node.js 18+ is required for development; no package installation is needed.
+Official website for **METEY Engineering & Consultancy Pvt. Ltd.**, a chartered architectural and structural engineering consultancy based in Hyderabad since 2013, with a branch office in Amaravati. METEY specialises in precast, monolithic and other fast-build construction technologies for housing, high-rise, institutional and industrial projects across India.
 
-## Work locally
+🌐 **Website:** [metey.in](https://metey.in/)
 
-```sh
-npm run build     # Generate public pages and sitemap from src/
-npm run check     # Check links, assets and JavaScript syntax
-npm run dev       # Preview at http://localhost:8000
+---
+
+## 🏗️ Overview
+
+METEY provides architecture, structural design and construction-stage consultancy, from concept to commissioning, and the site presents its practice, projects and research, including an interactive 3D Engineering Lab.
+
+### Key Pages & Features
+- **Home (`/`)**: Practice highlights, an interactive 3D building preview, the building-systems explorer, a project map of India and featured projects.
+- **The Firm (`/firm/`)**: Principles, structural specialisms, disciplines and the studio team.
+- **Practice (`/practice/`)**: Architecture and master planning, structural engineering, precast and fast-build technologies, interiors, peer review and construction-stage services.
+- **Projects (`/projects/`)**: Portfolio filterable by sector, or by state from the homepage map, plus a project register. Each project has its own page with a photo gallery and lightbox.
+- **Insights (`/insights/`)**: Published technical papers (PDF) and conference talks.
+- **3D Lab (`/3d-lab/`)**: Interactive models with structural X-ray, floor separation, precast crane assembly, camera presets and lighting. Direct links: `?model=jindal`, `?model=dundigal`, `?model=sailife`.
+- **Careers (`/careers/`)**: Internships and expressions of interest.
+- **Contact (`/contact/`)**: Offices, direct contacts with copy buttons, vCard and the enquiry form.
+
+---
+
+## 🛠️ Tech Stack
+
+- **HTML5 & Vanilla CSS3**: Semantic markup, responsive layouts for desktop, tablet and phone, local fonts and reduced-motion support.
+- **Vanilla JavaScript**: Navigation, project filtering, carousel, gallery lightbox, enquiry form and scroll animation.
+- **Three.js**: The 3D Lab and homepage preview, bundled locally in `assets/vendor/` and loaded only where needed.
+- **Node.js build (no dependencies)**: Generates every page from shared templates and data, plus the sitemap and `llms.txt`.
+- **SEO & Performance**: Keyword-targeted titles and descriptions, JSON-LD structured data (business, website, breadcrumbs), XML sitemap with images, robots.txt, llms.txt, Open Graph and Twitter cards, responsive images with lazy loading.
+
+---
+
+## 📁 Project Structure
+
+```text
+metey.in/
+├── src/                        # Edit these: page sources
+│   ├── layout.html             # Shared head, navigation and footer
+│   ├── map.svg                 # Homepage map of India
+│   └── pages/                  # Page content (3d-lab.html is a standalone page)
+├── assets/
+│   ├── css/                    # site.css (shared), home.css, 3d-lab.css
+│   ├── js/
+│   │   ├── render.js           # Project, team and article data; HTML renderers
+│   │   ├── site.js             # Site interactions and enquiry form
+│   │   ├── hero-model.js       # Homepage 3D preview
+│   │   ├── 3d-lab.js           # 3D Lab controls
+│   │   └── 3d-engine.js        # Shared Three.js models and viewer
+│   ├── vendor/                 # Three.js and OrbitControls (keep license headers)
+│   ├── fonts/                  # Locally hosted fonts
+│   ├── uploads/                # Project photos, thumbnails, portraits and papers
+│   ├── favicon.png, apple-touch-icon.png, logo.png, og-image.jpg
+│   └── metey-contact.vcf
+├── tools/                      # build, check, local server, map generator
+├── tests/ui.mjs                # Browser tests for layouts and every button
+├── integrations/
+│   └── google-apps-script/     # Optional enquiry backend and setup guide
+├── index.html, firm/, practice/, projects/, insights/,
+│   3d-lab/, careers/, contact/, 404.html   # Generated pages (do not edit)
+├── sitemap.xml, llms.txt       # Generated
+├── robots.txt
+├── vercel.json
+└── README.md
 ```
 
-Use `PORT=8001 npm run dev` if port 8000 is busy. Preview through the server rather than opening HTML files directly, since asset URLs start at `/`.
+---
 
-## Repository structure
+## 💻 Development
 
-| Path | Purpose |
-| --- | --- |
-| `src/layout.html` | Shared page head, navigation and footer |
-| `src/pages/` | Editable page content; `3d-lab.html` is the standalone Lab template |
-| `src/map.svg` | Source map used on the homepage |
-| `assets/css/site.css` | Shared site styles |
-| `assets/css/home.css` | Homepage preview, layout and spacing |
-| `assets/css/3d-lab.css` | Full Lab styles |
-| `assets/js/render.js` | Project, team and article data; shared HTML/SVG renderers |
-| `assets/js/site.js` | Navigation, galleries, filtering, animation and enquiry form |
-| `assets/js/hero-model.js` | Homepage 3D preview and its controls |
-| `assets/js/3d-lab.js` | Full Lab controls and model selection |
-| `assets/js/3d-engine.js` | Shared Three.js model geometry and viewer lifecycle |
-| `assets/vendor/` | Bundled Three.js and OrbitControls; keep license headers |
-| `assets/uploads/` | Referenced project photos, thumbnails, portraits and publications |
-| `assets/fonts/` | Locally hosted fonts |
-| `tools/` | Build, validation, local server and optional map generator |
-| `integrations/google-apps-script/` | Optional enquiry backend and setup guide |
-| `index.html`, page folders, `404.html`, `sitemap.xml` | Generated public files committed for static hosting |
+Requires Node.js 18 or later.
 
-Edit the sources, then run build and check. Direct changes to generated HTML are overwritten. Adding a project to `PROJECTS` in `render.js` generates its route and sitemap entry. Page metadata and the enquiry endpoint are configured in `tools/build.mjs`.
+```sh
+npm run build     # Generate pages, sitemap.xml and llms.txt from src/
+npm run check     # Links, images, fonts, PDFs, titles, descriptions, structured data, sitemap, JS syntax
+npm run dev       # Preview at http://localhost:8000
+npm install       # Once, for the browser tests only
+npm test          # Every page at three screen sizes, then every button and control
+```
 
-## 3D Lab
+- Edit `src/` and `assets/`, then run `build` and `check`. The generated HTML in the page folders is overwritten on every build.
+- To add a project, add it to `PROJECTS` in `assets/js/render.js`. Its page, sitemap entry and gallery are generated.
+- Page titles, descriptions and structured data live in `tools/build.mjs`. `check` fails if a title is over 70 characters or a description over 160.
+- `npm test` uses Google Chrome if it is installed (or `CHROME_PATH`), otherwise Playwright's Chromium (`npx playwright install chromium`).
+- Use `PORT=8001 npm run dev` if port 8000 is busy. Preview through the server, not by opening files, since asset URLs start at `/`.
 
-The full viewer is at `/3d-lab/`. Direct model links accept `?model=jindal`, `?model=dundigal` or `?model=sailife`.
+---
 
-The homepage starts at a 50/50 architecture/structure blend and auto-spins, with controls on the right. Reduced-motion preferences pause the initial spin. The preview loads Three.js only when it approaches the viewport; other content pages do not load the 3D engine. Project thumbnails are reused by the homepage cards. Models and specifications are illustrative.
+## ✉️ Contact Form
 
-## Contact form
+Until a backend is configured, the form prepares an email or WhatsApp message with the visitor's details filled in. It never claims an enquiry was delivered. To save enquiries to Google Sheets with email alerts, follow the [enquiry setup guide](integrations/google-apps-script/README.md) and paste the web-app URL into `ENQUIRY_ENDPOINT` in `tools/build.mjs`.
 
-The Google Apps Script endpoint is currently empty. The form prepares email and WhatsApp links until a backend is configured; it does not claim successful delivery. Follow the [enquiry setup guide](integrations/google-apps-script/README.md) to enable Google Sheets and email notifications.
+---
 
-## Deployment and maintenance
+## 🚀 Deployment
 
-Vercel serves the committed generated files. `.vercelignore` excludes source templates, development tools and integration code. Before pushing changes, run `npm run build` and `npm run check`, then review desktop and mobile layouts and any affected interactions. Browser automation is optional; the build and validation commands have no external dependencies.
+Vercel serves the committed generated files. `.vercelignore` keeps sources, tools, tests and integration code out of the deployment. Before pushing, run `npm run build`, `npm run check` and `npm test`.
 
-Keep referenced photos, full-size gallery images, PDFs and local fonts. `npm run check` reports missing links and unreferenced media so future cleanup can be based on actual usage. Development dependencies, logs and browser reports are ignored by Git.
+---
+
+## 📄 License
+
+This project is licensed under the [Apache 2.0 License](LICENSE).

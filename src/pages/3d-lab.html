@@ -4,18 +4,27 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{title}}</title>
+  <meta name="description" content="{{description}}">
   <link rel="canonical" href="{{url}}">
+  <link rel="icon" type="image/png" href="/assets/favicon.png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#0D1A3B">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="METEY Engineering &amp; Consultancy">
+  <meta property="og:locale" content="en_IN">
+  <meta property="og:url" content="{{url}}">
   <meta property="og:title" content="{{title}}">
   <meta property="og:description" content="{{description}}">
-  <meta property="og:url" content="{{url}}">
   <meta property="og:image" content="{{image}}">
-  <meta name="description" content="{{description}}">
-  <meta name="theme-color" content="#0D1A3B">
-  <link rel="icon" href="/assets/favicon.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{title}}">
+  <meta name="twitter:description" content="{{description}}">
+  <meta name="twitter:image" content="{{image}}">
+  {{head}}
   <link rel="preload" href="/assets/fonts/jost-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/site.css">
   <link rel="stylesheet" href="/assets/css/3d-lab.css">
-  <!-- Offline Three.js & Controls -->
+  <!-- Three.js and OrbitControls are bundled locally -->
   <script defer src="/assets/vendor/three.min.js"></script>
   <script defer src="/assets/vendor/OrbitControls.js"></script>
   <script defer src="/assets/js/3d-engine.js"></script>
@@ -25,8 +34,8 @@
     <!-- Top Header Navigation -->
     <header class="exp-nav">
       <div class="exp-brand">
-        <a href="/" style="display:flex;align-items:center;gap:10px;">
-          <img src="/assets/logo.png" alt="METEY Logo">
+        <a class="exp-brand-link" href="/" aria-label="METEY Engineering and Consultancy, home">
+          <img src="/assets/logo.png" alt="" width="116" height="150">
           <div class="exp-brand-text">
             METEY
             <small>3D ENGINEERING LAB</small>
@@ -36,14 +45,14 @@
 
       <!-- Typology Selector -->
       <div class="exp-typology-tabs" role="group" aria-label="Building Typology">
-        <button class="exp-tab active" data-typology="jindal" id="tab-jindal">
-          <span>🏢</span> Jindal Corporate Tower
+        <button type="button" class="exp-tab active" data-typology="jindal" id="tab-jindal">
+          <span aria-hidden="true">🏢</span> Jindal Corporate Tower
         </button>
-        <button class="exp-tab" data-typology="dundigal" id="tab-dundigal">
-          <span>🏘</span> Dundigal Precast Housing
+        <button type="button" class="exp-tab" data-typology="dundigal" id="tab-dundigal">
+          <span aria-hidden="true">🏘</span> Dundigal Precast Housing
         </button>
-        <button class="exp-tab" data-typology="sailife" id="tab-sailife">
-          <span>🔬</span> Sai Life Sciences R&amp;D
+        <button type="button" class="exp-tab" data-typology="sailife" id="tab-sailife">
+          <span aria-hidden="true">🔬</span> Sai Life Sciences R&amp;D
         </button>
       </div>
 
@@ -63,19 +72,19 @@
     <aside class="exp-left-dock">
       <div class="exp-dock-title">
         <span>Display &amp; Inspection Modes</span>
-        <span id="viewer-status" role="status" style="color:#D9B25F;font-size:9px;">LOADING 3D</span>
+        <span id="viewer-status" role="status">LOADING 3D</span>
       </div>
 
       <div class="exp-mode-grid">
-        <button class="exp-mode-btn active" id="btn-mode-arch">
-          <span class="mode-icon">🏛</span>
+        <button type="button" class="exp-mode-btn active" id="btn-mode-arch">
+          <span class="mode-icon" aria-hidden="true">🏛</span>
           <span class="mode-title">Architecture</span>
-          <small style="color:#94a3b8;font-size:10px;">Facade &amp; Envelope</small>
+          <small class="mode-sub">Facade &amp; Envelope</small>
         </button>
-        <button class="exp-mode-btn" id="btn-mode-struct">
-          <span class="mode-icon">⚙️</span>
+        <button type="button" class="exp-mode-btn" id="btn-mode-struct">
+          <span class="mode-icon" aria-hidden="true">⚙️</span>
           <span class="mode-title">Structural X-Ray</span>
-          <small style="color:#94a3b8;font-size:10px;">Columns &amp; Load Paths</small>
+          <small class="mode-sub">Columns &amp; Load Paths</small>
         </button>
       </div>
 
@@ -86,7 +95,7 @@
           <em id="val-xray">0%</em>
         </div>
         <input type="range" class="hud-range" id="slider-xray" aria-label="X-ray transparency" min="0" max="100" value="0">
-        <div style="display:flex;justify-content:space-between;font-size:9px;color:#a9bcb0;">
+        <div class="exp-slider-ends" aria-hidden="true">
           <span>Finished Facade</span>
           <span>Internal Skeleton</span>
         </div>
@@ -99,20 +108,20 @@
           <em id="val-explode">0%</em>
         </div>
         <input type="range" class="hud-range" id="slider-explode" aria-label="Floor separation" min="0" max="100" value="0">
-        <div style="display:flex;justify-content:space-between;font-size:9px;color:#a9bcb0;">
+        <div class="exp-slider-ends" aria-hidden="true">
           <span>Assembled</span>
           <span>Full Floor Separation</span>
         </div>
       </div>
 
       <!-- Kinetic Precast Crane Assembly Simulator -->
-      <div class="exp-slider-card" style="border-color:rgba(234,179,8,0.3);background:rgba(234,179,8,0.06);">
+      <div class="exp-slider-card exp-assembly">
         <div class="exp-slider-title">
-          <span style="color:#facc15;font-weight:500;">🏗 Kinetic Precast Assembly</span>
-          <em id="status-assembly" style="color:#facc15;">PAUSED</em>
+          <span class="exp-assembly-title">🏗 Kinetic Precast Assembly</span>
+          <em id="status-assembly">PAUSED</em>
         </div>
-        <button class="hero-btn" id="btn-toggle-assembly" style="width:100%;margin-top:4px;background:rgba(234,179,8,0.15);border-color:#eab308;color:#fef08a;">
-          <span id="assembly-icon">▶</span> <span id="assembly-btn-text">Simulate Precast Crane Erection</span>
+        <button type="button" class="hero-btn exp-assembly-btn" id="btn-toggle-assembly" aria-pressed="false">
+          <span id="assembly-icon" aria-hidden="true">▶</span> <span id="assembly-btn-text">Simulate Precast Crane Erection</span>
         </button>
       </div>
     </aside>
@@ -121,7 +130,6 @@
     <aside class="exp-right-hud">
       <div class="exp-dock-title">
         <span>Model reference</span>
-
       </div>
 
       <div class="exp-hud-badge" id="hud-typology-title">
@@ -133,7 +141,7 @@
       <p class="exp-model-note">Conceptual models and illustrative specifications; not project construction documents.</p><div class="exp-specs-table">
         <div class="exp-spec-row">
           <span class="exp-spec-label">Structural System</span>
-          <span class="exp-spec-val" id="spec-system">Composite RC Core + Diagrid</span>
+          <span class="exp-spec-val" id="spec-system">Composite RC Core + Steel Diagrid</span>
         </div>
         <div class="exp-spec-row">
           <span class="exp-spec-label">Concrete Grades</span>
@@ -153,51 +161,53 @@
         </div>
         <div class="exp-spec-row">
           <span class="exp-spec-label">Embodied Carbon</span>
-          <span class="exp-spec-val" id="spec-carbon" style="color:#4ade80;">-24% Savings</span>
+          <span class="exp-spec-val good" id="spec-carbon">-24% Savings</span>
         </div>
       </div>
 
       <!-- Active Hotspot Inspection Deep-Dive Card -->
       <div class="exp-hotspot-card" id="hotspot-detail-card" aria-live="polite">
-        <h4 id="hotspot-card-title">Curtain Wall Detail <span style="font-size:9px;color:#a3e635;">INSPECTION</span></h4>
+        <p class="exp-hotspot-kicker">Inspection</p>
+        <h4 id="hotspot-card-title">Curtain Wall Detail</h4>
         <p id="hotspot-card-desc">Click any pulsing marker on the 3D model to inspect detailed architectural or engineering specifications.</p>
+        <button type="button" class="exp-hotspot-close" id="hotspot-close" aria-label="Close inspection detail">×</button>
       </div>
     </aside>
 
     <!-- Bottom View Toolbar -->
     <div class="exp-bottom-bar" role="group" aria-label="Camera and lighting controls">
       <!-- Camera Presets -->
-      <button class="exp-tool-btn active" data-preset="perspective" id="cam-persp">
-        <span>📐</span> 3D Orbit
+      <button type="button" class="exp-tool-btn active" data-preset="perspective" id="cam-persp">
+        <span aria-hidden="true">📐</span> 3D Orbit
       </button>
-      <button class="exp-tool-btn" data-preset="elevation" id="cam-elev">
-        <span>🏢</span> Front Elevation
+      <button type="button" class="exp-tool-btn" data-preset="elevation" id="cam-elev">
+        <span aria-hidden="true">🏢</span> Front Elevation
       </button>
-      <button class="exp-tool-btn" data-preset="top" id="cam-top">
-        <span>🔝</span> Floor Plan
+      <button type="button" class="exp-tool-btn" data-preset="top" id="cam-top">
+        <span aria-hidden="true">🔝</span> Floor Plan
       </button>
-      <button class="exp-tool-btn" data-preset="foundation" id="cam-found">
-        <span>🧱</span> Foundation
+      <button type="button" class="exp-tool-btn" data-preset="foundation" id="cam-found">
+        <span aria-hidden="true">🧱</span> Foundation
       </button>
 
       <div class="exp-separator"></div>
 
       <!-- Lighting Mode -->
-      <button class="exp-tool-btn active" data-lighting="day" id="light-day" aria-pressed="true">
-        <span>☀️</span> Day
+      <button type="button" class="exp-tool-btn active" data-lighting="day" id="light-day" aria-pressed="true">
+        <span aria-hidden="true">☀️</span> Day
       </button>
-      <button class="exp-tool-btn" data-lighting="sunset" id="light-sunset">
-        <span>🌇</span> Sunset
+      <button type="button" class="exp-tool-btn" data-lighting="sunset" id="light-sunset">
+        <span aria-hidden="true">🌇</span> Sunset
       </button>
-      <button class="exp-tool-btn" data-lighting="night" id="light-night">
-        <span>🌙</span> Night
+      <button type="button" class="exp-tool-btn" data-lighting="night" id="light-night">
+        <span aria-hidden="true">🌙</span> Night
       </button>
 
       <div class="exp-separator"></div>
 
       <!-- Auto Rotate Toggle -->
-      <button class="exp-tool-btn" id="btn-autorotate">
-        <span>🔄</span> <span id="autorotate-label">Auto-Spin: OFF</span>
+      <button type="button" class="exp-tool-btn" id="btn-autorotate">
+        <span aria-hidden="true">🔄</span> <span id="autorotate-label">Auto-Spin: OFF</span>
       </button>
     </div>
   </main>

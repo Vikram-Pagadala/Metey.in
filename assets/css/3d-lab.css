@@ -126,7 +126,7 @@
 
 .exp-brand-text small {
   display: block;
-  font-size: 7px;
+  font-size: 9px;
   letter-spacing: 0.22em;
   color: #8da496;
 }
@@ -344,6 +344,7 @@
 
 /* Hotspot Deep Dive Panel */
 .exp-hotspot-card {
+  position: relative;
   background: rgba(30, 50, 102, 0.6);
   border: 1px solid rgba(56, 189, 248, 0.3);
   padding: 12px;
@@ -363,17 +364,14 @@
 }
 
 .exp-hotspot-card h4 {
-  margin: 0 0 4px 0;
-  font-size: 13px;
+  margin: 0 32px 4px 0;
+  font-size: 14px;
   color: #38bdf8;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .exp-hotspot-card p {
   margin: 0;
-  font-size: 11px;
+  font-size: 12px;
   color: #cbd5e1;
   line-height: 1.5;
 }
@@ -503,14 +501,14 @@
 .hud-range::-moz-range-thumb{height:16px;width:16px;background:#f59e0b;border:2px solid white;border-radius:50%}
 .hud-range:focus-visible{outline:2px solid #f5d6a5;outline-offset:4px}
 .hotspot-pin{border:0;background:transparent;color:white;min-width:44px;min-height:44px;padding:6px;max-width:180px;transition:none}
-.hotspot-tag{white-space:normal;max-width:145px;font-size:10px;text-align:left;line-height:1.3}
+.hotspot-tag{white-space:normal;max-width:145px;font-size:11px;text-align:left;line-height:1.3}
 .hotspot-pin:focus-visible{outline:2px solid #f5d6a5;outline-offset:2px}
 .exp-body button:disabled{opacity:.45;cursor:not-allowed}
 .viewer-fallback{position:absolute;inset:0;z-index:20;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:24px;gap:24px;background:#14244E}
 .viewer-fallback h2{font-size:36px}
 .viewer-fallback p{font-size:16px}
 @media(max-width:1100px){.exp-body{height:auto;min-height:100dvh;overflow:auto;user-select:auto}.exp-wrapper{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:0 20px 24px;height:auto}.exp-nav{position:relative;grid-column:1/-1;margin:0 -20px;padding:16px 20px;height:auto;flex-wrap:wrap}.exp-typology-tabs{order:3;flex-basis:100%;justify-content:center}.exp-scene{position:relative;inset:auto;grid-column:1/-1;height:520px;min-height:0}.exp-left-dock,.exp-right-hud{position:relative;inset:auto;width:auto;max-height:none;overflow:visible;display:flex;margin:0}.exp-bottom-bar{position:relative;inset:auto;transform:none;grid-column:1/-1;max-width:100%;margin:0;justify-content:flex-start;flex-wrap:wrap;overflow:visible}.exp-scene-hint{bottom:0}}
-@media(max-width:600px){.exp-wrapper{grid-template-columns:minmax(0,1fr);padding-inline:16px;gap:16px}.exp-nav{margin:0 -16px;padding:14px 16px;flex-direction:row;gap:14px}.exp-brand-text{font-size:18px}.exp-exit-btn{font-size:11px;padding:8px 12px}.exp-typology-tabs{display:grid;grid-template-columns:1fr;width:100%;padding:4px;gap:2px}.exp-tab{justify-content:flex-start;font-size:12px;min-height:44px}.exp-scene{height:420px}.exp-left-dock,.exp-right-hud{grid-column:1}.exp-bottom-bar{grid-row:3;gap:6px}.exp-tool-btn{padding:8px 10px;font-size:11px}.exp-separator{display:none}.exp-mode-btn{min-height:88px}.exp-dock-title{font-size:10px}.hotspot-tag{font-size:9px;max-width:110px}.hotspot-pin{max-width:145px}.viewer-fallback h2{font-size:32px}}
+@media(max-width:600px){.exp-wrapper{grid-template-columns:minmax(0,1fr);padding-inline:16px;gap:16px}.exp-nav{margin:0 -16px;padding:14px 16px;flex-direction:row;gap:14px}.exp-brand-text{font-size:18px}.exp-exit-btn{font-size:11px;padding:8px 12px}.exp-typology-tabs{display:grid;grid-template-columns:1fr;width:100%;padding:4px;gap:2px}.exp-tab{justify-content:flex-start;font-size:12px;min-height:44px}.exp-scene{height:420px}.exp-left-dock,.exp-right-hud{grid-column:1}.exp-bottom-bar{grid-row:3;gap:6px}.exp-tool-btn{padding:8px 10px;font-size:11px}.exp-separator{display:none}.exp-mode-btn{min-height:88px}.exp-dock-title{font-size:11px}.hotspot-tag{font-size:10px;max-width:120px}.hotspot-pin{max-width:145px}.viewer-fallback h2{font-size:32px}}
 
 /* Use metey.in's typography, palette and shared assets. */
 .exp-body{width:100%;font:400 16px/1.65 var(--f-ui);--accent-2:var(--brass-bright)}
@@ -529,4 +527,18 @@
 @media(prefers-reduced-motion:reduce){.hotspot-dot::after,.exp-hotspot-card{animation:none}.exp-body *{transition:none!important}}
 
 .exp-bottom-bar{background:var(--navy-2);border-color:var(--navy-line)}
-#viewer-status{white-space:nowrap;margin-left:8px}
+#viewer-status{white-space:nowrap;margin-left:8px;color:var(--brass-bright);font-size:10px}
+.exp-brand-link{display:flex;align-items:center;gap:10px}
+.mode-sub{color:#a9b6c3;font-size:11px}
+.exp-slider-ends{display:flex;justify-content:space-between;gap:8px;font-size:10px;color:#a9bcb0}
+.exp-spec-val.good{color:#4ade80}
+.exp-assembly{border-color:rgba(234,179,8,.3);background:rgba(234,179,8,.06)}
+.exp-assembly-title,#status-assembly{color:#facc15;font-weight:500}
+#status-assembly[data-state="playing"]{color:#4ade80}
+.exp-assembly-btn{width:100%;margin-top:4px;background:rgba(234,179,8,.15);border-color:#eab308;color:#fef08a;font-size:12px}
+.exp-hotspot-kicker{font-size:10px!important;letter-spacing:.18em;text-transform:uppercase;color:#a3e635!important;margin-bottom:2px!important}
+.exp-hotspot-close{position:absolute;top:4px;right:4px;width:36px;height:36px;border:0;border-radius:4px;background:transparent;color:var(--ivory);font-size:22px;line-height:1}
+.exp-hotspot-close:hover,.exp-hotspot-close:focus-visible{background:rgba(255,255,255,.1)}
+/* on phones the detail card would open far below the model, so it slides up as a sheet instead;
+   the HUD drops its blur and stacking level there, either of which would trap the sheet inside the HUD */
+@media(max-width:600px){.exp-right-hud{z-index:auto;-webkit-backdrop-filter:none;backdrop-filter:none}.exp-hotspot-card.visible{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:60;padding:14px 16px;background:#14244E;border-color:rgba(56,189,248,.5);box-shadow:0 12px 40px rgba(0,0,0,.5)}}

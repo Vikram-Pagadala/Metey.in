@@ -404,11 +404,14 @@ const sectorName = k => (SECTORS.find(s => s[0] === k) || ["",""])[1];
 const thumb = (p, i) => WP + p.img.d + p.img.n[i || 0] + "-400x284" + p.img.e;
 const full = (p, i) => WP + p.img.d + p.img.n[i || 0] + p.img.e;
 const SIZES_CARD = "(max-width: 600px) 92vw, (max-width: 1024px) 45vw, 400px", SIZES_BIG = "(max-width: 56rem) 92vw, 50vw";
-const shot = (p, big, alt) => `<div class="shot">${plate(p.form, p.sector)}${p.img ? `<img src="${big ? full(p) : thumb(p)}" srcset="${thumb(p)} 400w, ${full(p)} 1200w" sizes="${big ? SIZES_BIG : SIZES_CARD}" alt="${alt || ""}" loading="lazy" decoding="async">` : ""}<span class="tag"></span></div>`;
+/* eager: the photograph is the largest thing on screen when the page opens, so it must not wait for lazy loading */
+const shot = (p, big, alt, eager) => `<div class="shot">${plate(p.form, p.sector)}${p.img ? `<img src="${big ? full(p) : thumb(p)}" srcset="${thumb(p)} 400w, ${full(p)} 1200w" sizes="${big ? SIZES_BIG : SIZES_CARD}" alt="${alt || ""}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async">` : ""}<span class="tag"></span></div>`;
 const card = (p, i) => {
   const meta = [p.loc, p.sys].filter(Boolean).join(" · ");
   return `<a class="card c-${SEC_C[p.sector]}" href="${href("project-" + p.id)}" data-sector="${p.sector}" data-states="${(p.states || []).join(" ")}" style="--i:${i}"><div class="mat tilt">${shot(p)}</div><p class="eyebrow">${sectorName(p.sector)}</p><h3>${p.name}</h3>${meta ? `<p class="meta">${meta}</p>` : ""}</a>`;
 };
+/* image alt text names the project and where it is, which is also what people search for */
+const photoAlt = p => `${p.name}${p.loc ? `, ${p.loc}` : ""}`;
 const ticks = a => `<ul class="ticks">${a.map(x => `<li>${x}</li>`).join("")}</ul>`;
 const initials = n => { const w = n.replace(/\./g, "").split(/\s+/); return (w[0][0] + w[w.length - 1][0]).toUpperCase(); };
 const pad = n => (n < 10 ? "0" : "") + n;
@@ -472,8 +475,8 @@ const render = {
     if (p.sys) facts.push(["System", p.sys]);
     if (p.status) facts.push(["Status", p.status]);
     facts.push(["Archive", p.photos + " photographs"]);
-    const gal = p.img ? `<div class="gal-wrap"><h2 class="h3">From the archive</h2><div class="gal">${p.img.n.map((n, k) => `<button class="gal-b" type="button" data-full="${full(p, k)}" aria-label="Enlarge photograph ${k + 1}"><img src="${thumb(p, k)}" alt="${p.name}, photograph ${k + 1}" width="400" height="284" loading="lazy" decoding="async"></button>`).join("")}</div></div>` : "";
-    return `<div class="pd-grid"><div class="mat" data-rv="wipe" style="--wc:${PAL[SEC_C[p.sector]][0]}">${shot(p, true, p.name)}</div><div class="stack" style="gap:1.5rem"><p class="eyebrow tint c-${SEC_C[p.sector]}" data-rv>${sectorName(p.sector)}</p><h1 data-split>${p.name}</h1><p data-rv>${p.text}</p>` +
+    const gal = p.img ? `<div class="gal-wrap"><h2 class="h3">From the archive</h2><div class="gal">${p.img.n.map((n, k) => `<button class="gal-b" type="button" data-full="${full(p, k)}" aria-label="Enlarge photograph ${k + 1}"><img src="${thumb(p, k)}" alt="${photoAlt(p)}, photograph ${k + 1}" width="400" height="284" loading="lazy" decoding="async"></button>`).join("")}</div></div>` : "";
+    return `<div class="pd-grid"><div class="mat" data-rv="wipe" style="--wc:${PAL[SEC_C[p.sector]][0]}">${shot(p, true, photoAlt(p), true)}</div><div class="stack" style="gap:1.5rem"><p class="eyebrow tint c-${SEC_C[p.sector]}" data-rv>${sectorName(p.sector)}</p><h1 data-split>${p.name}</h1><p data-rv>${p.text}</p>` +
       (p.list ? `<ol class="nums" data-rv>${p.list.map(x => `<li>${x}</li>`).join("")}</ol>` : "") +
       `<dl class="facts" data-rv>${facts.map(x => `<div><dt>${x[0]}</dt><dd>${x[1]}</dd></div>`).join("")}</dl><p class="note" data-rv>Project calculations, comprehensive structural detailing sheets, and technical parameters available on client consultation.</p></div></div>${gal}` +
       `<nav class="pd-nav" aria-label="More projects"><a class="more prev" href="${href("project-" + prev.id)}">${ARR} ${prev.name}</a><a class="more" href="${href("project-" + next.id)}">${next.name} ${ARR}</a></nav>`;

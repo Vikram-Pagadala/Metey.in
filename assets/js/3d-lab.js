@@ -117,7 +117,7 @@
             document.getElementById('spec-cycle').textContent = data.cycle;
             document.getElementById('spec-carbon').textContent = data.carbon;
           }
-          detailCard.classList.remove('visible');
+          closeCard();
         });
       });
 
@@ -174,18 +174,17 @@
 
       btnAssembly.addEventListener('click', () => {
         isPlaying = viewer.toggleAssembly();
-        if (isPlaying) {
-          statusAssembly.textContent = 'ERECTING';
-          statusAssembly.style.color = '#4ade80';
-          assemblyIcon.textContent = '⏸';
-          assemblyText.textContent = 'Pause Precast Crane Simulation';
-        } else {
-          statusAssembly.textContent = 'PAUSED';
-          statusAssembly.style.color = '#facc15';
-          assemblyIcon.textContent = '▶';
-          assemblyText.textContent = 'Simulate Precast Crane Erection';
-        }
+        statusAssembly.textContent = isPlaying ? 'ERECTING' : 'PAUSED';
+        statusAssembly.dataset.state = isPlaying ? 'playing' : 'paused';
+        assemblyIcon.textContent = isPlaying ? '⏸' : '▶';
+        assemblyText.textContent = isPlaying ? 'Pause Precast Crane Simulation' : 'Simulate Precast Crane Erection';
+        btnAssembly.setAttribute('aria-pressed', String(isPlaying));
       });
+
+      // Hotspot detail card
+      const closeCard = () => detailCard.classList.remove('visible');
+      document.getElementById('hotspot-close').addEventListener('click', closeCard);
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCard(); });
 
       // Camera Presets
       const camBtns = document.querySelectorAll('.exp-tool-btn[data-preset]');
@@ -197,6 +196,7 @@
           rotating = false;
           rotateLabel.textContent = 'Auto-Spin: OFF';
           btnRotate.classList.remove('active');
+          btnRotate.setAttribute('aria-pressed', 'false');
         });
       });
 
@@ -215,18 +215,18 @@
       const rotateLabel = document.getElementById('autorotate-label');
       let rotating = false;
       rotateLabel.textContent = 'Auto-Spin: OFF';
+      btnRotate.setAttribute('aria-pressed', 'false');
       btnRotate.addEventListener('click', () => {
         rotating = viewer.toggleAutoRotate();
         rotateLabel.textContent = `Auto-Spin: ${rotating ? 'ON' : 'OFF'}`;
         btnRotate.classList.toggle('active', rotating);
+        btnRotate.setAttribute('aria-pressed', String(rotating));
       });
-      const stateButtons = document.querySelectorAll('.exp-tab,.exp-mode-btn,.exp-tool-btn');
+      const stateButtons = document.querySelectorAll('.exp-tab,.exp-mode-btn,.exp-tool-btn:not(#btn-autorotate)');
       function syncStates() { stateButtons.forEach(button => button.setAttribute('aria-pressed', String(button.classList.contains('active')))); }
       document.querySelector('[data-typology="' + initialModel + '"]').click();
       syncStates();
       document.addEventListener('click', syncStates);
       document.addEventListener('input', syncStates);
-      btnAssembly.setAttribute('aria-pressed', 'false');
-      btnAssembly.addEventListener('click', () => btnAssembly.setAttribute('aria-pressed', String(isPlaying)));
       addEventListener('pagehide', event => { if (!event.persisted) viewer.destroy(); });
     });

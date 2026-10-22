@@ -5,6 +5,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import vm from "node:vm";
+import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
 /* ---------- settings ---------- */
@@ -25,51 +26,56 @@ const M = ctx.globalThis.METEY;
 const R = M.render;
 
 const strip = s => s.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
+/* join sentences while they fit a search snippet (160 characters); cut the first at a word if it is too long alone */
+const fit = parts => parts.filter(Boolean).map(strip).reduce((d, x, i) => i === 0 ? (x.length > 158 ? x.slice(0, 157).replace(/\s+\S*$/, "") + "…" : x) : (d + " " + x).length <= 160 ? d + " " + x : d, "");
 const attr = s => s.replace(/&(?!amp;|#\d+;|[a-z]+;)/g, "&amp;").replace(/"/g, "&quot;");
 
-/* ---------- page list ---------- */
+/* ---------- page list ----------
+   Titles stay near 60 characters and lead with the search phrase for the page; descriptions stay under 160.
+   name is the short label used in breadcrumbs and llms.txt. */
 const BRAND = "METEY Engineering &amp; Consultancy";
 const PAGES = [
-  { route: "home", file: "index.html", src: "home", nav: null,
-    title: `${BRAND} | Architectural &amp; Structural Engineers, Hyderabad`,
-    description: "Chartered architects and structural engineers in Hyderabad, specialising in precast, monolithic and advanced structural systems for projects across India." },
-  { route: "firm", src: "firm", nav: "firm",
-    title: `The Firm | ${BRAND}`,
-    description: "METEY Engineering and Consultancy, established in Hyderabad in 2013: principles, specialist capabilities and the team of engineers and architects." },
-  { route: "practice", src: "practice", nav: "practice",
-    title: `Practice Areas | ${BRAND}`,
-    description: "Architecture and master planning, structural engineering, precast and fast-build technologies, interior design, peer review and construction-stage services." },
-  { route: "projects", src: "projects", nav: "projects",
-    title: `Projects | ${BRAND}`,
-    description: "Selected METEY projects across six states: affordable housing, residential towers, corporate, institutional and industrial buildings." },
-  { route: "insights", src: "insights", nav: "insights",
-    title: `Insights &amp; Publications | ${BRAND}`,
-    description: "Technical papers by METEY on precast connections, monolithic housing and green building technologies, and talks at national conferences." },
-  { route: "3d-lab", src: "3d-lab", nav: "3d-lab", standalone: true,
-    title: `3D Engineering Lab | ${BRAND}`,
+  { route: "home", src: "home", nav: null, name: "Home",
+    title: "Structural &amp; Architectural Engineers in Hyderabad | METEY",
+    description: "Chartered structural engineers and architects in Hyderabad since 2013, specialising in precast, monolithic and high-rise design for projects across India." },
+  { route: "firm", src: "firm", nav: "firm", name: "The Firm",
+    title: "About METEY | Structural Engineering Consultancy, Hyderabad",
+    description: "Established in Hyderabad in 2013, METEY is a chartered architectural and structural engineering consultancy. Our principles, specialist capabilities and team." },
+  { route: "practice", src: "practice", nav: "practice", name: "Practice",
+    title: "Structural Design, Architecture &amp; Precast Services | METEY",
+    description: "Architecture and master planning, structural design, precast and monolithic fast-build technologies, interiors, peer review and construction-stage services." },
+  { route: "projects", src: "projects", nav: "projects", name: "Projects",
+    title: "Projects: Affordable Housing, High-Rise &amp; Industrial | METEY",
+    description: "METEY projects in six states: PMAY and EWS affordable housing, precast and monolithic housing, towers, corporate, institutional and industrial buildings." },
+  { route: "insights", src: "insights", nav: "insights", name: "Insights",
+    title: "Precast &amp; Monolithic Construction Papers | METEY",
+    description: "Technical papers by METEY on precast concrete connections, monolithic EWS housing and green building technologies for PMAY, and talks at national conferences." },
+  { route: "3d-lab", src: "3d-lab", nav: "3d-lab", standalone: true, name: "3D Lab",
+    title: "3D Engineering Lab: Interactive Building Models | METEY",
     description: "Explore interactive building models with structural X-ray, floor separation, precast assembly, camera and lighting controls." },
-  { route: "careers", src: "careers", nav: "careers",
-    title: `Careers &amp; Internships | ${BRAND}`,
-    description: "Internships and careers for architects and structural engineers at METEY, Hyderabad, under the mentorship of chartered engineers." },
-  { route: "contact", src: "contact", nav: null,
-    title: `Contact | ${BRAND}`,
-    description: "Contact METEY Engineering and Consultancy, New Nagole, Hyderabad. Phone +91 40 2414 5925, info@metey.in. Send a project enquiry." }
+  { route: "careers", src: "careers", nav: "careers", name: "Careers",
+    title: "Structural Engineering &amp; Architecture Internships | METEY",
+    description: "Internships and careers for civil and structural engineers and architects at METEY, Hyderabad, mentored by chartered engineers on live projects." },
+  { route: "contact", src: "contact", nav: null, name: "Contact",
+    title: "Contact METEY | Structural Engineers, New Nagole, Hyderabad",
+    description: "Contact METEY Engineering &amp; Consultancy, New Nagole, Hyderabad: +91 40 2414 5925, info@metey.in. Send an enquiry for structural or architectural design." }
 ];
 M.PROJECTS.forEach(p => PAGES.push({
-  route: "project-" + p.id, src: "project", nav: "projects", project: p,
-  title: `${p.name} | ${BRAND}`,
-  description: strip(`${p.text}${p.loc ? ` ${p.loc}.` : ""} ${M.sectorName(p.sector)} project by METEY Engineering and Consultancy.`),
+  route: "project-" + p.id, src: "project", nav: "projects", project: p, name: p.name,
+  title: `${p.name}${p.loc && !p.name.includes(p.loc.split(",")[0]) ? `, ${p.loc.split(",")[0]}` : ""} | METEY Projects`,
+  description: fit([p.text, p.loc && !p.text.includes(p.loc.split(",")[0]) && `${p.loc}.`, `${M.sectorName(p.sector)} project by METEY, Hyderabad.`]),
   image: p.img ? `/assets/uploads/${p.img.d}${p.img.n[0]}${p.img.e}` : null
 }));
 
 /* ---------- shared pieces ---------- */
 const NAV = [["firm","The Firm"],["practice","Practice"],["projects","Projects"],["insights","Insights"],["3d-lab","3D Lab"],["careers","Careers"]];
 const MENU = [["home","Home"]].concat(NAV, [["contact","Contact"]]);
-const SCHEMA = {
-  "@context": "https://schema.org",
-  "@type": "EngineeringBusiness",
+const ORG_ID = SITE + "/#organization";
+const BUSINESS = {
+  "@type": "ProfessionalService",
+  "@id": ORG_ID,
   name: "METEY Engineering and Consultancy Pvt. Ltd.",
-  alternateName: "METEY",
+  alternateName: ["METEY", "METEY Engineering & Consultancy"],
   url: SITE + "/",
   logo: SITE + "/assets/logo.png",
   image: SITE + SHARE_IMAGE,
@@ -77,6 +83,9 @@ const SCHEMA = {
   telephone: "+91-40-2414-5925",
   email: "info@metey.in",
   foundingDate: "2013",
+  slogan: "Committed to people. Committed to the future.",
+  areaServed: { "@type": "Country", name: "India" },
+  knowsAbout: ["Structural engineering", "Architecture", "Master planning", "Precast concrete construction", "Monolithic construction", "Affordable housing (PMAY, EWS)", "High-rise buildings", "Earthquake-resistant design", "Wind analysis", "Structural steel and composite structures", "Peer review", "Interior design"],
   address: { "@type": "PostalAddress", streetAddress: "2-4-216, Road 9A, Snehapuri Colony, New Nagole", addressLocality: "Hyderabad", addressRegion: "Telangana", postalCode: "500035", addressCountry: "IN" },
   contactPoint: [
     { "@type": "ContactPoint", telephone: "+91-40-2414-5925", contactType: "customer service", areaServed: "IN" },
@@ -84,6 +93,21 @@ const SCHEMA = {
     { "@type": "ContactPoint", telephone: "+91-97161-00567", contactType: "customer service", areaServed: "IN" }
   ],
   openingHoursSpecification: { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], opens: "09:30", closes: "18:30" }
+};
+const WEBSITE = { "@type": "WebSite", "@id": SITE + "/#website", url: SITE + "/", name: "METEY Engineering & Consultancy", inLanguage: "en-IN", publisher: { "@id": ORG_ID } };
+const decode = s => s.replace(/&amp;/g, "&");
+const ldJson = data => `<script type="application/ld+json">\n${JSON.stringify({ "@context": "https://schema.org", ...data }, null, 2).replace(/</g, "\\u003c")}\n</script>`;
+/* Home > (Projects >) page, for every page but the home page */
+const crumbs = pg => {
+  const trail = [["Home", "/"]];
+  if (pg.project) trail.push(["Projects", M.href("projects")]);
+  trail.push([decode(pg.name), M.href(pg.route)]);
+  return { "@type": "BreadcrumbList", itemListElement: trail.map((t, i) => ({ "@type": "ListItem", position: i + 1, name: t[0], item: SITE + t[1] })) };
+};
+const pageHead = pg => {
+  const robots = '<meta name="robots" content="index, follow, max-image-preview:large">';
+  if (pg.route === "home") return `${robots}\n${ldJson({ "@graph": [BUSINESS, WEBSITE] })}\n${OLD_HASH}`;
+  return `${robots}\n${ldJson(crumbs(pg))}`;
 };
 /* links shared before the site had separate pages (/#firm, /#project-jindal) still work */
 const OLD_HASH = `<script>(function(h){var m=/^#(firm|practice|projects|insights|careers|contact|project-[\\w-]+|practice-[\\w-]+)$/.exec(h);if(!m)return;var r=m[1];location.replace(r.indexOf("project-")===0?"/projects/"+r.slice(8)+"/":r.indexOf("practice-")===0?"/practice/#p-"+r.slice(9):"/"+r+"/")})(location.hash)</script>`;
@@ -129,7 +153,7 @@ for (const pg of PAGES){
     description: attr(pg.description),
     url,
     image: SITE + encodeURI(pg.image || SHARE_IMAGE),
-    head: isHome ? `<script type="application/ld+json">\n${JSON.stringify(SCHEMA, null, 2)}\n</script>\n${OLD_HASH}` : "",
+    head: pageHead(pg),
     styles: isHome ? '<link rel="stylesheet" href="/assets/css/home.css">' : "",
     gradients: R.gradients(),
     intro: isHome ? INTRO : "",
@@ -153,12 +177,43 @@ write("404.html", fill(layout, {
   year, after: "", scripts: `<script src="/assets/js/site.js" defer></script>`
 }));
 
-/* sitemap */
+/* sitemap: lastmod is the last commit touching the page's sources, so rebuilding alone does not change it */
 const today = new Date().toISOString().slice(0, 10);
+function lastChanged(files){
+  try {
+    if (execFileSync("git", ["status", "--porcelain", "--", ...files], { cwd: ROOT, encoding: "utf8" }).trim()) return today;
+    return execFileSync("git", ["log", "-1", "--format=%cs", "--", ...files], { cwd: ROOT, encoding: "utf8" }).trim() || today;
+  } catch { return today; }
+}
+const sources = pg => pg.standalone ? [`src/pages/${pg.src}.html`, "assets/js/3d-lab.js"] : [`src/pages/${pg.src}.html`, "assets/js/render.js"];
+const xml = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+const images = pg => pg.project && pg.project.img ? pg.project.img.n.map(n => SITE + encodeURI(`/assets/uploads/${pg.project.img.d}${n}${pg.project.img.e}`)) : pg.route === "home" ? [SITE + SHARE_IMAGE] : [];
 write("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${PAGES.map(pg => `  <url><loc>${SITE + M.href(pg.route)}</loc><lastmod>${today}</lastmod></url>`).join("\n")}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+${PAGES.map(pg => `  <url>
+    <loc>${SITE + M.href(pg.route)}</loc>
+    <lastmod>${lastChanged(sources(pg))}</lastmod>${images(pg).map(u => `
+    <image:image><image:loc>${xml(u)}</image:loc></image:image>`).join("")}
+  </url>`).join("\n")}
 </urlset>
 `);
 
-console.log(`Built ${PAGES.length} pages, 404.html and sitemap.xml`);
+/* llms.txt: a plain-language map of the site for AI assistants and answer engines */
+write("llms.txt", `# METEY Engineering & Consultancy
+
+> Chartered architectural and structural engineering consultancy in Hyderabad, India, established in 2013, with a branch office in Amaravati, Andhra Pradesh. METEY specialises in precast concrete, monolithic and other fast-build construction technologies, high-rise and industrial structures, and affordable (PMAY/EWS) housing across India.
+
+- Head office: 2-4-216, Road 9A, Snehapuri Colony, New Nagole, Hyderabad 500035, Telangana
+- Phone: +91 40 2414 5925
+- Email: info@metey.in
+
+## Pages
+
+${PAGES.filter(pg => !pg.project).map(pg => `- [${decode(pg.name)}](${SITE + M.href(pg.route)}): ${strip(decode(pg.description))}`).join("\n")}
+
+## Projects
+
+${PAGES.filter(pg => pg.project).map(pg => `- [${decode(pg.name)}](${SITE + M.href(pg.route)}): ${strip(decode(pg.description))}`).join("\n")}
+`);
+
+console.log(`Built ${PAGES.length} pages, 404.html, sitemap.xml and llms.txt`);
