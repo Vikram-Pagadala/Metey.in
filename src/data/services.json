@@ -1,0 +1,273 @@
+{
+  "services": [
+    {
+      "id": "architecture",
+      "anchor": "p-architecture",
+      "icon": "A",
+      "name": "Architectural Services",
+      "card": "Architecture",
+      "text": "Concept to working drawings for residential, commercial, institutional, industrial and interior projects; township and layout planning; green building design.",
+      "scope": [
+        "Gated-community and group-housing layouts",
+        "Residential buildings and multi-storey towers",
+        "Offices and commercial buildings",
+        "Educational institutions",
+        "Function halls",
+        "Industrial buildings",
+        "Master planning",
+        "Green buildings"
+      ]
+    },
+    {
+      "id": "structural",
+      "anchor": "p-structural",
+      "icon": "S",
+      "name": "Structural Consultancy",
+      "card": "Structural Consultancy",
+      "text": "Structural design of multi-storey structures (low-rise and high-rise, up to 50+ storeys), steel and RCC structures, industrial structures, and earthquake-resistant design (Zone IV experience).",
+      "examples": [
+        "2B+30 storey towers in Ghaziabad for Landcraft Developers",
+        "2B+S+30 storey towers in Gurgaon for Landcraft / Aashiana",
+        "2B+S+23 storey towers in Hyderabad (Vasavi Urban)",
+        "2B+16 storey towers in NCR",
+        "3B+20 storey structure for Phoenix, Hyderabad",
+        "In the Middle East, 50+ storey structures designed while working with various consulting organisations"
+      ],
+      "projects": [
+        "golf-links-ghaziabad-landcraft",
+        "gurgaon-towers-aashiana-landcraft",
+        "vasavi-urban-bachupally"
+      ]
+    },
+    {
+      "id": "mep",
+      "icon": "MEP",
+      "name": "MEP Services",
+      "card": "MEP (through co-consultants)",
+      "text": "Mechanical, Electrical and Plumbing design delivered through co-consultants as a full package with architecture and structure."
+    },
+    {
+      "id": "interiors",
+      "anchor": "p-interiors",
+      "icon": "ID",
+      "name": "Interiors",
+      "card": "Interiors",
+      "text": "Office and institutional interiors — e.g. ADAP TV office (Madhapur, HITEC City) and simulation lab at GSL Medical College.",
+      "projects": [
+        "adap-tv-office-interiors",
+        "gsl-medical-college-rajahmundry"
+      ]
+    },
+    {
+      "id": "peer-review",
+      "anchor": "p-peer-review",
+      "icon": "PR",
+      "name": "Peer Review & Value Engineering",
+      "card": "Peer Review & Value Engineering",
+      "text": "Independent review of structural designs to make them safer and more economical. Example: replacing RCC columns with RCC shear walls on Landcraft's 2B+30 storey towers saved about ₹6 crore in reinforcement.",
+      "projects": [
+        "peer-review",
+        "golf-links-ghaziabad-landcraft"
+      ],
+      "tiers": {
+        "source": "earlier site",
+        "intro": "Offered at three levels. Each level includes everything in the one before. To begin, we need the design basis report prepared by the main consultant and signed by the client.",
+        "levels": [
+          {
+            "num": "I",
+            "name": "Independent check",
+            "includes": [
+              "We build our own analysis model, in our own software.",
+              "We check the member sizes on the main consultant's drawings against gravity, wind and earthquake loads.",
+              "Where a section falls short, we say so and recommend a size."
+            ],
+            "ends": "Certification of the design.",
+            "terms": "One-time. No part in later revisions or in construction."
+          },
+          {
+            "num": "II",
+            "name": "Check and optimise",
+            "includes": [
+              "Everything in level I.",
+              "Member sizes optimised, in discussion with the main consultant and the client.",
+              "Drawings revised where needed, with the main consultant."
+            ],
+            "ends": "Certification and a written report.",
+            "terms": "Two months at the least, depending on when drawings are issued."
+          },
+          {
+            "num": "III",
+            "name": "Through construction",
+            "includes": [
+              "Everything in level II.",
+              "Consultancy continued through the construction period, where the client asks for it."
+            ],
+            "ends": "The close of construction support.",
+            "terms": "Charged in addition to the review."
+          }
+        ]
+      }
+    },
+    {
+      "id": "pmc",
+      "anchor": "p-construction-stage",
+      "icon": "CS",
+      "name": "Project Management Consultancy (PMC)",
+      "card": "Project Management Consultancy (PMC)",
+      "text": "Design solutions during execution, tender advisory, quantity surveying (QS) and site supervision (e.g. Punj Lloyd, Indu Projects, Sunway Opus).",
+      "scope": [
+        "Pre-bid engineering",
+        "Procurement support",
+        "Formwork design",
+        "Site survey",
+        "Executive supervision",
+        "Construction monitoring",
+        "Project management",
+        "Quantity surveying and contracts"
+      ]
+    }
+  ],
+  "technologies": {
+    "id": "technologies",
+    "anchor": "p-precast",
+    "icon": "PC",
+    "name": "Construction Technologies",
+    "card": "Construction Technologies",
+    "text": "Precast, monolithic (Mivan / aluminium formwork), composite, insulated wall (EPS / shotcrete), light gauge steel, Perma form and timber.",
+    "items": [
+      {
+        "id": "precast",
+        "name": "Precast construction",
+        "text": "Factory-made concrete elements assembled on site — faster, economical, consistent quality. Used for housing, hostels, pharma and industrial buildings.",
+        "images": [
+          {
+            "src": "/assets/images/metey/technologies/precast/precast-building-erection.webp",
+            "alt": "Precast building under erection"
+          },
+          {
+            "src": "/assets/images/metey/technologies/precast/precast-tower-cranes.webp",
+            "alt": "Precast towers under construction with cranes"
+          }
+        ],
+        "system": "precast",
+        "category": "precast",
+        "papers": [
+          "precast"
+        ]
+      },
+      {
+        "id": "monolithic",
+        "name": "Monolithic (Mivan / aluminium formwork)",
+        "text": "Walls and slabs cast together in one pour — ideal for repetitive mass housing and high-rise towers.",
+        "system": "mono",
+        "category": "monolithic",
+        "projects": [
+          "vasavi-urban-bachupally",
+          "golf-links-ghaziabad-landcraft",
+          "aptidco-pmay-housing"
+        ]
+      },
+      {
+        "id": "composite",
+        "name": "Composite construction",
+        "text": "Structural steel frame with concrete deck / panels — light and quick to erect.",
+        "images": [
+          {
+            "src": "/assets/images/metey/technologies/composite/composite-construction-deck.webp",
+            "alt": "Composite steel deck construction",
+            "lowRes": true
+          }
+        ],
+        "system": "comp",
+        "projects": [
+          "nursing-school-numaligarh",
+          "jspl-angul-eps-composite"
+        ]
+      },
+      {
+        "id": "insulated-wall",
+        "name": "Insulated wall (EPS panel / shotcrete)",
+        "text": "EPS core panels sprayed with concrete — thermal insulation and fast construction.",
+        "images": [
+          {
+            "src": "/assets/images/metey/technologies/insulated-wall/insulated-wall-construction.webp",
+            "alt": "Insulated wall construction in progress"
+          }
+        ],
+        "system": "eps",
+        "projects": [
+          "jspl-angul-eps-composite",
+          "insulated-panel-sonepat",
+          "odisha"
+        ]
+      },
+      {
+        "id": "light-gauge-steel",
+        "name": "Light Gauge Steel (LGS)",
+        "text": "Cold-formed steel framing for low-rise buildings.",
+        "images": [
+          {
+            "src": "/assets/images/metey/technologies/lgs/light-gauge-steel-construction.webp",
+            "alt": "Light gauge steel (LGS) frame construction",
+            "lowRes": true
+          }
+        ],
+        "system": "lgs",
+        "projects": [
+          "jspl-angul-eps-composite"
+        ]
+      },
+      {
+        "id": "perma-form",
+        "name": "Perma form",
+        "text": "Permanent formwork panels that stay as part of the wall.",
+        "images": [
+          {
+            "src": "/assets/images/metey/technologies/perma-form/perma-form-panel.webp",
+            "alt": "Perma form construction panel",
+            "lowRes": true
+          },
+          {
+            "src": "/assets/images/metey/technologies/perma-form/perma-form-wall.webp",
+            "alt": "Perma form wall construction",
+            "lowRes": true
+          }
+        ]
+      },
+      {
+        "id": "polymer-wall",
+        "name": "Polymer wall construction",
+        "text": "Used for projects in Andhra Pradesh."
+      },
+      {
+        "id": "timber",
+        "name": "Timber / wooden structures",
+        "text": "Glulam and timber structures (designed in Dubai, UAE).",
+        "images": [
+          {
+            "src": "/assets/images/metey/technologies/wooden-structures/glulam-timber.webp",
+            "alt": "Glulam timber members",
+            "lowRes": true
+          },
+          {
+            "src": "/assets/images/metey/technologies/wooden-structures/timber-steel-connection.webp",
+            "alt": "Timber beam steel connection",
+            "lowRes": true
+          },
+          {
+            "src": "/assets/images/metey/technologies/wooden-structures/timber-roof-truss.webp",
+            "alt": "Timber roof truss"
+          },
+          {
+            "src": "/assets/images/metey/technologies/wooden-structures/timber-hall-interior.webp",
+            "alt": "Timber structure hall interior"
+          },
+          {
+            "src": "/assets/images/metey/technologies/wooden-structures/timber-roof-structure.webp",
+            "alt": "Timber roof structure"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,15 +1,15 @@
 BEGIN:VCARD
 VERSION:3.0
-N:Prasad;C A;;Er.;
-FN:Er. C A Prasad (Director)
-ORG:METEY Engineering and Consultancy Pvt. Ltd.
-TITLE:Director & Principal Structural Consultant
+N:Prasad;C.A.;;Er.;
+FN:Er. C.A. Prasad (Director)
+ORG:Metey Engineering & Consultancy Pvt Ltd
+TITLE:Director & Chief Structural Engineer
+TEL;TYPE=CELL,PREF,VOICE:+919700159325
 TEL;TYPE=WORK,VOICE:+914024145925
-TEL;TYPE=CELL,VOICE:+919700159325
-TEL;TYPE=CELL,VOICE:+919716100567
-EMAIL;TYPE=PREF,INTERNET:info@metey.in
+TEL;TYPE=WORK,VOICE:+919494756526
+EMAIL;TYPE=PREF,INTERNET:designs@metey.in
 EMAIL;TYPE=WORK,INTERNET:prasad@metey.in
 URL:https://metey.in
 ADR;TYPE=WORK:;;2-4-216, Road 9A, Snehapuri Colony, New Nagole;Hyderabad;Telangana;500035;India
-NOTE:Chartered Architectural and Structural Engineering Consultancy Firm. Hyderabad Head Office & Amaravati Branch Office.
+NOTE:Committed to People, Committed to Future. Architecture and structural engineering consultancy, Hyderabad head office and Amaravati branch office.
 END:VCARD

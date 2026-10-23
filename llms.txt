@@ -1,35 +1,66 @@
-# METEY Engineering & Consultancy
+# Metey Engineering & Consultancy
 
-> Chartered architectural and structural engineering consultancy in Hyderabad, India, established in 2013, with a branch office in Amaravati, Andhra Pradesh. METEY specialises in precast concrete, monolithic and other fast-build construction technologies, high-rise and industrial structures, and affordable (PMAY/EWS) housing across India.
+> Metey Engineering & Consultancy Pvt Ltd: architecture and structural engineering consultants. Established 2013, registered in Hyderabad (combined Andhra Pradesh); head office in Hyderabad, branch office in Amaravati, Andhra Pradesh. Designing durable, sustainable and fast-to-build structures across India since 2013 — from 30+ storey towers to precast mass housing.
 
 - Head office: 2-4-216, Road 9A, Snehapuri Colony, New Nagole, Hyderabad 500035, Telangana
-- Phone: +91 40 2414 5925
-- Email: info@metey.in
+- Phone: +91 97001 59325, +91 40 2414 5925, +91 94947 56526
+- Email: designs@metey.in, prasad@metey.in
+- Facebook: https://www.facebook.com/meteyengineeringnconsultancy/
 
 ## Pages
 
-- [Home](https://metey.in/): Chartered structural engineers and architects in Hyderabad since 2013, specialising in precast, monolithic and high-rise design for projects across India.
-- [The Firm](https://metey.in/firm/): Established in Hyderabad in 2013, METEY is a chartered architectural and structural engineering consultancy. Our principles, specialist capabilities and team.
-- [Practice](https://metey.in/practice/): Architecture and master planning, structural design, precast and monolithic fast-build technologies, interiors, peer review and construction-stage services.
-- [Projects](https://metey.in/projects/): METEY projects in six states: PMAY and EWS affordable housing, precast and monolithic housing, towers, corporate, institutional and industrial buildings.
+- [Home](https://metey.in/): Designing durable, sustainable and fast-to-build structures across India since 2013 — from 30+ storey towers to precast mass housing.
+- [About](https://metey.in/about/): Established in 2013, METEY's core strengths are architecture and structural engineering, with precast, monolithic and other modern construction technologies.
+- [Services](https://metey.in/services/): Architecture, structural consultancy, MEP, interiors, peer review and value engineering, and project management consultancy for projects across India.
+- [Technologies](https://metey.in/technologies/): Precast, monolithic (Mivan), composite, insulated wall (EPS), light gauge steel, Perma form, polymer wall and timber structures, designed by Metey across India.
+- [Projects](https://metey.in/projects/): 42 projects in 11 states and Delhi: PMAY and EWS housing, precast and monolithic towers, education, commercial and industrial buildings.
+- [Clients](https://metey.in/clients/): METEY clients include DRDO, GHMC, APTIDCO, APCPDCL, Tata Projects, NTPC, Jindal Steel & Power, Numaligarh Refinery and IIT Patna.
+- [Team](https://metey.in/team/): Er. C.A. Prasad, Director & Chief Structural Engineer with 48 years of experience, and METEY's architects, structural engineers and quantity surveyors.
 - [Insights](https://metey.in/insights/): Technical papers by METEY on precast concrete connections, monolithic EWS housing and green building technologies for PMAY, and talks at national conferences.
-- [3D Lab](https://metey.in/3d-lab/): Explore interactive building models with structural X-ray, floor separation, precast assembly, camera and lighting controls.
 - [Careers](https://metey.in/careers/): Internships and careers for civil and structural engineers and architects at METEY, Hyderabad, mentored by chartered engineers on live projects.
-- [Contact](https://metey.in/contact/): Contact METEY Engineering & Consultancy, New Nagole, Hyderabad: +91 40 2414 5925, info@metey.in. Send an enquiry for structural or architectural design.
+- [Contact](https://metey.in/contact/): Contact Metey Engineering & Consultancy, New Nagole, Hyderabad: +91 97001 59325, designs@metey.in. Structural and architectural design across India.
 
 ## Projects
 
+- [APCPDCL Corporate Office, Vijayawada](https://metey.in/projects/apcpdcl-corporate-office-vijayawada/): APCPDCL was formed on 5 December 2019 to serve the electricity needs of seven districts of Andhra Pradesh. The new headquarters houses Operations &…
+- [Hostel Blocks (Dormitory cum Dining) for Telangana Universities](https://metey.in/projects/hostel-blocks-tg-universities/): The Tribal Welfare Department approved student hostels at all seven universities of Telangana. This hostel at Kakatiya University has two blocks with…
+- [DIET Academic Block (Samagra Shiksha)](https://metey.in/projects/diet-academic-block/): The academic block includes classrooms, a library, a conference room and a mini auditorium. A central courtyard brings in plenty of light and ventilation,…
+- [College for Data Sciences, Bachupally, Hyderabad](https://metey.in/projects/college-data-sciences-bachupally/): Built entirely with precast technology. Floor and wall finishes/paint are avoided for easy maintenance. A central courtyard is used for gatherings and as a…
+- [APTIDCO – PMAY Housing, Visakhapatnam & Vizianagaram](https://metey.in/projects/aptidco-pmay-housing/): Architectural, structural and MEP services and preparation of township layouts for EWS housing under Pradhan Mantri Awas Yojana (PMAY). Built using the…
+- [MIG Housing Layout, Visakhapatnam](https://metey.in/projects/mig-housing-visakhapatnam/): A housing layout proposed at Visakhapatnam for the middle-income group (MIG). 325 sft flats. Visakhapatnam, Andhra Pradesh.
+- [GSL Medical College, Rajahmundry](https://metey.in/projects/gsl-medical-college-rajahmundry/): Food court (architectural and structural proposal), hostel blocks (architectural, structural and MEP) and the interior of the simulation lab.
+- [Nursing School cum Hostel Block, Numaligarh, Assam](https://metey.in/projects/nursing-school-numaligarh/): Teaching block and hostel for the nursing college at Numaligarh Refinery — architectural, structural and MEP consultancy. Built with composite construction…
+- [IIT Patna Secondary School, Bihta](https://metey.in/projects/iit-patna-secondary-school/): IIT Patna, Bihta, Patna, Bihar. Architecture · Structural · MEP · Education project by METEY, Hyderabad.
+- [ADAP TV Office Interiors, Hyderabad](https://metey.in/projects/adap-tv-office-interiors/): Madhapur, HITEC City, Hyderabad. Interiors · Commercial project by METEY, Hyderabad.
+- [Residential Apartment for SSK Developers, Rajahmundry](https://metey.in/projects/ssk-residential-rajahmundry/): . Architecture · Residential project by METEY, Hyderabad.
+- [JETDCL Small Scale Industry, Jakkampudi](https://metey.in/projects/jetdcl-small-scale-industry/): Jakkampudi, Vijayawada, Andhra Pradesh. Architecture · Structural · MEP · Industrial (proposal) project by METEY, Hyderabad.
+- [Vasavi Urban, Bachupally, Hyderabad](https://metey.in/projects/vasavi-urban-bachupally/): Structural consultancy for high-rise residential towers designed with monolithic (Mivan) construction technology. Ongoing construction.
+- [Golf Links Project, Ghaziabad — Landcraft Developers](https://metey.in/projects/golf-links-ghaziabad-landcraft/): Structural design using monolithic construction technology. Value engineering — replacing RCC columns with RCC shear walls — saved about ₹6 crore in…
+- [Residential Towers, Gurgaon — Aashiana & Landcraft JV](https://metey.in/projects/gurgaon-towers-aashiana-landcraft/): Value engineering by replacing RCC columns with RCC shear walls — reinforcement savings of about ₹6 crore. 10 towers of 2B+30 storeys. Gurgaon, Haryana.
+- [Residential Towers, Ghaziabad — Carol Infrastructure](https://metey.in/projects/carol-infrastructure-ghaziabad/): Value engineering by replacing RCC columns with RCC shear walls — reinforcement savings of about ₹3 crore. 3 towers of 30+2 storeys · 10 lakh sft.
+- [Corporate Tower, Jindal Steel & Power, Raigarh](https://metey.in/projects/jindal-corporate-tower-raigarh/): Jindal Steel and Power Ltd., Raigarh, Chhattisgarh. Structural · Commercial project by METEY, Hyderabad.
+- [Bangalore Development Authority Housing](https://metey.in/projects/bda-bangalore-concrete-wall/): S+G+7 buildings · 2,500 units total — S+8 (650 units, LIG/MIG, Kaniminike), G+3 (670 units, EWS, Kaniminike), S+7 (840 units, EWS, Gunjur), S+6 (312 units,…
+- [2B+9 Storey Precast Structure for NLC, Chennai](https://metey.in/projects/nlc-chennai-precast/): NLC, Chennai, Tamil Nadu. Structural · Precast · Commercial project by METEY, Hyderabad.
+- [DRDO Precast Residential Housing, NCR](https://metey.in/projects/drdo-precast-housing-ncr/): Precast residential apartment housing for DRDO in NCR — eight-storey precast structures designed for Earthquake Zone IV.
+- [GHMC 2BHK Housing, Dundigal, Hyderabad](https://metey.in/projects/ghmc-2bhk-dundigal/): S+P+G+9 / S+P+9 precast towers · 16 towers. Structural · Precast · Government Housing (EWS) project by METEY, Hyderabad.
+- [2B+10 Storey Precast Residential Structure, Hyderabad](https://metey.in/projects/precast-residential-2b10-hyderabad/): . Structural · Precast · Residential project by METEY, Hyderabad.
+- [10 Storey Precast Duplex Residential Apartments, Hyderabad](https://metey.in/projects/precast-duplex-apartments-hyderabad/): . Structural · Precast · Residential project by METEY, Hyderabad.
+- [Footwear Industry Building, Vijayawada](https://metey.in/projects/footwear-industry-vijayawada/): Six storeys · 12 m span slabs. Vijayawada, Andhra Pradesh. Structural · Precast · Industrial project by METEY, Hyderabad.
+- [Sai Life Sciences R&T Building](https://metey.in/projects/sai-life-sciences-pharma/): 1,00,000 sft precast structure for a pharmaceutical laboratory. Sai Life Sciences (developer: Inventaa), Hyderabad.
+- [Precast Structures for Pharmaceutical Industry, Hyderabad](https://metey.in/projects/pharma-precast-hyderabad/): Two / three storey precast structures. . Structural · Precast · Industrial project by METEY, Hyderabad.
+- [Precast Construction, Vijayawada](https://metey.in/projects/precast-vijayawada/): Includes APUIAML Economic Township — 5 precast towers of six storeys each, totalling 7,00,000 sft (developers KMV / Inventaa). Vijayawada, Andhra Pradesh.
+- [G+1 Precast Villas for Janapriya, Hyderabad](https://metey.in/projects/janapriya-precast-villas/): 250 G+1 villas — independent and row houses. Janapriya Engineers Syndicate Pvt. Ltd.. Structural · Precast · Residential project by METEY, Hyderabad.
+- [JSPL Buildings at Angul, Odisha — EPS Panel & Composite](https://metey.in/projects/jspl-angul-eps-composite/): 11-storey composite structural steel + EPS panel structure. Jindal Steel and Power Ltd. (JSPL), Angul, Odisha.
+- [Insulated Concrete Panel Building, Sonepat, Haryana](https://metey.in/projects/insulated-panel-sonepat/): Four storeys, insulated concrete panel walls. Sonepat, Haryana (Earthquake Zone IV). Structural · Insulated wall project by METEY, Hyderabad.
+- [MLA Quarters, Bhubaneswar](https://metey.in/projects/mla-quarters-bhubaneswar/): 6 towers of 2B+9/8 storeys. Bhubaneswar, Odisha. Architecture / Structural · Government Housing · Conventional project by METEY, Hyderabad.
+- [Residential Quarters, University of Hyderabad](https://metey.in/projects/university-of-hyderabad-quarters/): Six-storey staff quarters. CPWD, Hyderabad. Architecture · Structural · MEP · Conventional project by METEY, Hyderabad.
+- [12 MW Power Plant, Bibi Nagar](https://metey.in/projects/12mw-power-plant-bibinagar/): 12 MW renewable energy power plant. RDF, Bibi Nagar, Nalgonda District, Telangana. Civil · Architecture · Structural · Industrial project by METEY, Hyderabad.
+- [Other industrial structures](https://metey.in/projects/industrial-structures/): . Industrial project by METEY, Hyderabad.
+- [Peer Review Projects](https://metey.in/projects/peer-review/): . A project by METEY, Hyderabad.
 - [Technology Demonstration Housing](https://metey.in/projects/kethanakonda/): A demonstration site for affordable (EWS) housing, where seven building systems were constructed at one location.
-- [Vasavi Towers](https://metey.in/projects/vasavi/): Twelve blocks on a 22-acre site, each of three basements, a stilt floor and 23 floors. Residential project by METEY, Hyderabad.
-- [Jindal Corporate Tower](https://metey.in/projects/jindal/): A corporate tower built as a composite structure. Commercial and civic project by METEY, Hyderabad.
-- [Sai Life Sciences](https://metey.in/projects/sai-life/): A pharmaceutical facility in Hyderabad. Industrial project by METEY, Hyderabad.
-- [Nursing School, Numaligarh Refinery](https://metey.in/projects/nursing-school/): A nursing school for Numaligarh Refinery Limited. Assam. Institutional project by METEY, Hyderabad.
-- [11-Storey EWS Housing](https://metey.in/projects/dundigal/): Eleven-storey housing for the economically weaker section at Dundigal, Hyderabad. Affordable housing project by METEY, Hyderabad.
-- [EWS Monolithic Housing](https://metey.in/projects/ews-monolithic/): Housing for the economically weaker section, cast monolithically in aluminium formwork at sites in Andhra Pradesh and Bangalore.
 - [EWS Housing, Mandadam](https://metey.in/projects/mandadam/): Affordable housing built with monolithic construction technology. Designed by METEY; developed by KMV Projects. Mandadam, Amaravati.
-- [Insulated Wall Construction](https://metey.in/projects/odisha/): Insulated wall construction in Odisha. Affordable housing project by METEY, Hyderabad.
-- [Goa Villas](https://metey.in/projects/goa-villas/): Villas in Goa. Residential project by METEY, Hyderabad.
-- [Landcraft](https://metey.in/projects/landcraft/): Recorded during construction and after completion. Residential project by METEY, Hyderabad.
-- [Conference Hall](https://metey.in/projects/conference-hall/): A conference hall at Kethanakonda. Commercial and civic project by METEY, Hyderabad.
-- [Montessori School](https://metey.in/projects/montessori/): A Montessori school in Bangalore. Institutional project by METEY, Hyderabad.
-- [11 MW Power Plant](https://metey.in/projects/power-plant/): Structures for an 11 MW power plant. Industrial project by METEY, Hyderabad.
+- [Insulated Wall Construction](https://metey.in/projects/odisha/): Insulated wall construction in Odisha. Odisha. Government Housing project by METEY, Hyderabad.
+- [EWS Monolithic Housing](https://metey.in/projects/ews-monolithic/): Housing for the economically weaker section, cast monolithically in aluminium formwork at sites in Andhra Pradesh and Bangalore. Andhra Pradesh and Bangalore.
+- [Goa Villas](https://metey.in/projects/goa-villas/): Villas in Goa. Goa. Residential project by METEY, Hyderabad.
+- [Conference Hall](https://metey.in/projects/conference-hall/): A conference hall at Kethanakonda. Kethanakonda, Andhra Pradesh. Commercial project by METEY, Hyderabad.
+- [Montessori School](https://metey.in/projects/montessori/): A Montessori school in Bangalore. Bangalore. Education project by METEY, Hyderabad.

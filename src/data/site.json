@@ -1,0 +1,331 @@
+{
+  "company": {
+    "name": "Metey Engineering & Consultancy Pvt Ltd",
+    "shortName": "METEY",
+    "tagline": "Committed to People, Committed to Future",
+    "established": "2013, registered in Hyderabad (combined Andhra Pradesh)",
+    "address": {
+      "street": "2-4-216, Road 9A, Snehapuri Colony, New Nagole",
+      "city": "Hyderabad",
+      "postalCode": "500035",
+      "region": "Telangana",
+      "country": "India"
+    },
+    "branch": "Amaravati, Andhra Pradesh",
+    "website": "www.metey.in",
+    "facebook": "https://www.facebook.com/meteyengineeringnconsultancy/",
+    "logo": {
+      "src": "/assets/images/metey/brand/metey-logo.webp",
+      "png": "/assets/images/metey/brand/metey-logo.png",
+      "alt": "METEY"
+    },
+    "phones": [
+      {
+        "label": "Phone",
+        "number": "+91 97001 59325"
+      },
+      {
+        "label": "Landline",
+        "number": "+91 40 2414 5925"
+      },
+      {
+        "label": "Mobile",
+        "number": "+91 94947 56526"
+      }
+    ],
+    "emails": [
+      {
+        "label": "Email",
+        "address": "designs@metey.in"
+      },
+      {
+        "label": "Email",
+        "address": "prasad@metey.in"
+      }
+    ],
+    "whatsapp": "919700159325",
+    "people": [
+      {
+        "label": "Director",
+        "name": "Er. C.A. Prasad",
+        "phone": "+91 97001 59325",
+        "email": "prasad@metey.in"
+      },
+      {
+        "label": "Manager, Engineering",
+        "name": "V. Narasimha Reddy",
+        "phone": "+91 90000 83733",
+        "email": "nreddy@metey.in",
+        "source": "earlier site"
+      }
+    ],
+    "hours": {
+      "days": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
+      "opens": "09:30",
+      "closes": "18:30"
+    },
+    "formerName": "PS Engineering Consultant"
+  },
+  "home": {
+    "hero": {
+      "headline": "Architecture & Structural Engineering Consultants",
+      "sub": "Designing durable, sustainable and fast-to-build structures across India since 2013 — from 30+ storey towers to precast mass housing.",
+      "buttons": [
+        [
+          "View Projects",
+          "/projects/"
+        ],
+        [
+          "Contact Us",
+          "/contact/"
+        ]
+      ],
+      "slides": [
+        {
+          "project": "vasavi-urban-bachupally",
+          "src": "/assets/images/metey/projects/vasavi-urban-bachupally/vasavi-urban-render.webp"
+        },
+        {
+          "project": "apcpdcl-corporate-office-vijayawada",
+          "src": "/assets/images/metey/projects/apcpdcl-corporate-office-vijayawada/apcpdcl-built-photo.webp"
+        },
+        {
+          "project": "jindal-corporate-tower-raigarh",
+          "src": "/assets/uploads/2018/09/Jindal-corporate-tower-1.jpg"
+        },
+        {
+          "project": "ghmc-2bhk-dundigal",
+          "src": "/assets/images/metey/projects/ghmc-2bhk-dundigal/precast-ews-construction-5.webp"
+        },
+        {
+          "project": "nursing-school-numaligarh",
+          "src": "/assets/images/metey/projects/nursing-school-numaligarh/nursing-school-aerial.webp"
+        },
+        {
+          "project": "sai-life-sciences-pharma",
+          "src": "/assets/images/metey/projects/sai-life-sciences-pharma/sai-life-building.webp"
+        }
+      ]
+    },
+    "intro": [
+      "We're creative consultants, passionate about designing innovative, functional spaces that inspire and delight. Our team of architects and structural designers collaborates to deliver exceptional solutions for residential, commercial, institutional, industrial and interior projects.",
+      "Our approach integrates aesthetics and functionality, ensuring each project not only meets but exceeds expectations."
+    ],
+    "counters": [
+      {
+        "value": 2013,
+        "from": 1990,
+        "label": "Established"
+      },
+      {
+        "value": 50,
+        "suffix": "+",
+        "unit": "storey",
+        "label": "Structures designed (Middle East)"
+      },
+      {
+        "value": 2500,
+        "unit": "units",
+        "label": "Concrete-wall housing for Bangalore Development Authority"
+      },
+      {
+        "value": 55,
+        "unit": "lakh sft",
+        "label": "Vasavi Urban gated community (12 high-rise towers)"
+      },
+      {
+        "value": 6,
+        "prefix": "₹",
+        "suffix": "Cr",
+        "label": "Saved on a single project through value engineering"
+      },
+      {
+        "value": 9500000,
+        "roll": true,
+        "unit": "sft",
+        "label": "Total built-up area delivered (approx.)",
+        "note": "Sum of the areas listed in the profile, rounded up: Vasavi Urban 55 lakh, Landcraft 10 lakh, Carol 10 lakh, DRDO 7.5 lakh, APUIAML 7 lakh, Rajahmundry apartment 2 lakh, Sai Life 1 lakh, APCPDCL 70,380, College for Data Sciences 53,780, DIET (two sites) 41,872 and Kakatiya hostels 39,240 = 94,55,272 sft."
+      }
+    ],
+    "services": [
+      "architecture",
+      "structural",
+      "mep",
+      "interiors",
+      "technologies",
+      "peer-review",
+      "pmc"
+    ],
+    "clients": [
+      "DRDO",
+      "GHMC",
+      "APTIDCO",
+      "APCPDCL",
+      "Tata Projects",
+      "NTPC",
+      "Jindal Steel & Power",
+      "Numaligarh Refinery",
+      "IIT Patna",
+      "Bangalore Development Authority",
+      "Military Engineer Services",
+      "Sai Life Sciences",
+      "Landcraft Developers",
+      "Vasavi Developers",
+      "Janapriya",
+      "Punj Lloyd"
+    ],
+    "portfolio": [
+      {
+        "src": "/assets/images/metey/portfolio-highlights/landscaped-plaza-render.webp",
+        "alt": "Landscaped campus plaza render",
+        "lowRes": true
+      },
+      {
+        "src": "/assets/images/metey/portfolio-highlights/portfolio-01.webp",
+        "alt": "Metey portfolio project render",
+        "lowRes": true
+      },
+      {
+        "src": "/assets/images/metey/portfolio-highlights/portfolio-02.webp",
+        "alt": "Metey portfolio project render",
+        "lowRes": true
+      },
+      {
+        "src": "/assets/images/metey/portfolio-highlights/portfolio-03.webp",
+        "alt": "Metey portfolio project render",
+        "lowRes": true
+      },
+      {
+        "src": "/assets/images/metey/portfolio-highlights/portfolio-04.webp",
+        "alt": "Metey portfolio project render",
+        "lowRes": true
+      },
+      {
+        "src": "/assets/images/metey/portfolio-highlights/portfolio-05.webp",
+        "alt": "Metey portfolio project render",
+        "lowRes": true
+      },
+      {
+        "src": "/assets/images/metey/portfolio-highlights/portfolio-06.webp",
+        "alt": "Metey portfolio project render",
+        "lowRes": true
+      },
+      {
+        "src": "/assets/images/metey/portfolio-highlights/portfolio-07.webp",
+        "alt": "Metey portfolio project render",
+        "lowRes": true
+      },
+      {
+        "src": "/assets/images/metey/portfolio-highlights/portfolio-08.webp",
+        "alt": "Metey portfolio project render",
+        "lowRes": true
+      },
+      {
+        "src": "/assets/images/metey/portfolio-highlights/portfolio-09.webp",
+        "alt": "Metey portfolio project render",
+        "lowRes": true
+      },
+      {
+        "src": "/assets/images/metey/portfolio-highlights/portfolio-10.webp",
+        "alt": "Metey portfolio project render"
+      },
+      {
+        "src": "/assets/images/metey/portfolio-highlights/portfolio-11.webp",
+        "alt": "Metey portfolio project render"
+      },
+      {
+        "src": "/assets/images/metey/projects/other-architecture/institutional-block-render.webp",
+        "alt": "Institutional building render"
+      },
+      {
+        "src": "/assets/images/metey/projects/other-architecture/residential-block-render.webp",
+        "alt": "Residential block render"
+      }
+    ]
+  },
+  "about": {
+    "story": {
+      "text": "Metey Engineering & Consultancy Pvt Ltd was established and registered in the combined Andhra Pradesh state in 2013, and has since been delivering projects across India.",
+      "points": [
+        "Its core strengths are Architecture and Structural Engineering.",
+        "It focuses on using modern construction technologies — precast, monolithic (Mivan / aluminium formwork), composite, insulated wall (EPS / shotcrete), light gauge steel, Perma form and timber.",
+        "These technologies help build durable and sustainable structures in the shortest time, so buildings can be occupied earlier.",
+        "Metey follows Green Building principles in its designs."
+      ]
+    },
+    "expertise": {
+      "intro": "The firm was founded by Er. C.A. Prasad, who has 48 years of experience in:",
+      "areas": [
+        [
+          "Architecture",
+          " — design of multi-storey towers (low-rise and high-rise), green buildings, earthquake-resistant design"
+        ],
+        [
+          "Structures (Steel / RCC)",
+          " for hotels, office buildings, shopping malls, godowns, workshops, warehouses, function halls and restaurants"
+        ],
+        [
+          "MEP",
+          " (Mechanical, Electrical & Plumbing)"
+        ],
+        [
+          "Infrastructure"
+        ],
+        [
+          "FRP, Precast and Prestressed structures"
+        ]
+      ]
+    },
+    "message": {
+      "paragraphs": [
+        "As the Director of Metey Engineering & Consultancy, I take immense pride in the journey we have undertaken in the field of architecture and civil consultancy. Since our inception, our mission has been clear — to deliver innovative, sustainable and efficient engineering solutions that stand the test of time.",
+        "Our team of dedicated professionals brings together experience, technical expertise and a passion for excellence. Whether it's urban infrastructure, environmental planning, structural design or project management, we approach every challenge with a commitment to quality, safety and client satisfaction.",
+        "We believe that collaboration is at the heart of every successful project. By working closely with our clients, stakeholders and partners, we ensure that each solution is not only technically sound but also aligned with the broader vision and goals of the project.",
+        "Thank you for placing your trust in us. We look forward to building a better tomorrow — one project at a time."
+      ],
+      "name": "Er. C.A. Prasad",
+      "role": "Director & Chief Structural Engineer, Metey Engineering & Consultancy Pvt Ltd"
+    },
+    "principles": {
+      "source": "earlier site",
+      "items": [
+        [
+          "economy",
+          "Economy",
+          "Cost-effective results, with every structure sized for economy."
+        ],
+        [
+          "efficiency",
+          "Efficiency",
+          "We stay in touch with every team on the project, from contractors and project managers to specialist suppliers, until delivery is complete in all respects."
+        ],
+        [
+          "PC",
+          "Current technology",
+          "The newest sound methods of construction, chosen to suit the building and its programme."
+        ]
+      ]
+    },
+    "history": [
+      [
+        "Before 2013",
+        "The practice worked as PS Engineering Consultant."
+      ],
+      [
+        "2013",
+        "Established and registered as Metey Engineering & Consultancy Pvt Ltd in the combined Andhra Pradesh state."
+      ],
+      [
+        "Today",
+        "Head office in Hyderabad and a branch office in Amaravati, delivering projects across India."
+      ]
+    ]
+  }
+}

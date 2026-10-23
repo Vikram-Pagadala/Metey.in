@@ -1,0 +1,67 @@
+{
+  "founder": {
+    "name": "Er. C.A. Prasad",
+    "role": "Director & Chief Structural Engineer",
+    "photo": { "src": "/assets/images/metey/team/er-ca-prasad.webp", "alt": "Er. C.A. Prasad, Director and Chief Structural Engineer, METEY" },
+    "profile": [
+      "M.Tech (Engineering Structures), NIT Warangal, plus 3 years of research experience.",
+      "48 years of experience in construction, design, quantity surveying and project management.",
+      "Worked in the Middle East for ten years with firms such as Balfour Beatty, WS Atkins and Engineers Office.",
+      "Involved in the design of the Burj Al Arab (56 storeys), Jumeirah Beach works, Millennium Grandstand, warehouses and 40–60 storey towers in Dubai, and the Ramada Tower in Doha.",
+      "Project management for the Passenger Terminal Building of Hyderabad International Airport.",
+      "Design of multi-storey towers in India, precast designs for villas and multi-storey structures, and design of industrial structures.",
+      "Promotes the adoption of modern construction technologies for the benefit of the construction industry, and advises the Government.",
+      "Fellow of the Institution of Engineers (India) (FIE); Fellow of ACCE(I); Chartered Engineer.",
+      "Member, American Society of Civil Engineers (ASCE), USA; Chartered Member, Structural Engineering Institute (SEI), USA.",
+      "Founder, Secretary and Past President, Pre-Engineered Structures Society of India (PSI)."
+    ]
+  },
+  "groups": [
+    { "id": "architects", "name": "Architects", "people": [
+      { "name": "Mr. K. Akhil Sai Mohan", "photo": { "src": "/assets/images/metey/team/k-akhil-sai-mohan.webp" }, "qualification": "B.Arch", "experience": "7 years", "about": "Interested in innovative designs and eager to gain knowledge beyond his own field." },
+      { "name": "Ms. Ch. Kamalalaya", "photo": { "src": "/assets/images/metey/team/ch-kamalalaya.webp" }, "qualification": "B.Arch", "experience": "6 years", "about": "Passionate about creating new conceptual designs and growing her skills all-round." },
+      { "name": "Ms. Durga", "qualification": "B.Arch", "experience": "2 years", "about": "Passionate about architectural design, arts, crafts, 3D modelling and sustainable environments. Software: AutoCAD 2D, Revit, SketchUp 3D, V-Ray, Lumion, Photoshop, MS Office." },
+      { "name": "Mr. Prudhvi", "photo": { "src": "/assets/images/metey/team/prudhvi.webp" }, "qualification": "B.Arch", "role": "Architect" },
+      { "name": "Mr. M. Raju", "qualification": "Diploma in Architecture", "experience": "18 years", "role": "Assistant Architect" }
+    ] },
+    { "id": "structural-engineers", "name": "Structural Engineers", "people": [
+      { "name": "Mr. M. Umeshchandra", "photo": { "src": "/assets/images/metey/team/m-umeshchandra.webp" }, "role": "Senior Structural Engineer", "qualification": "M.Tech (Structures)", "experience": "7 years", "about": "Structural modelling and analysis in ETABS and SAFE; certified AutoCAD professional for 2D structural plans." },
+      { "name": "Mr. P. Siva Bharath", "photo": { "src": "/assets/images/metey/team/p-siva-bharath.webp" }, "role": "Structural Engineer", "qualification": "M.Tech (Structures)", "experience": "7 years", "about": "Execution and design of structures; ETABS, SAFE, STAAD." },
+      { "name": "Ms. Akhila", "role": "Structural Engineer", "qualification": "M.Tech (Structures)", "experience": "6 years" },
+      { "name": "Mr. Sai Vardhan", "role": "Structural Engineer", "experience": "3 years" },
+      { "name": "Mr. Abhishek", "role": "Structural Engineer", "qualification": "M.Tech (Structures)", "experience": "2 years" },
+      { "name": "Ms. Kavya", "role": "Structural Engineer", "qualification": "M.Tech (Structures)" }
+    ] },
+    { "id": "design-engineers", "name": "Design Engineers — CAD Drafting", "people": [
+      { "name": "Ms. B. Bhavani", "photo": { "src": "/assets/images/metey/team/b-bhavani.webp" }, "qualification": "B.Tech (Civil)", "experience": "7 years", "work": "CAD drafting, engineering detailing" },
+      { "name": "Mr. Saiteja", "qualification": "B.Tech (Civil)", "experience": "7 years", "work": "CAD drafting, engineering detailing" },
+      { "name": "Mr. Ankamma", "qualification": "B.Tech", "experience": "4 years", "work": "CAD drafting, engineering detailing, QS work" },
+      { "name": "Ms. Sireesha", "qualification": "B.Tech", "experience": "2 years", "work": "CAD drafting, engineering detailing" },
+      { "name": "Ms. Jeevitha", "qualification": "B.Tech", "experience": "2 years", "work": "CAD drafting" }
+    ] },
+    { "id": "site-engineers", "name": "Site Engineers cum Quantity Surveyors", "people": [
+      { "name": "Mr. V. Narasimha Reddy", "photo": { "src": "/assets/images/metey/team/v-narasimha-reddy.webp" }, "role": "Manager / Senior Civil Engineer", "qualification": "B.Tech (Civil), K.N.R.R. College", "experience": "10 years", "about": "Site engineering, execution of structures, quantity surveying, project management." },
+      { "name": "Mr. Anjaneya Reddy", "role": "Quantity Surveyor", "qualification": "B.Tech (Civil)", "experience": "3 years", "about": "Site supervision; drafting drawings and details in AutoCAD." }
+    ] },
+    { "id": "administration", "name": "Administration", "people": [
+      { "name": "Dr. T. Hymavathi", "role": "HR & Administrative Officer", "about": "Doctorate from Kakatiya University, Warangal. 22 years of experience in office administration; handles HR and administrative affairs of the firm." }
+    ] }
+  ],
+  "directorExperience": {
+    "note": "These were designed by Er. C.A. Prasad while working with Balfour Beatty, WS Atkins and Engineers Office in the Middle East (before Metey was founded).",
+    "items": [
+      { "name": "Burj Al Arab, Dubai", "text": "321 m, 56-storey seven-star hotel on an artificial island 280 m offshore." },
+      { "name": "Al Quoz Commercial cum Industrial Structure, Dubai", "text": "post-tensioned floors with 12 m × 6 m bays; roof of curved steel girders." },
+      { "name": "Millennium Stadium, Dubai", "text": "precast steps and girders for the seating arena, precast floor slabs on steel beams, structural steel roof with Kalzip sheeting and a 25 m cantilever." },
+      { "name": "38-storey Dusit Tower, Dubai", "text": "(Engineers Office, Dubai)" },
+      { "name": "40–60 storey towers in Dubai; Ramada Tower, Doha; Jumeirah Beach works" },
+      { "name": "Hyderabad International Airport", "text": "project management for the Passenger Terminal Building (India)." }
+    ],
+    "images": [
+      { "src": "/assets/images/metey/director-experience/al-quoz-commercial-dubai.webp", "alt": "Al Quoz commercial cum industrial structure, Dubai" },
+      { "src": "/assets/images/metey/director-experience/millennium-stadium-dubai.webp", "alt": "Millennium Stadium grandstand, Dubai", "lowRes": true },
+      { "src": "/assets/images/metey/director-experience/dusit-tower-dubai.webp", "alt": "38-storey Dusit Tower, Dubai", "lowRes": true },
+      { "src": "/assets/images/metey/director-experience/hyderabad-international-airport.webp", "alt": "Hyderabad International Airport passenger terminal" }
+    ]
+  }
+}

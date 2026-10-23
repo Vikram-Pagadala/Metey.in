@@ -1,42 +1,31 @@
-<section class="hero navy grid-bg">
-  <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span>
+<section class="hero navy" id="hero" aria-label="Iconic projects">
+  <div class="hs-stack" id="heroSlides">{{heroSlides}}</div>
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <p class="eyebrow" data-rv>Architectural &amp; Structural Engineering Consultancy · Hyderabad</p>
-      <h1 data-split style="--d:.15s">Architecture and Structural Engineering, Built with <em>Economy and Precision.</em></h1>
-      <p class="hero-sub" data-rv style="--d:.35s">Specializing in Precast, Monolithic &amp; Advanced Structural Systems</p>
-      <p class="lead" data-rv style="--d:.5s">METEY delivers comprehensive architectural planning, structural engineering, and fast-track construction consultancy across commercial, residential, healthcare, and industrial developments throughout India.</p>
-      <div class="actions" data-rv style="--d:.65s">
-        <a class="btn" href="/3d-lab/">3D Engineering Lab <svg aria-hidden="true"><use href="#arr"/></svg></a>
-        <a class="more" href="/practice/">Practice &amp; Engineering Disciplines <svg aria-hidden="true"><use href="#arr"/></svg></a>
+      <p class="eyebrow" data-rv>{{companyName}} · Since 2013</p>
+      <h1 data-split style="--d:.15s">{{heroTitle}}</h1>
+      <p class="lead" data-rv style="--d:.4s">{{heroSub}}</p>
+      <div class="actions" data-rv style="--d:.6s">
+        {{heroButtons}}
       </div>
-      <p class="cue" data-rv style="--d:.9s" aria-hidden="true"><i></i>Scroll</p>
     </div>
-    <figure class="hero-model" aria-label="Interactive building preview">
-      <div class="hero-model-stage">
-        <div id="hero-model-viewport"></div>
-        <img class="hero-model-fallback" src="/assets/uploads/2018/09/Jindal-corporate-tower-2-400x284.jpg" srcset="/assets/uploads/2018/09/Jindal-corporate-tower-2-400x284.jpg 400w, /assets/uploads/2018/09/Jindal-corporate-tower-2.jpg 1200w" sizes="(max-width: 60rem) 92vw, 45vw" alt="Jindal corporate building" width="400" height="284" decoding="async">
-      </div>
-      <div class="hero-model-controls" role="group" aria-label="Building preview controls" hidden>
-        <span class="hero-model-control-label">View</span>
-        <button type="button" data-preview-mode="blend" aria-pressed="true">50 / 50<span>Arch + structure</span></button>
-        <button type="button" data-preview-mode="architecture" aria-pressed="false">Architecture</button>
-        <button type="button" data-preview-mode="structure" aria-pressed="false">Structure</button>
-        <button type="button" id="hero-model-spin" aria-pressed="true">Pause spin</button>
-      </div>
-      <figcaption class="hero-model-caption"><span id="hero-model-hint">Conceptual building model</span><span class="hero-model-note">Jindal · 3D study</span></figcaption>
-    </figure>
   </div>
-  <div class="frieze" aria-hidden="true"></div>
-  <div class="arcade" aria-hidden="true"></div>
+  <div class="hs-dots" id="heroDots" role="group" aria-label="Iconic projects">{{heroDots}}</div>
 </section>
 
-<p class="vh">Building types: offices, commercial buildings, educational institutions, hospitals, shopping malls, residential buildings and industrial structures.</p>
-<div class="mq" aria-hidden="true"><div class="mq-track" id="mqTypes">{{mqTypes}}</div></div>
+<p class="vh">Clients include {{clientsList}}.</p>
+<div class="mq mq-bold" aria-hidden="true"><span class="mq-l">Trusted by</span><div class="mq-track" id="mqClients">{{clientStrip}}</div></div>
 
-<section class="sec">
+<section class="sec" id="intro">
   <div class="wrap">
-    <div class="stats" id="stats">{{stats}}</div>
+    <div class="two">
+      <div class="stack">
+        <p class="eyebrow" data-rv>Who we are</p>
+        <h2 data-split>Architects and Structural Designers, <em>Working as One Team</em></h2>
+      </div>
+      <div class="stack measure">{{intro}}<p data-rv><a class="more" href="/about/">About METEY <svg aria-hidden="true"><use href="#arr"/></svg></a></p></div>
+    </div>
+    <div class="stats" id="stats">{{counters}}</div>
   </div>
 </section>
 
@@ -60,10 +49,11 @@
 <section class="sec sand" id="systems">
   <div class="wrap sys">
     <div class="stack">
-      <p class="eyebrow" data-rv>Construction Engineering</p>
+      <p class="eyebrow" data-rv>Construction Technologies</p>
       <h2 data-split>Engineered for Rapid Construction &amp; <em>Structural Longevity</em></h2>
       <p data-rv>Modern developments require strict milestone adherence and financial economy. We integrate advanced construction methodologies—from precast and monolithic to composite framing—at the earliest design phase.</p>
       <div class="sys-tabs" id="sysTabs" role="tablist" aria-label="Building systems" data-rv>{{sysTabs}}</div>
+      <p data-rv><a class="btn" href="/technologies/">Explore Construction Technologies <svg aria-hidden="true"><use href="#arr"/></svg></a></p>
     </div>
     <div class="sys-stage navy" data-rv="wipe">
       <span class="corner a"></span><span class="corner b"></span><span class="corner c"></span><span class="corner d"></span>
@@ -73,51 +63,15 @@
   </div>
 </section>
 
-<section class="sec navy grid-bg" id="lab">
-  <div class="wrap">
-    <div class="head">
-      <p class="eyebrow" data-rv>3D Engineering Lab</p>
-      <h2 data-split>Explore the Architecture. <em>Reveal the Structure.</em></h2>
-      <p class="lead" data-rv>Step inside three interactive building models. Orbit the facade, reveal the structural frame, separate the floors and explore precast assembly.</p>
-    </div>
-    <div class="lab-cards">
-      <a class="lab-card" href="/3d-lab/?model=jindal" data-rv>
-        <img src="/assets/uploads/2018/09/Jindal-corporate-tower-2-400x284.jpg" srcset="/assets/uploads/2018/09/Jindal-corporate-tower-2-400x284.jpg 400w, /assets/uploads/2018/09/Jindal-corporate-tower-2.jpg 1200w" sizes="(max-width: 56rem) 92vw, 30vw" alt="Jindal corporate building" width="400" height="284" loading="lazy" decoding="async">
-        <div><span class="label">01 / Commercial</span><h3>Jindal Corporate Tower</h3><p>Explore the facade and structural frame.</p><span class="more">Explore in 3D <svg aria-hidden="true"><use href="#arr"/></svg></span></div>
-      </a>
-      <a class="lab-card" href="/3d-lab/?model=dundigal" data-rv>
-        <img src="/assets/uploads/2018/11/EWS-Housing-Dundigal1-400x284.jpg" srcset="/assets/uploads/2018/11/EWS-Housing-Dundigal1-400x284.jpg 400w, /assets/uploads/2018/11/EWS-Housing-Dundigal1.jpg 1200w" sizes="(max-width: 56rem) 92vw, 30vw" alt="Dundigal housing development" width="400" height="284" loading="lazy" decoding="async">
-        <div><span class="label">02 / Residential</span><h3>Dundigal Housing</h3><p>Inspect the floors and precast assembly.</p><span class="more">Explore in 3D <svg aria-hidden="true"><use href="#arr"/></svg></span></div>
-      </a>
-      <a class="lab-card" href="/3d-lab/?model=sailife" data-rv>
-        <img src="/assets/uploads/2020/09/WhatsApp-Image-2020-09-02-at-11.10.06-AM-400x284.jpeg" srcset="/assets/uploads/2020/09/WhatsApp-Image-2020-09-02-at-11.10.06-AM-400x284.jpeg 400w, /assets/uploads/2020/09/WhatsApp-Image-2020-09-02-at-11.10.06-AM.jpeg 1200w" sizes="(max-width: 56rem) 92vw, 30vw" alt="Sai Life Sciences facility" width="400" height="284" loading="lazy" decoding="async">
-        <div><span class="label">03 / Research &amp; Industrial</span><h3>Sai Life Sciences</h3><p>Discover the long-span structural system.</p><span class="more">Explore in 3D <svg aria-hidden="true"><use href="#arr"/></svg></span></div>
-      </a>
-    </div>
-    <p class="lab-note">The Lab uses conceptual models and illustrative specifications.</p>
-  </div>
-</section>
-
 <section class="sec">
   <div class="wrap">
     <div class="head center">
-      <p class="eyebrow" data-rv>Professional Disciplines</p>
-      <h2 data-split>Integrated Architectural &amp; <em>Engineering Disciplines</em></h2>
+      <p class="eyebrow" data-rv>Services</p>
+      <h2 data-split>Architecture, Structure &amp; <em>Modern Construction</em></h2>
       <svg class="orn" aria-hidden="true" data-rv="s"><use href="#orn"/></svg>
-      <p class="soft" data-rv>Organized according to professional drawing conventions, covering the complete technical documentation scope.</p>
     </div>
-    <div class="tiles" id="tiles">{{tiles}}</div>
-  </div>
-</section>
-
-<section class="sec sand">
-  <div class="wrap">
-    <div class="head">
-      <p class="eyebrow" data-rv>End-to-End Delivery</p>
-      <h2 data-split>Comprehensive Project Lifecycle: <em>Concept to Commissioning</em></h2>
-      <p class="soft" data-rv>Consultancy services structured across all development stages, available as an end-to-end engagement or targeted specialist consultancy.</p>
-    </div>
-    <div class="life" id="life" data-in>{{life}}</div>
+    <div class="tiles" id="tiles">{{serviceTiles}}</div>
+    <p class="links" style="justify-content:center;margin-top:2.5rem" data-rv><a class="more" href="/services/">All services <svg aria-hidden="true"><use href="#arr"/></svg></a></p>
   </div>
 </section>
 
@@ -125,7 +79,8 @@
   <div class="wrap">
     <div class="head">
       <p class="eyebrow" data-rv>National Presence</p>
-      <h2 data-split>Major Commissions Delivered Across <em>Six States</em></h2>
+      <h2 data-split>Projects Delivered <em>Across India</em></h2>
+      <p class="soft" data-rv>Work in {{stateCount}}, from the head office in Hyderabad.</p>
     </div>
     <div class="where">
       <figure class="wm-box" id="wmBox" data-in>
@@ -154,21 +109,34 @@
         </div>
       </div>
     </div>
+    {{carTemplates}}
+    <p class="links" style="margin-top:2.5rem" data-rv><a class="more" href="/projects/">All projects <svg aria-hidden="true"><use href="#arr"/></svg></a></p>
+  </div>
+</section>
+
+<section class="sec" id="portfolio">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow" data-rv>Portfolio Highlights</p>
+      <h2 data-split>Renders from the <em>Studio</em></h2>
+    </div>
+    <div data-rv>{{portfolio}}</div>
   </div>
 </section>
 
 <section class="sec navy grid-bg">
-  <div class="wrap know">
+  <div class="wrap two">
     <div class="stack">
       <p class="eyebrow" data-rv>Technical Research &amp; Industry Standing</p>
       <h2 data-split>Technical Publications &amp; <em>Institutional Affiliations</em></h2>
-      <p data-rv>Authoritative technical research on precast connections, monolithic housing, and seismic engineering, authored by METEY directors and published in national peer-reviewed engineering journals.</p>
-      <p class="soft" data-rv>METEY Director C A Prasad serves as Founding Secretary of the Pre-Engineered Structures Society of India (PSI), championing advanced industrialised construction methods across the subcontinent.</p>
+    </div>
+    <div class="stack">
+      <p data-rv>Technical papers on precast connections, monolithic housing and green building technologies, published in national construction and engineering magazines.</p>
+      <p class="soft" data-rv>METEY Director Er. C.A. Prasad is Founder, Secretary and Past President of the Pre-Engineered Structures Society of India (PSI).</p>
       <div class="links" data-rv>
         <a class="more" href="/insights/">Explore Technical Papers <svg aria-hidden="true"><use href="#arr"/></svg></a>
-        <a class="more" href="/firm/">About the Consultancy <svg aria-hidden="true"><use href="#arr"/></svg></a>
+        <a class="more" href="/about/">About Metey <svg aria-hidden="true"><use href="#arr"/></svg></a>
       </div>
     </div>
-    <div class="canvas-box" data-rv="s"><canvas id="frame3d" role="img" aria-label="A structural frame rising floor by floor"></canvas></div>
   </div>
 </section>

@@ -6,7 +6,7 @@ const root = document.documentElement;
 const $ = (s, r) => (r || document).querySelector(s);
 const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
 const RM = !!(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);
-const M = window.METEY || null; /* only loaded on the home page */
+const M = window.METEY || null; /* only loaded on the home page, for the systems diagrams */
 
 try {
 
@@ -53,10 +53,17 @@ document.addEventListener("mouseout", e => { const s = e.target.closest && e.tar
 
 /* ======================= lightbox ======================= */
 const lb = $("#lb"), lbImg = $("#lbImg"); let lbList = [], lbI = 0, lbFrom = null;
-function lbShow(i){ if (!lbList.length) return; lbI =(i + lbList.length) % lbList.length; lbImg.src = lbList[lbI].src; lbImg.alt = lbList[lbI].alt; }
+function lbShow(i){
+  if (!lbList.length) return;
+  lbI = (i + lbList.length) % lbList.length;
+  const it = lbList[lbI];
+  lbImg.src = it.src; lbImg.alt = it.alt;
+  /* low-resolution images stay at their own size instead of being stretched to the screen */
+  lbImg.style.width = it.w ? `min(100%, ${it.w}px)` : "";
+}
 function lbOpen(g){
   const all = $$(".gal-b.ok", g.parentNode);
-  lbList = all.map(b => ({ src: b.getAttribute("data-full"), alt: $("img", b).alt }));
+  lbList = all.map(b => ({ src: b.getAttribute("data-full"), alt: $("img", b).alt, w: +b.getAttribute("data-w") || 0 }));
   lbFrom = g; lbShow(all.indexOf(g));
   if (lb.showModal) lb.showModal(); else lb.setAttribute("open", "");
   /* the close button can only take focus once .open makes the dialog visible */
@@ -82,9 +89,10 @@ const SEL = "[data-rv],[data-split],[data-in]";
 let io = null;
 function countUp(b){
   if (b._c) return; const to = +b.getAttribute("data-count"), from = +(b.getAttribute("data-from") || 0);
-  if (RM){ b.textContent = to; return; }
+  const show = n => { b.textContent = b.hasAttribute("data-group") ? n.toLocaleString("en-IN") : n; };
+  if (RM){ show(to); return; }
   b._c = 1; const t0 = performance.now();
-  const step = t => { const k = Math.min(1, (t - t0) / 1900), e = 1 - Math.pow(1 - k, 3); b.textContent = Math.round(from + (to - from) * e); if (k < 1) requestAnimationFrame(step); else b._c = 0; };
+  const step = t => { const k = Math.min(1, (t - t0) / 1900), e = 1 - Math.pow(1 - k, 3); show(Math.round(from + (to - from) * e)); if (k < 1) requestAnimationFrame(step); else b._c = 0; };
   requestAnimationFrame(step);
 }
 function reveal(el){ if (el.classList.contains("in")) return; el.classList.add("in"); $$("[data-count]", el).forEach(countUp); }
@@ -115,21 +123,22 @@ if (sysStage && M){
 
 /* ======================= home: featured carousel ======================= */
 const feat = $("#featured");
+const carN = $$("template[id^=carF]").length;
 let carI = 0, carT = null, carOn = false, carHold = false;
 function carArm(){ clearTimeout(carT); if (carOn && !carHold && !RM) carT = setTimeout(() => carShow(carI + 1), 7500); }
 function carShow(i){
-  carI = (i + M.FEAT.length) % M.FEAT.length;
+  carI = (i + carN) % carN;
   const body = $("#carBody"), frame = $("#carFrame");
   const put = () => {
-    frame.innerHTML = M.render.carFrame(carI); frame.firstElementChild.classList.add("enter");
-    body.innerHTML = M.render.carBody(carI);
+    frame.innerHTML = $("#carF" + carI).innerHTML; frame.firstElementChild.classList.add("enter");
+    body.innerHTML = $("#carB" + carI).innerHTML;
     body.classList.remove("out", "enter"); void body.offsetWidth; body.classList.add("enter");
     $$("#carDots button").forEach((b, k) => { if (k === carI) b.setAttribute("aria-current", "true"); else b.removeAttribute("aria-current"); });
     carArm();
   };
   if (RM) put(); else { body.classList.add("out"); setTimeout(put, 260); }
 }
-if (feat && M){
+if (feat && carN){
   $("#carPrev").addEventListener("click", () => carShow(carI - 1));
   $("#carNext").addEventListener("click", () => carShow(carI + 1));
   $("#carDots").addEventListener("click", e => { const d = e.target.closest("[data-dot]"); if (d) carShow(+d.getAttribute("data-dot")); });
@@ -145,43 +154,32 @@ if ("IntersectionObserver" in window){
     const was = sysOn; sysOn = e.isIntersecting;
     if (sysOn && !was) sysShow(sysI); else if (!sysOn) clearTimeout(sysT);
   }); }, { threshold:.25 }).observe($("#systems"));
-  if (feat && M) new IntersectionObserver(es => { es.forEach(e => { carOn = e.isIntersecting; carArm(); }); }, { threshold:.25 }).observe(feat);
+  if (feat && carN) new IntersectionObserver(es => { es.forEach(e => { carOn = e.isIntersecting; carArm(); }); }, { threshold:.25 }).observe(feat);
 }
 
-/* ======================= home: structural frame, drawn in 3D ======================= */
-(function(){
-  const cv = $("#frame3d"), ctx = cv && cv.getContext && cv.getContext("2d"); if (!ctx) return;
-  const NX = 4, NY = 6, NZ = 3, E = [], GD = [];
-  const pt = (i, j, k) => [(i - (NX - 1) / 2) * 1.25, j * .72, (k - (NZ - 1) / 2) * 1.25];
-  for (let j = 0; j < NY; j++) for (let i = 0; i < NX; i++) for (let k = 0; k < NZ; k++){
-    E.push([pt(i,j,k), pt(i,j+1,k), j, 0]);
-    if (i < NX - 1) E.push([pt(i,j+1,k), pt(i+1,j+1,k), j + .5, 1]);
-    if (k < NZ - 1) E.push([pt(i,j+1,k), pt(i,j+1,k+1), j + .5, 3]);
-  }
-  for (let j = 0; j < NY; j++){ E.push([pt(0,j,0), pt(1,j+1,0), j + .7, 2]); E.push([pt(NX-1,j,NZ-1), pt(NX-2,j+1,NZ-1), j + .7, 2]); }
-  for (let i = -3; i <= 3; i++){ GD.push([[i*1.25,0,-3.3],[i*1.25,0,3.3]]); GD.push([[-3.9,0,i*1.1],[3.9,0,i*1.1]]); }
-  let W = 0, H = 0, on = false, raf = 0;
-  const size = () => { const r = cv.getBoundingClientRect(), d = Math.min(window.devicePixelRatio || 1, 2); W = r.width; H = r.height; cv.width = Math.round(W * d); cv.height = Math.round(H * d); ctx.setTransform(d, 0, 0, d, 0, 0); };
-  const proj = (p, a) => { const x = p[0] * Math.cos(a) - p[2] * Math.sin(a), z = p[0] * Math.sin(a) + p[2] * Math.cos(a), y = p[1] - 2.1, t = .36, y2 = y * Math.cos(t) - z * Math.sin(t), z2 = y * Math.sin(t) + z * Math.cos(t), s = 9 / (9 + z2), u = Math.min(W, H * 1.2) / 7.4; return [W / 2 + x * s * u, H * .55 - y2 * s * u, z2]; };
-  const draw = ms => {
-    ctx.clearRect(0, 0, W, H);
-    const a = ms / 7000 + .6, ph = RM ? NY + 1 : (ms / 1000) % (NY + 5), fade = ph > NY + 3 ? Math.max(0, 1 - (ph - NY - 3) / 1.6) : 1;
-    ctx.lineCap = "round"; ctx.lineWidth = 1; ctx.strokeStyle = "rgba(169,182,195,.16)";
-    GD.forEach(g => { const p = proj(g[0], a), q = proj(g[1], a); ctx.beginPath(); ctx.moveTo(p[0], p[1]); ctx.lineTo(q[0], q[1]); ctx.stroke(); });
-    E.forEach(e => {
-      const v = Math.max(0, Math.min(1, (ph - e[2]) * 1.6)); if (v <= 0) return;
-      const p = proj(e[0], a), q = proj(e[1], a), al = Math.max(.22, Math.min(.95, .58 - (p[2] + q[2]) / 9)) * fade;
-      ctx.strokeStyle = e[3] === 0 ? `rgba(243,238,226,${al})` : e[3] === 1 ? `rgba(240,197,94,${al})` : e[3] === 3 ? `rgba(99,199,178,${al})` : `rgba(231,148,104,${al * .85})`;
-      ctx.lineWidth = e[3] === 0 ? 1.6 : e[3] === 2 ? .9 : 1.2;
-      ctx.beginPath(); ctx.moveTo(p[0], p[1]); ctx.lineTo(p[0] + (q[0] - p[0]) * v, p[1] + (q[1] - p[1]) * v); ctx.stroke();
-    });
-  };
-  const tick = ms => { draw(ms); if (on && !RM) raf = requestAnimationFrame(tick); };
-  window.addEventListener("resize", () => { if (on){ size(); if (RM) draw(0); } });
-  if ("IntersectionObserver" in window){
-    new IntersectionObserver(es => { es.forEach(e => { if (e.isIntersecting && !on){ on = true; size(); raf = requestAnimationFrame(tick); } else if (!e.isIntersecting){ on = false; cancelAnimationFrame(raf); } }); }, { threshold:.05 }).observe(cv);
-  } else { on = true; size(); requestAnimationFrame(tick); }
-})();
+/* ======================= home: iconic projects in the hero ======================= */
+const hero = $("#hero"), slides = $$("#heroSlides .hs"), heroDots = $$("#heroDots [data-hs]");
+let hsI = 0, hsT = null, hsHold = false, hsOn = true;
+/* photographs after the first load only when they are about to be shown */
+const hsLoad = i => { const im = $("img[data-src]", slides[i]); if (im){ im.src = im.getAttribute("data-src"); im.removeAttribute("data-src"); } };
+function hsArm(){ clearTimeout(hsT); if (slides.length > 1 && hsOn && !hsHold && !RM && !document.hidden) hsT = setTimeout(() => hsShow(hsI + 1), 6500); }
+function hsShow(i){
+  hsI = (i + slides.length) % slides.length;
+  hsLoad(hsI); hsLoad((hsI + 1) % slides.length);
+  slides.forEach((s, k) => s.classList.toggle("on", k === hsI));
+  heroDots.forEach((d, k) => { if (k === hsI) d.setAttribute("aria-current", "true"); else d.removeAttribute("aria-current"); });
+  hsArm();
+}
+if (hero && slides.length){
+  $("#heroDots").addEventListener("click", e => { const d = e.target.closest("[data-hs]"); if (d) hsShow(+d.getAttribute("data-hs")); });
+  hero.addEventListener("mouseenter", () => { hsHold = true; clearTimeout(hsT); });
+  hero.addEventListener("mouseleave", () => { hsHold = false; hsArm(); });
+  hero.addEventListener("focusin", () => { hsHold = true; clearTimeout(hsT); });
+  hero.addEventListener("focusout", () => { hsHold = false; hsArm(); });
+  document.addEventListener("visibilitychange", hsArm);
+  if ("IntersectionObserver" in window) new IntersectionObserver(es => { es.forEach(e => { hsOn = e.isIntersecting; hsArm(); }); }, { threshold:.2 }).observe(hero);
+  window.addEventListener("load", () => { hsLoad(1); hsArm(); });
+}
 
 /* ======================= home: building types row ======================= */
 const typesRow = $("#typesRow");
@@ -197,41 +195,70 @@ if (typesRow){
   typesRow.addEventListener("click", e => { if (moved > 5){ e.preventDefault(); e.stopPropagation(); } }, true);
 }
 
-/* ======================= projects: sector filter, and state filter from the map ======================= */
-const chips = $("#chips"), grid = $("#projGrid"), stateNote = $("#stateNote");
+/* ======================= projects: category and sector filters, and state filter from the map ======================= */
+const filters = $("#filters"), grid = $("#projGrid"), stateNote = $("#stateNote"), none = $("#filterNone");
+const pick = { cats: "all", sectors: "all" };
 function showCards(test){
   grid.classList.remove("pop");
   let n = 0;
   $$(".card", grid).forEach(card => { const show = test(card); card.hidden = !show; if (show) card.style.setProperty("--i", n++); });
   void grid.offsetWidth; grid.classList.add("pop");
+  if (none) none.hidden = n > 0;
+  return n;
+}
+const has = (card, key, v) => v === "all" || (card.getAttribute("data-" + key) || "").split(" ").indexOf(v) >= 0;
+const applyFilters = () => showCards(card => has(card, "cats", pick.cats) && has(card, "sectors", pick.sectors));
+function setPressed(){
+  $$("[data-filter]", filters).forEach(row => { const key = row.getAttribute("data-filter") === "categories" ? "cats" : "sectors"; $$("[data-value]", row).forEach(b => b.setAttribute("aria-pressed", b.getAttribute("data-value") === pick[key])); });
 }
 function clearState(){
   if (!stateNote || stateNote.hidden) return;
   stateNote.hidden = true;
   try { history.replaceState(null, "", location.pathname); } catch (e) {}
 }
-if (chips && grid){
-  chips.addEventListener("click", e => {
-    const c = e.target.closest("[data-sector]"); if (!c) return;
-    const sector = c.getAttribute("data-sector");
-    $$("[data-sector]", chips).forEach(b => b.setAttribute("aria-pressed", b === c));
-    clearState();
-    showCards(card => sector === "all" || card.getAttribute("data-sector") === sector);
+function resetFilters(){ pick.cats = pick.sectors = "all"; clearState(); setPressed(); applyFilters(); }
+if (filters && grid){
+  filters.addEventListener("click", e => {
+    const c = e.target.closest("[data-value]"); if (!c) return;
+    pick[c.closest("[data-filter]").getAttribute("data-filter") === "categories" ? "cats" : "sectors"] = c.getAttribute("data-value");
+    clearState(); setPressed(); applyFilters();
   });
+  if (none) $("#filterReset").addEventListener("click", resetFilters);
   /* /projects/?state=karnataka arrives from the map on the home page */
   let state = null;
   try { state = new URLSearchParams(location.search).get("state"); } catch (e) {}
   let names = {};
   try { names = JSON.parse(stateNote.getAttribute("data-names")); } catch (e) {}
   if (state && names[state]){
-    const cards = $$(".card", grid).filter(card => (card.getAttribute("data-states") || "").split(" ").indexOf(state) >= 0);
-    showCards(card => cards.indexOf(card) >= 0);
-    $$("[data-sector]", chips).forEach(b => b.setAttribute("aria-pressed", "false"));
-    stateNote.innerHTML = `Showing ${cards.length} project${cards.length === 1 ? "" : "s"} in <b>${escT(names[state])}</b>. <button type="button" class="more" id="stateAll">Show all projects</button>`;
+    const n = showCards(card => (card.getAttribute("data-states") || "").split(" ").indexOf(state) >= 0);
+    $$("[data-value]", filters).forEach(b => b.setAttribute("aria-pressed", "false"));
+    stateNote.innerHTML = `Showing ${n} project${n === 1 ? "" : "s"} in <b>${escT(names[state])}</b>. <button type="button" class="more" id="stateAll">Show all projects</button>`;
     stateNote.hidden = false;
-    $("#stateAll").addEventListener("click", () => { clearState(); $$("[data-sector]", chips).forEach(b => b.setAttribute("aria-pressed", b.getAttribute("data-sector") === "all")); showCards(() => true); });
+    $("#stateAll").addEventListener("click", resetFilters);
   }
 }
+
+/* ======================= services and technologies: mark the section in view in the index ======================= */
+$$(".index[data-spy]").forEach(index => {
+  const links = $$("a[href^='#']", index), secs = links.map(a => document.getElementById(a.getAttribute("href").slice(1)));
+  let hold = 0;
+  const mark = i => links.forEach((a, k) => { if (k === i) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current"); });
+  const spy = () => {
+    if (Date.now() < hold) return;
+    const line = Math.max(140, innerHeight * .3);
+    let i = 0;
+    secs.forEach((s, k) => { if (s && s.getBoundingClientRect().top <= line) i = k; });
+    mark(i);
+  };
+  /* a click marks its section at once; the scroll it starts does not move the mark */
+  links.forEach((a, k) => a.addEventListener("click", () => { mark(k); hold = Date.now() + 1200; }));
+  const fromHash = links.findIndex(a => a.getAttribute("href") === location.hash);
+  if (fromHash >= 0){ mark(fromHash); hold = Date.now() + 1200; } else spy();
+  window.addEventListener("scroll", spy, { passive:true });
+  window.addEventListener("resize", spy);
+});
+/* the technologies used to be a section of the services page */
+if ($("#pracIndex") && /^#p-precast$/.test(location.hash)) location.replace("/technologies/");
 
 /* ======================= page chrome ======================= */
 const topBar = $("#top"), prog = $("#prog");
@@ -279,7 +306,7 @@ document.addEventListener("click", e => {
 const form = $("#enquiry");
 if (form){
   const st = $("#formStatus"), btn = $("button[type=submit]", form);
-  const OFFICE = "info@metey.in", CC = "prasad@metey.in", WA = "919700159325";
+  const OFFICE = form.getAttribute("data-email"), CC = form.getAttribute("data-cc"), WA = form.getAttribute("data-whatsapp");
   const fields = { name: $("#f-name"), email: $("#f-email"), msg: $("#f-msg") };
   const validEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
   const ARR = '<svg aria-hidden="true"><use href="#arr"/></svg>';

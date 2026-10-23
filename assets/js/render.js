@@ -1,173 +1,30 @@
-/* METEY site data and drawing.
+/* METEY drawing and page sections.
    Every function here returns an HTML/SVG string and touches no DOM, so the same file
    is used by tools/build.mjs (to write the static pages) and by the browser (for the
-   pieces that change after load: the featured carousel and the systems diagrams). */
+   systems diagrams on the home page). Content lives in src/data/*.json; the build hands it
+   over as globalThis.METEY_DATA, and the browser, which only draws diagrams, has none. */
 (function(){
 "use strict";
+const D = globalThis.METEY_DATA || {};
 const ARR = '<svg aria-hidden="true"><use href="#arr"/></svg>';
-const WP = "/assets/uploads/";
 const SLATE = ["#2C4A6E","#A9B8C8"];
 const PAL = { terra:SLATE, teal:SLATE, blue:SLATE, plum:SLATE, ochre:SLATE, green:SLATE, brass:["#8A6420","#D9B25F"] };
-const SEC_C = { all:"brass", housing:"terra", residential:"teal", civic:"blue", institutional:"plum", industrial:"ochre" };
-const PRAC_C = { A:"terra", S:"blue", PC:"teal", ID:"plum", PR:"ochre", CS:"green" };
 const SKY_ONE = ["#C3CDD7","#E2E6EA","#ECE9E3"];
-const SKY = { housing:SKY_ONE, residential:SKY_ONE, civic:SKY_ONE, institutional:SKY_ONE, industrial:SKY_ONE };
-const GROUND = { housing:"#D6D0C4", residential:"#D6D0C4", civic:"#D6D0C4", institutional:"#D6D0C4", industrial:"#D6D0C4" };
-const LIFE_C = ["terra","blue","ochre","plum","teal"];
-const ROLE_C = { "Director":"brass", "Manager, Engineering":"brass", "Structural Engineer":"blue", "Design Engineer":"teal", "Architect":"terra" };
+const GROUP_C = { architects:"terra", "structural-engineers":"blue", "design-engineers":"teal", "site-engineers":"ochre", administration:"plum" };
+const SERVICE_C = { architecture:"terra", structural:"blue", mep:"green", interiors:"plum", technologies:"teal", "peer-review":"ochre", pmc:"blue" };
 
-/* ======================= data ======================= */
-const PRACTICES = [
-  { code:"A", id:"architecture", name:"Architecture and Master Planning",
-    line:"Layouts, buildings and master plans, from gated communities to towers.",
-    intro:["The quality of our surroundings shapes the quality of our lives, at home, at work and in public.",
-           "We bring the same care to a single building and to the layout of a whole community: how it works, how it performs in its climate, and how it sits in its physical and cultural setting."],
-    scope:["Gated-community and group-housing layouts","Residential buildings and multi-storey towers","Offices and commercial buildings","Educational institutions","Function halls","Industrial buildings","Master planning","Green buildings"],
-    links:[["projects","Projects and further schemes"]] },
-  { code:"S", id:"structural", name:"Structural Engineering",
-    line:"Tall buildings, long spans, steel and composite frames, designed for wind and earthquake.",
-    intro:["We design structures to stand safely against everything they will meet, and to carry no more material than they need.",
-           "Our particular strengths are tall buildings, long clear spans, and steel and composite frames, designed for wind and earthquake."],
-    scope:["Design and detailing","3D modelling","Multi-storey and tall buildings","Earthquake-resistant design","Wind analysis for towers","Large column-free spans","Structural steel and composite structures","Industrial structures","Foundations for towers","Bridges","FRP structures","Strengthening existing buildings"],
-    links:[["project-jindal","Jindal Corporate Tower"],["project-vasavi","Vasavi Towers"],["project-power-plant","11 MW Power Plant"]] },
-  { code:"PC", id:"precast", name:"Precast and Fast-Build Technologies",
-    line:"Precast, monolithic, insulated wall, light-gauge steel and composite systems.",
-    intro:["When a building has to open sooner, the method of construction is a design decision.",
-           "We design in the systems that shorten a programme. Seven of them stand together at the Kethanakonda demonstration site."],
-    scope:["Precast walls with hollow-core slabs","Prestressed elements","Monolithic construction in aluminium formwork","Insulated walls: EPS with sprayed concrete","Light-gauge steel construction","Composite frames: steel with hollow-core or deck slabs"],
-    links:[["project-kethanakonda","Kethanakonda demonstration"],["project-ews-monolithic","EWS monolithic housing"],["insights","Articles on precast"]] },
-  { code:"ID", id:"interiors", name:"Interior Design",
-    line:"Light, materials, colour and furnishings planned as one scheme.",
-    intro:["Light, materials, colour, furnishings and works of art are planned as one scheme with the building. Each element goes through the same questioning and refinement as the architecture itself.",
-           "We look at how colour, texture, furniture, lighting and space work together for the people who use the building."],
-    scope:["Space planning","Lighting","Materials and colour","Furniture and furnishings","Works of art"], links:[] },
-  { code:"PR", id:"peer-review", name:"Peer Review",
-    line:"An independent check of structural design, at three levels.",
-    intro:["An independent check of another consultant's structural design, offered at three levels. Each level includes everything in the one before.",
-           "To begin, we need the design basis report prepared by the main consultant and signed by the client."],
-    scope:null, links:[] },
-  { code:"CS", id:"construction-stage", name:"Construction-Stage Services",
-    line:"Pre-bid engineering, supervision, monitoring and quantity surveying.",
-    intro:["Support from tender to handover, so that what is built matches what was designed.",
-           "We work alongside the contractor, the project manager and specialist suppliers until delivery is complete."],
-    scope:["Pre-bid engineering","Procurement support","Formwork design","Site survey","Executive supervision","Construction monitoring","Project management","Quantity surveying and contracts"], links:[] }
-];
-const TIERS = [
-  { num:"I", name:"Independent check",
-    incl:["We build our own analysis model, in our own software.","We check the member sizes on the main consultant's drawings against gravity, wind and earthquake loads.","Where a section falls short, we say so and recommend a size."],
-    ends:"Certification of the design.", terms:"One-time. No part in later revisions or in construction." },
-  { num:"II", name:"Check and optimise",
-    incl:["Everything in level I.","Member sizes optimised, in discussion with the main consultant and the client.","Drawings revised where needed, with the main consultant."],
-    ends:"Certification and a written report.", terms:"Two months at the least, depending on when drawings are issued." },
-  { num:"III", name:"Through construction",
-    incl:["Everything in level II.","Consultancy continued through the construction period, where the client asks for it."],
-    ends:"The close of construction support.", terms:"Charged in addition to the review." }
-];
-const PROMISES = [
-  ["economy","Economy","Cost-effective results, with every structure sized for economy."],
-  ["efficiency","Efficiency","We stay in touch with every team on the project, from contractors and project managers to specialist suppliers, until delivery is complete in all respects."],
-  ["PC","Current technology","The newest sound methods of construction, chosen to suit the building and its programme."]
-];
+/* filters on the projects page, in the order the content pack lists them */
+const SECTORS = [["all","All"],["government-housing","Government Housing"],["education","Education"],["commercial","Commercial"],["industrial","Industrial"],["residential","Residential"]];
+const CATEGORIES = [["all","All"],["architecture","Architecture"],["structural","Structural"],["precast","Precast"],["monolithic","Monolithic"],["composite-eps","Composite / EPS"],["conventional","Conventional"],["interiors","Interiors"],["peer-review","Peer Review"]];
+const SEC_C = { all:"brass", "government-housing":"terra", education:"plum", commercial:"blue", industrial:"ochre", residential:"teal" };
+const STATE_NAMES = { telangana:"Telangana", "andhra-pradesh":"Andhra Pradesh", karnataka:"Karnataka", goa:"Goa", odisha:"Odisha", assam:"Assam", bihar:"Bihar",
+  "uttar-pradesh":"Uttar Pradesh", haryana:"Haryana", chhattisgarh:"Chhattisgarh", "tamil-nadu":"Tamil Nadu", delhi:"Delhi" };
 const SYSTEMS = [
   { id:"precast", c:"teal", name:"Precast", line:"Walls, slabs and frames cast off site and erected by crane.", cap:"Wall panels lowered into place, then hollow-core slabs, floor by floor" },
   { id:"mono", c:"terra", name:"Monolithic", line:"Walls and slabs cast together in aluminium formwork, floor after floor.", cap:"Formwork set, walls and slab poured as one, formwork lifted to the next floor" },
   { id:"eps", c:"ochre", name:"Insulated wall", line:"EPS panels finished with sprayed concrete on both faces.", cap:"A section through the wall: insulating core, wire mesh, sprayed concrete" },
   { id:"lgs", c:"blue", name:"Light-gauge steel", line:"Cold-formed steel framing for light, quick structures.", cap:"Tracks, studs and bracing assembled, then sheathed" },
   { id:"comp", c:"plum", name:"Composite", line:"Steel frames carrying hollow-core or deck slabs.", cap:"A steel frame with a deck slab below and hollow-core planks above" }
-];
-const LIFE = [
-  ["I","Plan",["Master planning","Layouts for gated communities and group housing","Site survey"]],
-  ["II","Design",["Architecture","Structural design and detailing","Interior design","3D modelling"]],
-  ["III","Verify",["Peer review","Optimisation of member sizes"]],
-  ["IV","Procure",["Pre-bid engineering","Procurement support","Quantity surveying and contracts"]],
-  ["V","Build",["Formwork design","Executive supervision","Construction monitoring","Project management"]]
-];
-const STATS = [
-  [2013, 1990, "Founded in Hyderabad, with a branch in Amaravati", "brass"],
-  [23, 0, "Architects, engineers and visualisers", "terra"],
-  [6, 0, "States with METEY projects", "teal"],
-  [5, 0, "Fast-build systems we design in", "blue"]
-];
-const TYPES = ["Offices","Commercial","Educational institutions","Hospitals","Shopping malls","Residential","Industrial structures"];
-const SECTORS = [["all","All"],["housing","Affordable housing"],["residential","Residential"],["civic","Commercial and civic"],["institutional","Institutional"],["industrial","Industrial"]];
-const STATE_NAMES = { telangana:"Telangana", "andhra-pradesh":"Andhra Pradesh", karnataka:"Karnataka", goa:"Goa", odisha:"Odisha", assam:"Assam" };
-const seq = (pre, a, b) => { const o = []; for (let i = a; i <= b; i++) o.push(pre + i); return o; };
-const PROJECTS = [
-  { id:"kethanakonda", states:["andhra-pradesh"], form:"demo", sector:"housing", feat:1, name:"Technology Demonstration Housing", loc:"Kethanakonda, Amaravati region, Andhra Pradesh", sys:"Seven building systems", photos:57,
-    text:"A demonstration site for affordable (EWS) housing, where seven building systems were constructed at one location.",
-    list:["Monolithic construction in aluminium formwork","Insulated walls: EPS with sprayed concrete on both faces","Precast walls with precast hollow-core slabs","Composite construction: a structural steel frame with hollow-core slabs, and steel framing with deck-slab floors","An EWS housing system from Malaysia","An EWS housing system from Turkey","An EWS housing system from China"],
-    img:{ d:"2018/09/", e:".jpg", n:["Kethanakonda-43","Kethanakonda-1","Kethanakonda-8","Kethanakonda-15","Kethanakonda-22","Kethanakonda-29","Kethanakonda-36","Kethanakonda-50"] } },
-  { id:"vasavi", form:"towers", sector:"residential", feat:1, name:"Vasavi Towers", loc:"", sys:"3B + S + 23 floors", photos:8,
-    text:"Twelve blocks on a 22-acre site, each of three basements, a stilt floor and 23 floors.",
-    img:{ d:"2020/09/", e:".jpeg", n:["WhatsApp-Image-2020-09-22-at-6.35.11-PM","WhatsApp-Image-2020-09-22-at-6.35.12-PM","WhatsApp-Image-2020-09-22-at-6.35.19-PM-1","WhatsApp-Image-2020-09-22-at-6.35.19-PM","WhatsApp-Image-2020-09-22-at-6.35.20-PM-1","WhatsApp-Image-2020-09-22-at-6.35.20-PM","WhatsApp-Image-2020-09-22-at-6.35.21-PM-1","WhatsApp-Image-2020-09-22-at-6.35.21-PM"] } },
-  { id:"jindal", form:"tower", sector:"civic", feat:1, name:"Jindal Corporate Tower", loc:"", sys:"Composite structure", photos:7,
-    text:"A corporate tower built as a composite structure.",
-    img:{ d:"2018/09/", e:".jpg", n:["Jindal-corporate-tower-2","Jindal-corporate-tower-1","Jindal-corporate-tower-3","Jindal-corporate-tower-4","Jindal-corporate-tower-5","Jindal-corporate-tower-6","Jindal-corporate-tower-7"] } },
-  { id:"sai-life", states:["telangana"], form:"plant", sector:"industrial", feat:1, name:"Sai Life Sciences", loc:"Hyderabad", sys:"Pharmaceutical facility", photos:18,
-    text:"A pharmaceutical facility in Hyderabad.",
-    img:{ d:"2020/09/", e:".jpeg", n:["WhatsApp-Image-2020-09-02-at-11.10.06-AM","WhatsApp-Image-2020-09-02-at-11.10.07-AM-1","WhatsApp-Image-2020-09-02-at-11.10.07-AM","WhatsApp-Image-2020-09-02-at-11.10.08-AM-1","WhatsApp-Image-2020-09-02-at-11.10.08-AM","WhatsApp-Image-2020-09-02-at-11.10.09-AM"] } },
-  { id:"nursing-school", states:["assam"], form:"campus", sector:"institutional", feat:1, name:"Nursing School, Numaligarh Refinery", loc:"Assam", sys:"", photos:80,
-    text:"A nursing school for Numaligarh Refinery Limited.",
-    img:{ d:"2018/11/", e:".jpg", n:["Nursing-schooll1","Nursing-schooll5","Nursing-schooll10","Nursing-schooll15","Nursing-schooll20","IMG-20170917-WA0043","IMG-20170916-WA0020","IMG-20170907-WA0012"] } },
-  { id:"dundigal", states:["telangana"], form:"slab", sector:"housing", feat:1, name:"11-Storey EWS Housing", loc:"Dundigal, Hyderabad", sys:"Eleven storeys", photos:8, status:"Listed as ongoing",
-    text:"Eleven-storey housing for the economically weaker section at Dundigal, Hyderabad.",
-    img:{ d:"2018/11/", e:".jpg", n:seq("EWS-Housing-Dundigal", 1, 8) } },
-  { id:"ews-monolithic", states:["andhra-pradesh","karnataka"], form:"mono", sector:"housing", name:"EWS Monolithic Housing", loc:"Andhra Pradesh and Bangalore", sys:"Monolithic, aluminium formwork", photos:24,
-    text:"Housing for the economically weaker section, cast monolithically in aluminium formwork at sites in Andhra Pradesh and Bangalore.",
-    img:{ d:"2018/09/", e:".jpg", n:["EWS-MONOLITHIC-CONSTRUCTION-AP11","EWS-MONOLITHIC-CONSTRUCTION-AP1","EWS-MONOLITHIC-CONSTRUCTION-AP4","EWS-MONOLITHIC-CONSTRUCTION-AP7","EWS-MONOLITHIC-CONSTRUCTION-AP10","EWS-MONOLITHIC-CONSTRUCTION-AP13","EWS-MONOLITHIC-CONSTRUCTION-AP16","EWS-MONOLITHIC-CONSTRUCTION-AP19"] } },
-  { id:"mandadam", states:["andhra-pradesh"], form:"mono2", sector:"housing", name:"EWS Housing, Mandadam", loc:"Mandadam, Amaravati", sys:"Monolithic construction", photos:5,
-    text:"Affordable housing built with monolithic construction technology. Designed by METEY; developed by KMV Projects.",
-    img:{ d:"2019/06/", e:".jpg", n:["20190620_091232","20190620_091428","20190620_091449","20190620_091501","20190620_091530"] } },
-  { id:"odisha", states:["odisha"], form:"wall", sector:"housing", name:"Insulated Wall Construction", loc:"Odisha", sys:"Insulated wall system", photos:12,
-    text:"Insulated wall construction in Odisha.",
-    img:{ d:"2018/09/", e:".jpg", n:["Insulated-wall-construction-Orissa6"].concat(seq("Insulated-wall-construction-Orissa", 1, 5), seq("Insulated-wall-construction-Orissa", 7, 8)) } },
-  { id:"goa-villas", states:["goa"], form:"villa", sector:"residential", name:"Goa Villas", loc:"Goa", sys:"", photos:24,
-    text:"Villas in Goa.",
-    img:{ d:"2018/11/", e:".jpg", n:seq("Goa-Villasl", 1, 8) } },
-  { id:"landcraft", form:"rows", sector:"residential", name:"Landcraft", loc:"", sys:"", photos:14,
-    text:"Recorded during construction and after completion.",
-    img:{ d:"2020/05/", e:".jpg", n:seq("", 7, 14) } },
-  { id:"conference-hall", states:["andhra-pradesh"], form:"hall", sector:"civic", name:"Conference Hall", loc:"Kethanakonda, Andhra Pradesh", sys:"", photos:8,
-    text:"A conference hall at Kethanakonda.",
-    img:{ d:"2018/11/", e:".jpg", n:seq("Kethanakonda-conference-hall", 1, 4).concat(["2016-02-15-11.02.10","2016-02-15-11.14.23","2016-02-15-11.32.14","2016-02-15-11.32.32"]) } },
-  { id:"montessori", states:["karnataka"], form:"school", sector:"institutional", name:"Montessori School", loc:"Bangalore", sys:"", photos:28,
-    text:"A Montessori school in Bangalore.",
-    img:{ d:"2018/11/", e:".jpg", n:["Montessory-school1","Montessory-school4","Montessory-school8","Montessory-school12","Montessory-school16","Montessory-school20","Montessory-school24","Montessory-school28"] } },
-  { id:"power-plant", form:"shed", sector:"industrial", name:"11 MW Power Plant", loc:"", sys:"Industrial structure", photos:7,
-    text:"Structures for an 11 MW power plant.",
-    img:{ d:"2018/09/", e:".jpg", n:["11MW-Power-plant-4","11MW-Power-plant-1","11MW-Power-plant-2","11MW-Power-plant-3","11MW-Power-plant-5","11MW-Power-plant-6","11MW-Power-plant-7"] } }
-];
-const REGISTER = [
-  ["Assam","Institutional","Architecture, structure","1.8 acres","7,143 sq m"],
-  ["Assam","Institutional, hostel","Architecture, structure","",""],
-  ["Assam","Institutional","","",""],
-  ["Visakhapatnam","Residential and commercial, economic city","Architecture, structure","28.08 acres",""],
-  ["Rajahmundry, Andhra Pradesh","Recreational, food court","","",""],
-  ["Rajahmundry, Andhra Pradesh","Institutional, hostel","Architecture, structure","","4,192 sq m"],
-  ["Patrunivalasa, Andhra Pradesh","Residential","Architecture, structure","",""],
-  ["Kandukuru, Andhra Pradesh","Residential","Architecture, structure","",""]
-];
-const TEAM = [
-  ["C A Prasad","Director","2018/11/team1.png"],["V. Narasimha Reddy","Manager, Engineering","2018/11/team2.png"],
-  ["Naveen Nunna","Structural Engineer","2018/11/team3.png"],["Nikhil N. Bidri","Structural Engineer","2018/11/team4.png"],["Umeshchandra M","Structural Engineer","2018/11/team5.png"],["Ravi Kumar","Structural Engineer","2018/11/team14.png"],
-  ["A. Mahitha","Design Engineer","2018/11/team8.png"],["B. Bhavani","Design Engineer","2018/11/team0.png"],["Siva Bharath Pulugu","Design Engineer","2021/09/Passport-Pic-scaled-e1631881153599.jpg"],["V. Saida Reddy","Design Engineer","2018/11/team12.png"],["Ch. Manoj Kumar","Design Engineer","2020/09/Manoj.jpg"],["Ashok Bandi","Design Engineer","2018/11/team.png"],
-  ["Akhil Kollipara","Architect","2018/11/team21.png"],["G. Neeharika","Architect","2018/11/team18.png"],["Ch. Kamalalaya","Architect","2018/11/team16.png"],["P. Prudhvi","Architect","2018/11/team20.png"]
-];
-const UP = WP + "2019/09/";
-const ARTICLES = [
-  ["Structural Connections for Precast Concrete Buildings","Master Builder · July 2015", UP + "STRUCTURAL-CONNECTIONS-FOR-PRECAST-CONCRETE-BUILDINGS-MASTER-BUILDER-JULY2015.pdf"],
-  ["Innovative Green Building Technologies for the PMAY Scheme","Master Builder · July 2016", UP + "Article-published-in-july-2016-edition-of-Master-Builder-Innovative-green-building-technologies-for-PMAY-scheme.pdf"],
-  ["Article in NBM&amp;CW","NBM&amp;CW · February 2017", UP + "NBMCW-Article-FEB-2017-issue.pdf"],
-  ["Behavioral Study of Precast Concrete Structure","Part one", UP + "Behavioral-Study-of-Precast-Concrete-Structure.pdf"],
-  ["Behavioral Study of Precast Concrete Structure","Part two", UP + "Behavioral-Study-of-Precast-Concrete-Structure-Part-2.pdf"],
-  ["Affordable Housing Construction in Andhra Pradesh","Article", UP + "Affordable-Housing-Construction-in-Andhra-Pradesh.pdf"],
-  ["Article for the PSEC website","Sai Kiran", UP + "Psec-website-Article-by-sai-kiran.pdf"]
-];
-const EVENTS = [
-  ["Green Building Congress","Hyderabad · 2019","Indian Green Building Council"],
-  ["A Regional Perspective on DfMA","Singapore","Conference presentation"],
-  ["Workshop on Fire Safety in Buildings","Visakhapatnam · 2019","GVP College of Engineering"],
-  ["National Techno Event, Udghosh","Guntur · 2019","Chalapathi Institute of Engineering and Technology"]
 ];
 
 /* ======================= drawing helpers ======================= */
@@ -189,18 +46,19 @@ const IC = {
   PR: C(30,30,17,"dr") + L(43,43,62,62,"dr") + P("M21 30L28 37L40 23","dr"),
   CS: L(22,64,22,14,"dr") + L(8,14,64,14,"dr") + P("M10 14L22 5L50 14","dr") + L(22,5,22,14,"dr") + L(48,14,48,34,"dr") + R(41,34,14,11,"dr") + L(12,64,32,64,"dr"),
   economy: L(36,10,36,60,"dr") + L(14,20,58,20,"dr") + P("M14 20L7 38H21Z","dr") + P("M7 38Q14 47 21 38","dr") + P("M58 20L51 38H65Z","dr") + P("M51 38Q58 47 65 38","dr") + L(26,60,46,60,"dr"),
+  MEP: L(8,18,64,18,"dr") + L(8,30,40,30,"dr") + C(50,30,8,"dr") + L(58,30,64,30,"dr") + P("M20 18V58","dr") + P("M44 46H64","dr") + P("M44 38V58","dr") + L(10,58,62,58,"dr") + P("M30 40l-5 8h8l-5 8","dr"),
   efficiency: C(36,40,21,"dr") + L(36,40,36,27,"dr") + L(36,40,46,46,"dr") + L(31,12,41,12,"dr") + L(36,12,36,19,"dr")
 };
 const icon = (k, cls) => `<svg class="ic ${cls || ""}" viewBox="0 0 72 72" aria-hidden="true">${IC[k]}</svg>`;
 
 /* ---- banner line art ---- */
 const ART = {
-  firm(){
+  about(){
     let s = P("M30 72L260 12L490 72Z","ba dr") + P("M70 66L260 26L450 66Z","bb dr") + C(260,50,9,"bb dr") + R(30,72,460,12,"ba dr") + R(42,84,436,10,"ba dr");
     for (let i = 0; i < 6; i++){ const x = 62 + i * 79.2; s += R(x-12,94,24,5,"ba dr") + L(x-8,99,x-9,184,"ba dr") + L(x+8,99,x+9,184,"ba dr") + L(x,104,x,180,"bb dr") + R(x-13,184,26,6,"ba dr"); }
     return s + R(30,190,460,8,"ba dr") + R(14,198,492,8,"ba dr") + R(0,206,520,8,"ba dr");
   },
-  practice(){
+  services(){
     let s = C(170,34,7,"bb dr") + L(170,22,170,10,"ba dr") + L(166,40,118,176,"ba dr") + L(174,40,222,176,"ba dr") + P("M118 176l-3 12","bb dr") + P("M222 176l3 12","bb dr") + P("M92 170Q170 214 248 170","bb dr") + L(140,110,200,110,"ba dr");
     s += P("M300 188H480V44Z","ba dr") + P("M352 170H462V84Z","ba dr") + R(40,196,440,18,"ba dr");
     for (let x = 52; x < 480; x += 12) s += L(x,196,x,(x - 52) % 60 === 0 ? 208 : 203,"bb dr");
@@ -225,6 +83,19 @@ const ART = {
     let s = P(d + "H490V206Z","ba dr");
     for (let i = 0; i < 6; i++) s += L(52 + i * 64, 196 - i * 26, 92 + i * 64, 196 - i * 26, "bb dr");
     return s + L(456,50,456,12,"bb dr") + P("M456 12L486 22L456 32","bb dr") + C(96,58,22,"bb dr") + C(96,58,30,"ba dr");
+  },
+  team(){
+    let s = L(20,206,500,206,"ba dr");
+    [70,160,250,340,430].forEach((x, i) => { const h = i % 2 ? 0 : 10; s += C(x,96 - h,18,"ba dr") + P(`M${x-34} 206V${160 - h}Q${x} ${118 - h} ${x+34} ${160 - h}V206`,"ba dr") + L(x,140 - h,x,206,"bb dr"); });
+    return s + P("M40 60H480","bb dr") + L(40,54,40,66,"bb dr") + L(480,54,480,66,"bb dr");
+  },
+  clients(){
+    let s = L(0,206,520,206,"ba dr");
+    [[30,70,96],[110,56,150],[176,88,118],[274,60,176],[344,74,128],[428,62,90]].forEach((b, i) => {
+      s += R(b[0],206-b[2],b[1],b[2],"ba dr");
+      for (let x = b[0] + 10; x < b[0] + b[1] - 6; x += 14) s += L(x,206-b[2]+12,x,200,i % 2 ? "bb dr" : "ba dr");
+    });
+    return s + C(450,52,20,"bb dr") + C(450,52,28,"ba dr");
   },
   contact(){
     let s = C(260,112,92,"ba dr") + C(260,112,72,"bb dr") + P("M260 12L274 98L360 112L274 126L260 212L246 126L160 112L246 98Z","ba dr") + P("M260 52L270 102L320 112L270 122L260 172L250 122L200 112L250 102Z","bb dr");
@@ -286,9 +157,8 @@ const FORMS = {
   }
 };
 const SCALE = { demo:1.12, towers:1.2, tower:1.3, slab:1.4, mono:1.12, mono2:1.2, wall:1.4, villa:1.15, rows:1.1, hall:1.15, school:1.18, campus:1.1, plant:1.1, shed:1.15 };
-function plate(form, sector){
-  const sk = SKY[sector] ? sector : "housing";
-  let s = `<rect x="0" y="-40" width="320" height="212" fill="url(#gSky-${sk})"/>` + C(250,66,72,"glow") + C(250,66,15,"disc");
+function plate(form, c){
+  let s = `<rect x="0" y="-40" width="320" height="212" fill="url(#gSky)"/>` + C(250,66,72,"glow") + C(250,66,15,"disc");
   s += `<g class="cloud"><ellipse cx="62" cy="2" rx="28" ry="7"/><ellipse cx="86" cy="-4" rx="19" ry="6"/></g><g class="cloud c2"><ellipse cx="190" cy="-16" rx="23" ry="6"/><ellipse cx="212" cy="-12" rx="15" ry="5"/></g>`;
   let far = "M0 172", x = 0;
   [30,50,36,64,44,56,32,70,48,60,38,52,30,62,44,50].forEach(h => { far += `V${G - h}H${x + 20}`; x += 20; });
@@ -297,7 +167,7 @@ function plate(form, sector){
   const tree = (tx, r) => L(tx,G,tx,G-r*1.5,"tr") + C(tx,G-r*2,r,"tc");
   s += tree(12,5) + tree(308,6) + L(0,G,320,G,"g");
   for (let k = 6; k < 320; k += 10) s += L(k,G+6,k-5,G+11,"t");
-  return `<svg class="pl c-${SEC_C[sk]}" style="--gd:${GROUND[sk]}" viewBox="0 -40 320 240" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustrative elevation">${s}</svg>`;
+  return `<svg class="pl c-${c}" viewBox="0 -40 320 240" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustrative elevation">${s}</svg>`;
 }
 
 /* ---- building-system diagrams ---- */
@@ -370,118 +240,222 @@ const DG = {
 };
 const diagram = id => `<svg class="dg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Animated diagram">${DG[id]()}</svg>`;
 
-/* ---- building types ---- */
-const TYPE_SKY = ["#1E3152","#4D6483","#A3B0BF"];
+/* ---- building types: a photograph of one of our projects for each sector (full size: the tall arch crops it) ---- */
 const TYPES2 = [
-  { name:"Offices", c:"blue", sky:TYPE_SKY, cx:160, s:1.45, draw:() => block(118,84,142,6,17,{glass:true}), go:["project-jindal","Jindal Corporate Tower"] },
-  { name:"Commercial", c:"ochre", sky:TYPE_SKY, cx:160, s:1.5, draw:() => block(100,120,96,6,6) + R(100,G-20,120,5,"ac"), go:["project-conference-hall","Conference Hall"] },
-  { name:"Educational institutions", c:"plum", sky:TYPE_SKY, cx:160, s:.84, draw:() => FORMS.school(), go:["project-montessori","Montessori School"] },
-  { name:"Hospitals", c:"teal", sky:TYPE_SKY, cx:160, s:1.2, draw:() => block(80,160,112,8,7) + R(146,G-134,28,22,"b") + R(158,G-130,4,14,"ac") + R(153,G-125,14,4,"ac") },
-  { name:"Shopping malls", c:"terra", sky:TYPE_SKY, cx:160, s:.9, draw:() => { let s = R(40,G-58,240,58,"b") + R(40,G-66,240,8,"ac"); for (let x = 52; x < 262; x += 34) s += P(`M${x} ${G}V${G-30}a13 13 0 0 1 26 0V${G}Z`,"w"); return s + R(128,G-88,64,22,"b") + R(136,G-80,48,6,"ac") + R(232,G-58,48,58,"sh"); } },
-  { name:"Residential", c:"green", sky:TYPE_SKY, cx:160, s:1.35, draw:() => block(92,56,134,4,24) + block(172,56,134,4,24), go:["project-vasavi","Vasavi Towers"] },
-  { name:"Industrial structures", c:"brass", sky:TYPE_SKY, cx:147, s:.86, draw:() => FORMS.shed(), go:["project-sai-life","Sai Life Sciences"] }
+  { name:"Offices", c:"blue", go:"apcpdcl-corporate-office-vijayawada", img:"/assets/images/metey/projects/apcpdcl-corporate-office-vijayawada/apcpdcl-built-photo.webp" },
+  { name:"Commercial", c:"ochre", go:"jindal-corporate-tower-raigarh", img:"/assets/uploads/2018/09/Jindal-corporate-tower-1.jpg" },
+  { name:"Educational institutions", c:"plum", go:"iit-patna-secondary-school", img:"/assets/images/metey/projects/iit-patna-secondary-school/iit-patna-school-render.webp" },
+  { name:"Hospitals", c:"teal", go:"gsl-medical-college-rajahmundry", img:"/assets/images/metey/projects/gsl-medical-college-rajahmundry/hostel-block-1.webp" },
+  { name:"Shopping malls", c:"terra", go:"golf-links-ghaziabad-landcraft", img:"/assets/images/metey/projects/golf-links-ghaziabad-landcraft/zonal-shopping-complex.webp" },
+  { name:"Residential", c:"green", go:"vasavi-urban-bachupally", img:"/assets/images/metey/projects/vasavi-urban-bachupally/vasavi-urban-render.webp" },
+  { name:"Industrial structures", c:"brass", go:"sai-life-sciences-pharma", img:"/assets/images/metey/projects/sai-life-sciences-pharma/sai-life-building.webp" }
 ];
 const grad = (id, st) => `<linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${st[0]}"/><stop offset=".62" stop-color="${st[1]}"/><stop offset="1" stop-color="${st[2]}"/></linearGradient>`;
-function typeScene(t, i){
-  let s = `<rect x="0" y="0" width="240" height="282" fill="url(#gType-${i})"/>` + C(178,96,70,"glow") + C(178,96,17,"disc");
-  s += `<g class="cloud"><ellipse cx="60" cy="70" rx="26" ry="7"/><ellipse cx="82" cy="64" rx="17" ry="6"/></g>`;
-  let far = "M0 282", x = 0;
-  [34,52,40,66,46,58,36,62,44,54,38,48].forEach(h => { far += `V${282 - h}H${x + 20}`; x += 20; });
-  s += P(far + "V282Z","far") + `<rect x="0" y="280" width="240" height="40" class="gnd"/>`;
-  s += `<g transform="translate(120 280) scale(${t.s}) translate(${-t.cx} ${-G})">${t.draw()}</g>`;
-  const tree = (tx, r) => L(tx,280,tx,280-r*1.5,"tr") + C(tx,280-r*2,r,"tc");
-  s += tree(22,7) + tree(218,8) + L(0,280,240,280,"g");
-  for (let k = 6; k < 240; k += 10) s += L(k,286,k-5,291,"t");
-  return `<svg class="pl" viewBox="0 0 240 320" preserveAspectRatio="xMidYMax slice" role="img" aria-label="${t.name}, illustrated">${s}</svg>`;
-}
 
 /* ======================= links between pages ======================= */
-/* routes kept from the old one-page site: "firm", "project-jindal", "practice-structural" */
-const href = r => r === "home" ? "/" : r.indexOf("project-") === 0 ? `/projects/${r.slice(8)}/` : r.indexOf("practice-") === 0 ? `/practice/#p-${r.slice(9)}` : `/${r}/`;
+/* "home", "about", "project-<slug>" */
+const href = r => r === "home" ? "/" : r.indexOf("project-") === 0 ? `/projects/${r.slice(8)}/` : `/${r}/`;
 
-/* ======================= page sections ======================= */
-const sectorName = k => (SECTORS.find(s => s[0] === k) || ["",""])[1];
-const thumb = (p, i) => WP + p.img.d + p.img.n[i || 0] + "-400x284" + p.img.e;
-const full = (p, i) => WP + p.img.d + p.img.n[i || 0] + p.img.e;
-const SIZES_CARD = "(max-width: 600px) 92vw, (max-width: 1024px) 45vw, 400px", SIZES_BIG = "(max-width: 56rem) 92vw, 50vw";
-/* eager: the photograph is the largest thing on screen when the page opens, so it must not wait for lazy loading */
-const shot = (p, big, alt, eager) => `<div class="shot">${plate(p.form, p.sector)}${p.img ? `<img src="${big ? full(p) : thumb(p)}" srcset="${thumb(p)} 400w, ${full(p)} 1200w" sizes="${big ? SIZES_BIG : SIZES_CARD}" alt="${alt || ""}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async">` : ""}<span class="tag"></span></div>`;
-const card = (p, i) => {
-  const meta = [p.loc, p.sys].filter(Boolean).join(" · ");
-  return `<a class="card c-${SEC_C[p.sector]}" href="${href("project-" + p.id)}" data-sector="${p.sector}" data-states="${(p.states || []).join(" ")}" style="--i:${i}"><div class="mat tilt">${shot(p)}</div><p class="eyebrow">${sectorName(p.sector)}</p><h3>${p.name}</h3>${meta ? `<p class="meta">${meta}</p>` : ""}</a>`;
-};
-/* image alt text names the project and where it is, which is also what people search for */
-const photoAlt = p => `${p.name}${p.loc ? `, ${p.loc}` : ""}`;
-const ticks = a => `<ul class="ticks">${a.map(x => `<li>${x}</li>`).join("")}</ul>`;
-const initials = n => { const w = n.replace(/\./g, "").split(/\s+/); return (w[0][0] + w[w.length - 1][0]).toUpperCase(); };
+/* ======================= small helpers ======================= */
+/* data files hold plain text, so everything taken from them is escaped on the way into HTML */
+const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+const ticks = a => `<ul class="ticks">${a.map(x => `<li>${esc(x)}</li>`).join("")}</ul>`;
+/* initials avatar: "Mr. K. Akhil Sai Mohan" -> KM */
+const initials = n => { const w = n.replace(/^(Mr|Ms|Mrs|Dr|Er)\.\s*/, "").replace(/\./g, " ").split(/\s+/).filter(Boolean); return (w[0][0] + (w.length > 1 ? w[w.length - 1][0] : "")).toUpperCase(); };
 const pad = n => (n < 10 ? "0" : "") + n;
-const more = (r, t) => `<a class="more" href="${href(r)}">${t} ${ARR}</a>`;
-const FEAT = PROJECTS.filter(p => p.feat);
+const more = (r, t) => `<a class="more" href="${href(r)}">${esc(t)} ${ARR}</a>`;
+/* the first sentence, not fooled by abbreviations such as "e.g." */
+const firstSentence = t => t.split(/(?<=\b[a-z\d]{2,}\.)\s+(?=[A-Z])/i)[0];
+const optionName = (list, k) => (list.find(s => s[0] === k) || ["", ""])[1];
+const sectorName = k => optionName(SECTORS, k);
+const categoryName = k => optionName(CATEGORIES, k);
 
+/* one <img> for any image in the data. Archive photos also have a 400 px thumbnail;
+   content-pack images come in one size and are never stretched past it (see .lowres). */
+const SIZES_CARD = "(max-width: 600px) 92vw, (max-width: 1024px) 45vw, 400px", SIZES_BIG = "(max-width: 56rem) 92vw, 50vw";
+function pic(im, o){
+  o = o || {};
+  const small = o.thumb && im.thumb;
+  const srcset = im.thumb ? ` srcset="${im.thumb} 400w, ${im.src} ${im.width}w" sizes="${o.sizes || SIZES_CARD}"` : "";
+  const w = small ? 400 : im.width, h = small ? 284 : im.height;
+  return `<img src="${small ? im.thumb : im.src}"${srcset} alt="${o.alt === undefined ? esc(im.alt) : esc(o.alt)}" width="${w}" height="${h}" ${o.eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async"${o.cls ? ` class="${o.cls}"` : ""}>`;
+}
+/* captioned: the alt text also shows under each picture */
+const thumbs = (list, cls, captioned) => `<div class="${cls || "pf"}${captioned ? " pf-cap" : ""}">${list.map(im => `<figure class="pf-i${im.lowRes ? " lowres" : ""}">${pic(im, { thumb: true, alt: captioned ? "" : undefined })}${captioned ? `<figcaption>${esc(im.alt)}</figcaption>` : ""}</figure>`).join("")}</div>`;
+
+/* ======================= projects ======================= */
+const PROJECTS = D.projects || [];
+const FEAT = PROJECTS.filter(p => p.featured);
+const project = slug => PROJECTS.find(p => p.slug === slug);
+const colour = p => SEC_C[(p.sectors || [])[0]] || "brass";
+/* cards may use a low-resolution image; the large picture on a project page may not */
+const cardImage = p => p.images[p.cover != null ? p.cover : Math.max(0, p.images.findIndex(im => !im.lowRes))];
+const bigImage = p => { const c = p.cover != null && p.images[p.cover]; return c && !c.lowRes ? c : p.images.find(im => !im.lowRes) || null; };
+const shot = (p, big, eager) => {
+  const im = big ? bigImage(p) : cardImage(p);
+  return `<div class="shot">${plate(p.form, colour(p))}${im ? pic(im, big ? { sizes: SIZES_BIG, eager } : { thumb: true, alt: "" }) : ""}<span class="tag"></span></div>`;
+};
+const kicker = p => (p.sectors || []).length ? p.sectors.map(sectorName).join(" · ") : (p.categories || []).map(categoryName).join(" · ");
+const card = (p, i) => `<a class="card c-${colour(p)}" href="${href("project-" + p.slug)}" data-cats="${(p.categories || []).join(" ")}" data-sectors="${(p.sectors || []).join(" ")}" data-states="${(p.states || []).join(" ")}" style="--i:${i}"><div class="mat tilt">${shot(p)}</div>${kicker(p) ? `<p class="eyebrow">${esc(kicker(p))}</p>` : ""}<h3>${esc(p.title)}</h3>${p.location || p.client ? `<p class="meta">${esc(p.location || p.client)}</p>` : ""}</a>`;
+const chipRow = (name, key, list) => `<div class="chips" role="group" aria-label="Filter by ${name}" data-filter="${key}"><span class="chips-l">${name}</span>${list.map(s => {
+  const n = s[0] === "all" ? PROJECTS.length : PROJECTS.filter(p => (p[key] || []).indexOf(s[0]) >= 0).length;
+  return n ? `<button class="chip c-${SEC_C[s[0]] || "brass"}" type="button" data-value="${s[0]}" aria-pressed="${s[0] === "all"}">${s[1]} · ${n}</button>` : "";
+}).join("")}</div>`;
+
+function projectPage(p){
+  const i = PROJECTS.indexOf(p), prev = PROJECTS[(i + PROJECTS.length - 1) % PROJECTS.length], next = PROJECTS[(i + 1) % PROJECTS.length];
+  const facts = [];
+  if (p.client) facts.push(["Client", p.client]);
+  if (p.archived && (p.sectors || []).length) facts.push(["Sector", p.sectors.map(sectorName).join(", ")]);
+  if (p.location) facts.push(["Location", p.location]);
+  if (p.category) facts.push(["Category", p.category]);
+  if (p.system) facts.push(["System", p.system]);
+  if (p.status) facts.push(["Status", p.status]);
+  if (p.archivePhotos) facts.push(["Archive", p.archivePhotos + " photographs"]);
+  const gallery = `<div class="gal-wrap"><h2 class="h3">Drawings and photographs</h2><div class="gal">${p.images.map((im, k) => `<button class="gal-b" type="button" data-full="${im.src}" data-w="${im.width}" aria-label="Enlarge image ${k + 1} of ${p.images.length}">${pic(im, { thumb: true })}</button>`).join("")}</div></div>`;
+  return `<div class="pd-grid"><div class="mat" data-rv="wipe" style="--wc:${PAL[colour(p)][0]}">${shot(p, true, true)}</div><div class="stack" style="gap:1.5rem">${kicker(p) ? `<p class="eyebrow tint c-${colour(p)}" data-rv>${esc(kicker(p))}</p>` : ""}<h1 data-split>${esc(p.title)}</h1>` +
+    (p.description ? `<p data-rv>${esc(p.description)}</p>` : "") +
+    (p.list ? (p.archived ? `<ol class="nums" data-rv>${p.list.map(x => `<li>${esc(x)}</li>`).join("")}</ol>` : `<div data-rv>${ticks(p.list)}</div>`) : "") +
+    (p.keyFacts ? `<div class="stack" data-rv><p class="label">Key facts</p>${ticks(p.keyFacts)}</div>` : "") +
+    (facts.length ? `<dl class="facts" data-rv>${facts.map(x => `<div><dt>${x[0]}</dt><dd>${esc(x[1])}</dd></div>`).join("")}</dl>` : "") +
+    (p.website ? `<p data-rv><a class="more" href="${p.website.url}" target="_blank" rel="noopener">Visit the ${esc(p.website.name)} website ${ARR}</a></p>` : "") +
+    `<p class="note" data-rv>Project calculations, comprehensive structural detailing sheets, and technical parameters available on client consultation.</p></div></div>${gallery}` +
+    `<nav class="pd-nav" aria-label="More projects"><a class="more prev" href="${href("project-" + prev.slug)}">${ARR} ${esc(prev.title)}</a><a class="more" href="${href("project-" + next.slug)}">${esc(next.title)} ${ARR}</a></nav>`;
+}
+
+/* states with work, most projects first; Telangana (head office) leads */
+function statesWorked(){
+  const n = {};
+  PROJECTS.forEach(p => (p.states || []).forEach(s => { n[s] = (n[s] || 0) + 1; }));
+  return Object.keys(n).sort((a, b) => (b === "telangana") - (a === "telangana") || n[b] - n[a]).map(s => ({ id: s, name: STATE_NAMES[s], count: n[s], projects: PROJECTS.filter(p => (p.states || []).indexOf(s) >= 0) }));
+}
+
+/* ======================= services ======================= */
+const SVC = D.services ? D.services.services : [];
+const TECH = D.services ? D.services.technologies : null;
+const service = id => SVC.concat(TECH ? [TECH] : []).find(s => s.id === id);
+const svcHref = s => s.id === "technologies" ? href("technologies") : `${href("services")}#${svcAnchor(s)}`;
+const svcAnchor = s => s.anchor || s.id;
+
+/* ======================= render ======================= */
 const render = {
-  marquee: items => { const one = items.map(t => `<span>${t}</span>`).join(""); return one + one + one + one; },
-  gradients: () => Object.keys(SKY).map(k => grad("gSky-" + k, SKY[k])).join("") + TYPES2.map((t, i) => grad("gType-" + i, t.sky)).join(""),
+  marquee: items => { const one = items.map(t => `<span>${esc(t)}</span>`).join(""); return one + one + one + one; },
+  gradients: () => grad("gSky", SKY_ONE),
   art: k => `<svg viewBox="0 0 520 220" aria-hidden="true">${ART[k]()}</svg>`,
-  stats: () => STATS.map((s, i) => `<div class="stat c-${s[3]}" data-rv data-in style="--d:${i * .12}s"><div class="medal"><svg viewBox="0 0 100 100" aria-hidden="true"><circle class="r1" cx="50" cy="50" r="48.5"/><circle class="r2" cx="50" cy="50" r="42"/><circle class="r3" cx="50" cy="50" r="42" pathLength="1" transform="rotate(-90 50 50)"/></svg><b data-count="${s[0]}" data-from="${s[1]}">${s[0]}</b></div><p>${s[2]}</p></div>`).join(""),
+  esc,
+
+  /* ---- home ---- */
+  /* the last two words of the headline take the accent colour */
+  heroTitle: () => { const w = esc(D.site.home.hero.headline).split(" "); return w.slice(0, -2).join(" ") + " <em>" + w.slice(-2).join(" ") + "</em>"; },
+  heroSub: () => esc(D.site.home.hero.sub),
+  heroSlides: () => D.site.home.hero.slides.map((sl, i) => {
+    const p = project(sl.project), im = p.images.find(x => x.src === sl.src);
+    /* only the first photograph loads with the page; site.js fills in the rest */
+    const img = i ? `<img data-src="${im.src}" alt="${esc(im.alt)}" width="${im.width}" height="${im.height}" decoding="async">` : pic(im, { eager: true, sizes: "100vw" });
+    return `<figure class="hs${i ? "" : " on"}" data-slide="${i}">${img}<figcaption><a href="${href("project-" + p.slug)}"><span class="hs-n">${pad(i + 1)} / ${pad(D.site.home.hero.slides.length)}</span><b>${esc(p.title)}</b>${p.location ? `<span>${esc(p.location)}</span>` : ""}</a></figcaption></figure>`;
+  }).join(""),
+  heroDots: () => D.site.home.hero.slides.map((sl, i) => `<button type="button" data-hs="${i}" aria-label="${esc(project(sl.project).title)}"${i ? "" : ' aria-current="true"'}><i></i></button>`).join(""),
+  heroButtons: () => D.site.home.hero.buttons.map((b, i) => i ? `<a class="more" href="${b[1]}">${esc(b[0])} ${ARR}</a>` : `<a class="btn" href="${b[1]}">${esc(b[0])} ${ARR}</a>`).join("\n        "),
+  intro: () => D.site.home.intro.map((t, i) => `<p${i ? ' class="soft"' : ' class="dropcap"'} data-rv>${esc(t)}</p>`).join(""),
+  counters: () => D.site.home.counters.filter(s => s.value != null).map((s, i) => {
+    if (s.roll) return `<div class="stat stat-roll" data-rv data-in><div class="ticket" aria-label="${esc(s.value.toLocaleString("en-IN"))} ${esc(s.unit || "")}"><b aria-hidden="true">${s.value.toLocaleString("en-IN").split("").map(ch => /\d/.test(ch) ? `<span class="reel" style="--n:${ch}"><span>${"0123456789".split("").map(d => `<i>${d}</i>`).join("")}</span></span>` : `<span class="sep">${ch}</span>`).join("")}</b>${s.unit ? `<span class="unit">${esc(s.unit)}</span>` : ""}</div><p>${esc(s.label)}</p></div>`;
+    const big = s.value >= 1000 && s.from == null;
+    const shown = big ? s.value.toLocaleString("en-IN") : s.value;
+    return `<div class="stat c-${["brass","terra","teal","blue","plum","ochre"][i % 6]}" data-rv data-in style="--d:${(i % 3) * .12}s"><div class="medal"><svg viewBox="0 0 100 100" aria-hidden="true"><circle class="r1" cx="50" cy="50" r="48.5"/><circle class="r2" cx="50" cy="50" r="42"/><circle class="r3" cx="50" cy="50" r="42" pathLength="1" transform="rotate(-90 50 50)"/></svg><b>${s.prefix ? esc(s.prefix) : ""}<span data-count="${s.value}" data-from="${s.from || 0}"${big ? " data-group" : ""}>${shown}</span>${s.suffix ? esc(s.suffix) : ""}</b></div>${s.unit ? `<p class="unit">${esc(s.unit)}</p>` : ""}<p>${esc(s.label)}</p></div>`;
+  }).join(""),
+  serviceTiles: () => D.site.home.services.map(service).map((s, i) => `<a class="tile c-${SERVICE_C[s.id]}" href="${svcHref(s)}" data-rv style="--d:${(i % 3) * .12}s"><span class="code" aria-hidden="true">${s.icon === "CS" ? "PMC" : s.icon}</span>${icon(s.icon)}<h3>${esc(s.card)}</h3><p>${esc(firstSentence(s.text))}</p><span class="go">Read more ${ARR}</span></a>`).join(""),
+  clientsList: () => esc(D.site.home.clients.join(", ")),
+  clientStrip: () => render.marquee(D.site.home.clients),
+  portfolio: () => thumbs(D.site.home.portfolio),
   sysTabs: () => SYSTEMS.map((s, i) => `<button class="sys-tab c-${s.c}${i ? "" : " on"}" type="button" role="tab" id="sys-tab-${i}" aria-controls="sysStage" data-sys="${i}" aria-selected="${!i}"><i></i><b>${s.name}</b><span>${s.line}</span></button>`).join(""),
   sysStage: () => diagram(SYSTEMS[0].id),
   sysCap: () => SYSTEMS[0].cap,
-  types: () => TYPES2.map((t, i) => `<div class="type c-${t.c}" data-rv style="--d:${i * .08}s"><div class="arch tilt">${typeScene(t, i)}</div><h3>${t.name}</h3>${t.go ? more(t.go[0], t.go[1]) : ""}</div>`).join(""),
-  tiles: () => PRACTICES.map((p, i) => `<a class="tile c-${PRAC_C[p.code]}" href="${href("practice-" + p.id)}" data-rv style="--d:${(i % 3) * .12}s"><span class="code" aria-hidden="true">${p.code}</span>${icon(p.code)}<h3>${p.name}</h3><p>${p.line}</p><span class="go">Open sheet ${p.code} ${ARR}</span></a>`).join(""),
-  life: () => LIFE.map((s, i) => `<div class="stage c-${LIFE_C[i]}" style="--i:${i}"><span class="node">${s[0]}</span><h3>${s[1]}</h3><ul>${s[2].map(x => `<li>${x}</li>`).join("")}</ul></div>`).join(""),
-  promises: () => PROMISES.map((p, i) => `<div class="promise c-${["ochre","teal","terra"][i]}" data-rv style="--d:${i * .14}s">${icon(p[0])}<h3>${p[1]}</h3><p>${p[2]}</p></div>`).join(""),
-  team: () => TEAM.map((t, i) => `<div class="person c-${ROLE_C[t[1]] || "brass"}" data-rv style="--d:${(i % 6) * .07}s"><div class="face">${initials(t[0])}<img src="${WP + t[2]}" alt="" width="180" height="180" loading="lazy" decoding="async"></div><h3>${t[0]}</h3><p>${t[1]}</p></div>`).join(""),
-  pracIndex: () => PRACTICES.map(p => `<a class="c-${PRAC_C[p.code]}" href="#p-${p.id}"><span class="bubble">${p.code}</span><span>${p.name}</span></a>`).join(""),
-  pracBody: () => PRACTICES.map(p => {
-    let body;
-    if (p.id === "peer-review"){
-      body = `<div class="stack measure"><p>${p.intro[0]}</p><p class="soft">${p.intro[1]}</p></div><div class="steps">` + TIERS.map((t, k) => `<div class="step navy c-${["brass","teal","terra"][k]}"><span class="num">${t.num}</span><h3>${t.name}</h3>${ticks(t.incl)}<dl><div><dt>Ends with</dt><dd>${t.ends}</dd></div><div><dt>Terms</dt><dd>${t.terms}</dd></div></dl></div>`).join("") + `</div>`;
-    } else {
-      body = `<div class="prac-body"><div class="stack"><p>${p.intro[0]}</p><p class="soft">${p.intro[1]}</p>` + (p.links.length ? `<div class="links">${p.links.map(l => more(l[0], l[1])).join("")}</div>` : "") + `</div><div class="stack"><p class="label">Scope</p>${ticks(p.scope)}</div></div>`;
-    }
-    return `<section class="prac c-${PRAC_C[p.code]}" id="p-${p.id}" data-rv><header><div><p class="eyebrow">Sheet ${p.code}</p><h2>${p.name}</h2></div>${icon(p.code, "auto")}</header>${body}</section>`;
+  types: () => TYPES2.map((t, i) => { const p = project(t.go), im = p.images.find(x => x.src === t.img); return `<div class="type c-${t.c}" data-rv style="--d:${i * .08}s"><div class="arch tilt">${pic(Object.assign({}, im, { thumb: null }))}</div><h3>${t.name}</h3>${p ? more("project-" + p.slug, p.title) : ""}</div>`; }).join(""),
+  stateCount: () => { const s = statesWorked(); const ut = s.filter(x => x.id === "delhi").length; return `${s.length - ut} states${ut ? " and Delhi" : ""}`; },
+  places: () => statesWorked().map((s, i) => {
+    const names = s.projects.slice(0, 2).map(p => `<a href="${href("project-" + p.slug)}">${esc(p.title)}</a>`).join(", ");
+    const rest = s.count > 2 ? ` <a href="/projects/?state=${s.id}">and ${s.count - 2} more</a>` : "";
+    return `<div class="place c-${["brass","terra","plum","teal","ochre","blue"][i % 6]}" data-rv style="--d:${(i % 6) * .06}s"><i></i><h3>${s.name}</h3><p>${s.id === "telangana" ? "Head office, Hyderabad. " : ""}${names}${rest}.</p></div>`;
   }).join(""),
-  register: () => REGISTER.map(r => `<tr><td class="name">${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td><td>${r[4]}</td></tr>`).join(""),
-  articles: () => ARTICLES.map((a, i) => `<a class="entry" href="${a[2]}" target="_blank" rel="noopener" data-rv style="--d:${i * .06}s"><span class="src">${a[1]}</span><h3>${a[0]}</h3><span class="round">${ARR}</span></a>`).join(""),
-  events: () => EVENTS.map((e, i) => `<div class="entry" data-rv style="--d:${i * .06}s"><span class="src">${e[1]}</span><div><h3>${e[0]}</h3><p class="soft entry-note">${e[2]}</p></div></div>`).join(""),
-  shelf: () => {
-    const SP = [["Precast Connections","terra",15.2],["Green Building, PMAY","teal",16],["NBM&amp;CW, Feb 2017","blue",14],["Precast Behaviour I","plum",15],["Precast Behaviour II","plum",15.8],["Affordable Housing, AP","ochre",17.2],["PSEC Article","green",12.6]];
-    return ARTICLES.map((a, i) => `<a class="spine c-${SP[i][1]}" href="${a[2]}" target="_blank" rel="noopener" style="--h:${SP[i][2]}rem;--i:${i}" aria-label="${a[0]}, ${a[1]}">${SP[i][0]}</a>`).join("") + '<span class="bookend" aria-hidden="true"></span>';
-  },
-  places: () => {
-    const lk = (id, t) => `<a href="${href("project-" + id)}">${t}</a>`;
-    const PL = [
-      ["brass","Telangana",`Head office, Hyderabad. ${lk("sai-life","Sai Life Sciences")} and ${lk("dundigal","11-storey EWS housing")} at Dundigal.`],
-      ["terra","Andhra Pradesh",`Branch office, Amaravati. ${lk("kethanakonda","Demonstration housing")} and a ${lk("conference-hall","conference hall")} at Kethanakonda, ${lk("mandadam","EWS housing")} at Mandadam, and schemes in Visakhapatnam, Rajahmundry, Patrunivalasa and Kandukuru.`],
-      ["plum","Karnataka",`${lk("montessori","Montessori School")} and ${lk("ews-monolithic","EWS monolithic housing")} in Bangalore.`],
-      ["teal","Goa",`${lk("goa-villas","Goa Villas")}.`],
-      ["ochre","Odisha",`${lk("odisha","Insulated wall construction")}.`],
-      ["blue","Assam",`${lk("nursing-school","Nursing School")} for Numaligarh Refinery, and three institutional schemes.`]
-    ];
-    return PL.map((p, i) => `<div class="place c-${p[0]}" data-rv style="--d:${i * .08}s"><i></i><h3>${p[1]}</h3><p>${p[2]}</p></div>`).join("");
-  },
-  chips: () => SECTORS.map(s => { const n = s[0] === "all" ? PROJECTS.length : PROJECTS.filter(p => p.sector === s[0]).length; return `<button class="chip c-${SEC_C[s[0]]}" type="button" data-sector="${s[0]}" aria-pressed="${s[0] === "all"}">${s[1]} · ${n}</button>`; }).join(""),
+  carDots: () => FEAT.map((p, i) => `<button type="button" data-dot="${i}" aria-label="${esc(p.title)}"${i ? "" : ' aria-current="true"'}></button>`).join(""),
+  carFrame: i => shot(FEAT[i], true),
+  carBody: i => { const p = FEAT[i]; return `<p class="car-count"><b>${pad(i + 1)}</b> / ${pad(FEAT.length)}</p>${kicker(p) ? `<p class="eyebrow tint c-${colour(p)}">${esc(kicker(p))}</p>` : ""}<h3>${esc(p.title)}</h3><p class="soft">${esc(p.description ? firstSentence(p.description) : (p.keyFacts || []).join(" · "))}${p.location ? `<br><span class="car-meta">${esc(p.location)}</span>` : ""}</p><p>${more("project-" + p.slug, "View project")}</p>`; },
+  /* every slide after the first waits in a <template>, so its images load only when it is shown */
+  carTemplates: () => FEAT.map((p, i) => `<template id="carF${i}">${render.carFrame(i)}</template><template id="carB${i}">${render.carBody(i)}</template>`).join(""),
+
+  /* ---- about ---- */
+  story: () => `<p class="dropcap" data-rv>${esc(D.site.about.story.text)}</p><div data-rv>${ticks(D.site.about.story.points)}</div>`,
+  history: () => `<ol class="timeline">${D.site.about.history.map((h, i) => `<li data-rv style="--d:${i * .12}s"><span class="when">${esc(h[0])}</span><p>${esc(h[1])}</p></li>`).join("")}</ol>`,
+  expertise: () => `<p data-rv>${esc(D.site.about.expertise.intro)}</p><ul class="ticks" data-rv>${D.site.about.expertise.areas.map(a => `<li><b>${esc(a[0])}</b>${a[1] ? esc(a[1]) : ""}</li>`).join("")}</ul>`,
+  message: () => { const m = D.site.about.message, ph = D.team.founder.photo; return `<figure class="portrait" data-rv>${pic(ph)}<figcaption>${esc(m.name)}</figcaption></figure><blockquote class="message" data-rv>${m.paragraphs.map(t => `<p>${esc(t)}</p>`).join("")}<footer><b>${esc(m.name)}</b> — ${esc(m.role)}</footer></blockquote>`; },
+  promises: () => D.site.about.principles.items.map((p, i) => `<div class="promise c-${["ochre","teal","terra"][i]}" data-rv style="--d:${i * .14}s">${icon(p[0])}<h3>${esc(p[1])}</h3><p>${esc(p[2])}</p></div>`).join(""),
+
+  /* ---- team ---- */
+  founder: () => { const f = D.team.founder; return `<figure class="portrait" data-rv>${pic(f.photo)}</figure><div class="stack"><p class="eyebrow" data-rv>Founder &amp; Director</p><h2 data-split>${esc(f.name)}</h2><p class="label" data-rv>${esc(f.role)}</p><div data-rv>${ticks(f.profile)}</div></div>`; },
+  teamCount: () => 1 + D.team.groups.reduce((n, g) => n + g.people.length, 0),
+  teamGroups: () => D.team.groups.map(g => `<section class="tgroup c-${GROUP_C[g.id] || "brass"}" id="${g.id}" aria-labelledby="${g.id}-h"><h2 class="h3" id="${g.id}-h" data-rv>${esc(g.name)}</h2><div class="people">${g.people.map((m, i) => {
+    const facts = [["Qualification", m.qualification], ["Experience", m.experience], ["Work", m.work]].filter(x => x[1]);
+    return `<article class="pcard" data-rv style="--d:${(i % 4) * .06}s"><div class="face" aria-hidden="true">${initials(m.name)}${m.photo ? `<img src="${m.photo.src}" alt="" width="${m.photo.width}" height="${m.photo.height}" loading="lazy" decoding="async">` : ""}</div><div class="pcard-b"><h3>${esc(m.name)}</h3>${m.role ? `<p class="role">${esc(m.role)}</p>` : ""}${facts.length ? `<dl>${facts.map(x => `<div><dt>${x[0]}</dt><dd>${esc(x[1])}</dd></div>`).join("")}</dl>` : ""}${m.about ? `<p class="soft">${esc(m.about)}</p>` : ""}</div></article>`;
+  }).join("")}</div></section>`).join(""),
+  experience: () => { const x = D.team.directorExperience; return `<p class="soft" data-rv>${esc(x.note)}</p><ul class="xp" data-rv>${x.items.map(it => `<li><h3>${esc(it.name)}</h3>${it.text ? `<p>${esc(it.text)}</p>` : ""}</li>`).join("")}</ul>${thumbs(x.images, "pf", true)}`; },
+
+  /* ---- services ---- */
+  svcIndex: () => SVC.map(s => `<a class="c-${SERVICE_C[s.id]}" href="#${svcAnchor(s)}"><span class="bubble">${icon(s.icon)}</span><span>${esc(s.name)}</span></a>`).join("") + (TECH ? `<a class="c-${SERVICE_C.technologies} ext" href="${href("technologies")}"><span class="bubble">${icon(TECH.icon)}</span><span>${esc(TECH.name)} ${ARR}</span></a>` : ""),
+  svcBody: () => SVC.map(s => {
+    const rel = (s.projects || []).map(project).filter(Boolean);
+    let body = `<div class="prac-body"><div class="stack"><p>${esc(s.text)}</p>` + (s.examples ? ticks(s.examples) : "") + (rel.length ? `<div class="links">${rel.map(p => more("project-" + p.slug, p.title)).join("")}</div>` : "") + `</div>` +
+      (s.scope ? `<div class="stack"><p class="label">Scope</p>${ticks(s.scope)}</div>` : "<div></div>") + `</div>`;
+    if (s.tiers) body += `<p class="soft measure">${esc(s.tiers.intro)}</p><div class="steps">` + s.tiers.levels.map((t, k) => `<div class="step navy c-${["brass","teal","terra"][k]}"><span class="num">${t.num}</span><h3>${esc(t.name)}</h3>${ticks(t.includes)}<dl><div><dt>Ends with</dt><dd>${esc(t.ends)}</dd></div><div><dt>Terms</dt><dd>${esc(t.terms)}</dd></div></dl></div>`).join("") + `</div>`;
+    return `<section class="prac c-${SERVICE_C[s.id]}" id="${svcAnchor(s)}" data-rv><header><div><p class="eyebrow">Service</p><h2>${esc(s.name)}</h2></div>${icon(s.icon, "auto")}</header>${body}</section>`;
+  }).join(""),
+
+  /* ---- technologies ---- */
+  techIntro: () => esc(TECH.text),
+  techIndex: () => TECH.items.map(t => `<a class="c-${SERVICE_C.technologies}" href="#${t.id}"><span class="bubble num">${pad(TECH.items.indexOf(t) + 1)}</span><span>${esc(t.name)}</span></a>`).join(""),
+  techBody: () => TECH.items.map((t, i) => {
+    const sys = t.system && SYSTEMS.find(x => x.id === t.system);
+    const rel = (t.category ? PROJECTS.filter(p => (p.categories || []).indexOf(t.category) >= 0) : (t.projects || []).map(project).filter(Boolean));
+    const papers = (t.papers || []).flatMap(k => D.insights.articles.filter(a => a.title.toLowerCase().indexOf(k) >= 0));
+    const side = sys ? `<figure class="tech-fig sys-stage navy"><span class="corner a"></span><span class="corner b"></span><span class="corner c"></span><span class="corner d"></span><div class="sys-svg">${diagram(sys.id)}</div><figcaption class="sys-cap">${esc(sys.cap)}</figcaption></figure>` : "";
+    const gal = t.images ? `<div class="gal">${t.images.map((im, k) => `<button class="gal-b" type="button" data-full="${im.src}" data-w="${im.width}" aria-label="Enlarge image ${k + 1} of ${t.images.length}: ${esc(im.alt)}">${pic(im, { thumb: true })}</button>`).join("")}</div>` : "";
+    return `<section class="techsec c-${SERVICE_C.technologies}" id="${t.id}" aria-labelledby="${t.id}-h"><header><p class="eyebrow">Technology ${pad(i + 1)}</p><h2 id="${t.id}-h">${esc(t.name)}</h2></header>` +
+      `<div class="tech-body${side ? "" : " solo"}"><div class="stack"><p class="tech-lead">${esc(t.text)}</p>` +
+      (sys ? `<div class="stack"><p class="label">How it is built</p><p>${esc(sys.line)}</p></div>` : "") +
+      (t.note ? `<p class="note">${esc(t.note)}</p>` : "") +
+      (rel.length ? `<div class="stack"><p class="label">Projects by Metey · ${rel.length}</p><ul class="tech-projects">${rel.map(p => `<li><a href="${href("project-" + p.slug)}">${esc(p.title)}</a>${p.location ? `<span>${esc(p.location)}</span>` : ""}</li>`).join("")}</ul></div>` : "") +
+      (papers.length ? `<div class="stack"><p class="label">Further reading</p><div class="links">${papers.map(a => `<a class="more" href="${a.file}" target="_blank" rel="noopener">${esc(a.title)} ${ARR}</a>`).join("")}</div></div>` : "") +
+      `</div>${side}</div>${gal}</section>`;
+  }).join(""),
+
+  /* ---- clients ---- */
+  clientTables: () => D.clients.tables.map(t => `<section class="ctable" id="${t.id}" aria-labelledby="${t.id}-h"><h2 class="h3" id="${t.id}-h" data-rv>${esc(t.name)}</h2><div class="tbl-wrap stackable" data-rv tabindex="0" role="region" aria-labelledby="${t.id}-h"><table><thead><tr>${t.columns.map(c => `<th scope="col">${esc(c)}</th>`).join("")}</tr></thead><tbody>${t.rows.map(r => `<tr>${r.map((c, k) => k ? `<td data-label="${esc(t.columns[k])}">${esc(c)}</td>` : `<th scope="row" class="name">${esc(c)}</th>`).join("")}</tr>`).join("")}</tbody></table></div></section>`).join(""),
+  clientSummary: () => { const t = D.clients.summary; return `<h2 class="h3" id="summary-h" data-rv>${esc(t.name)}</h2><div class="tbl-wrap stackable" data-rv tabindex="0" role="region" aria-labelledby="summary-h"><table class="summary"><thead><tr>${t.columns.map(c => `<th scope="col">${esc(c)}</th>`).join("")}</tr></thead><tbody>${t.rows.map(r => `<tr><td class="num">${esc(r[0])}</td><td class="name">${esc(r[1])}</td><td data-label="${esc(t.columns[2])}">${esc(r[2])}</td></tr>`).join("")}</tbody></table></div>`; },
+
+  /* ---- projects ---- */
+  filters: () => chipRow("Category", "categories", CATEGORIES) + chipRow("Sector", "sectors", SECTORS),
   grid: () => PROJECTS.map(card).join(""),
-  carDots: () => FEAT.map((p, i) => `<button type="button" data-dot="${i}" aria-label="${p.name}"${i ? "" : ' aria-current="true"'}></button>`).join(""),
-  carFrame: i => shot(FEAT[i], true, FEAT[i].name),
-  carBody: i => {
-    const p = FEAT[i], meta = [p.loc, p.sys].filter(Boolean).join(" · ");
-    return `<p class="car-count"><b>${pad(i + 1)}</b> / ${pad(FEAT.length)}</p><p class="eyebrow tint c-${SEC_C[p.sector]}">${sectorName(p.sector)}</p><h3>${p.name}</h3><p class="soft">${p.text}${meta ? `<br><span class="car-meta">${meta}</span>` : ""}</p><p>${more("project-" + p.id, "View project")}</p>`;
+  project: projectPage,
+
+  /* ---- insights ---- */
+  articles: () => D.insights.articles.map((a, i) => `<a class="entry" href="${a.file}" target="_blank" rel="noopener" data-rv style="--d:${i * .06}s"><span class="src">${esc(a.source)}</span><h3>${esc(a.title)}</h3><span class="round">${ARR}</span></a>`).join(""),
+  events: () => D.insights.events.map((e, i) => `<div class="entry" data-rv style="--d:${i * .06}s"><span class="src">${esc(e.source)}</span><div><h3>${esc(e.title)}</h3><p class="soft entry-note">${esc(e.note)}</p></div></div>`).join(""),
+  shelf: () => {
+    const SP = [["terra",15.2],["teal",16],["blue",14],["plum",15],["plum",15.8],["ochre",17.2],["green",12.6]];
+    return D.insights.articles.map((a, i) => { const sp = SP[i % SP.length]; return `<a class="spine c-${sp[0]}" href="${a.file}" target="_blank" rel="noopener" style="--h:${sp[1]}rem;--i:${i}" aria-label="${esc(a.title)}, ${esc(a.source)}">${esc(a.spine)}</a>`; }).join("") + '<span class="bookend" aria-hidden="true"></span>';
   },
-  project: p => {
-    const i = PROJECTS.indexOf(p), prev = PROJECTS[(i + PROJECTS.length - 1) % PROJECTS.length], next = PROJECTS[(i + 1) % PROJECTS.length];
-    const facts = [["Sector", sectorName(p.sector)]];
-    if (p.loc) facts.push(["Location", p.loc]);
-    if (p.sys) facts.push(["System", p.sys]);
-    if (p.status) facts.push(["Status", p.status]);
-    facts.push(["Archive", p.photos + " photographs"]);
-    const gal = p.img ? `<div class="gal-wrap"><h2 class="h3">From the archive</h2><div class="gal">${p.img.n.map((n, k) => `<button class="gal-b" type="button" data-full="${full(p, k)}" aria-label="Enlarge photograph ${k + 1}"><img src="${thumb(p, k)}" alt="${photoAlt(p)}, photograph ${k + 1}" width="400" height="284" loading="lazy" decoding="async"></button>`).join("")}</div></div>` : "";
-    return `<div class="pd-grid"><div class="mat" data-rv="wipe" style="--wc:${PAL[SEC_C[p.sector]][0]}">${shot(p, true, photoAlt(p), true)}</div><div class="stack" style="gap:1.5rem"><p class="eyebrow tint c-${SEC_C[p.sector]}" data-rv>${sectorName(p.sector)}</p><h1 data-split>${p.name}</h1><p data-rv>${p.text}</p>` +
-      (p.list ? `<ol class="nums" data-rv>${p.list.map(x => `<li>${x}</li>`).join("")}</ol>` : "") +
-      `<dl class="facts" data-rv>${facts.map(x => `<div><dt>${x[0]}</dt><dd>${x[1]}</dd></div>`).join("")}</dl><p class="note" data-rv>Project calculations, comprehensive structural detailing sheets, and technical parameters available on client consultation.</p></div></div>${gal}` +
-      `<nav class="pd-nav" aria-label="More projects"><a class="more prev" href="${href("project-" + prev.id)}">${ARR} ${prev.name}</a><a class="more" href="${href("project-" + next.id)}">${next.name} ${ARR}</a></nav>`;
+
+  /* ---- contact ---- */
+  serviceOptions: () => ["Not sure yet"].concat(SVC.concat(TECH ? [TECH] : []).map(s => s.card)).map(o => `<option>${esc(o)}</option>`).join("\n            "),
+  contactList: () => {
+    const c = D.site.company, a = c.address;
+    const kv = (label, value, link) => `<div class="kv"><span>${esc(label)}</span><a class="val" href="${link}">${esc(value)}</a><button class="copy" type="button" data-copy="${esc(link.replace(/^(tel|mailto):/, ""))}">Copy</button></div>`;
+    const tel = n => "tel:" + n.replace(/[^\d+]/g, "");
+    let s = `<div><p class="label">Head office</p><p>${esc(a.street)},<br>${esc(a.city)} – ${esc(a.postalCode)}, ${esc(a.region)}, ${esc(a.country)}</p>` + c.phones.map(p => kv(p.label, p.number, tel(p.number))).join("") + c.emails.map(e => kv(e.label, e.address, "mailto:" + e.address)).join("") + `</div>`;
+    s += `<div><p class="label">Branch office</p><p>${esc(c.branch)}</p></div>`;
+    s += c.people.map(p => `<div><p class="label">${esc(p.label)}</p>${p.name ? `<p>${esc(p.name)}</p>` : ""}${p.phone ? kv("Mobile", p.phone, tel(p.phone)) : ""}${p.email ? kv("Email", p.email, "mailto:" + p.email) : ""}</div>`).join("");
+    return s + `<div><p class="label">Online</p><div class="kv"><span>Facebook</span><a class="val" href="${c.facebook}" target="_blank" rel="noopener">facebook.com/meteyengineeringnconsultancy</a></div></div>`;
   }
 };
 
-globalThis.METEY = { STATE_NAMES, ARR, PAL, SEC_C, PROJECTS, FEAT, SYSTEMS, TYPES, sectorName, href, diagram, render };
+globalThis.METEY = { STATE_NAMES, SECTORS, CATEGORIES, ARR, PAL, SEC_C, PROJECTS, FEAT, SYSTEMS, sectorName, categoryName, statesWorked, href, esc, diagram, render };
 })();

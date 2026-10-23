@@ -1,0 +1,68 @@
+{
+  "tables": [
+    { "id": "housing", "name": "Housing & government", "columns": ["Client", "Developer / Contractor", "Location", "Project"], "rows": [
+      ["APTIDCO", "VNC-SVC-JV", "Andhra Pradesh", "EWS housing under PMAY — monolithic construction"],
+      ["APTIDCO", "KMV Projects", "Andhra Pradesh", "EWS housing under PMAY — monolithic construction (multiple packages)"],
+      ["APTIDCO", "VNCPL", "Andhra Pradesh", "EWS housing under PMAY — monolithic construction (multiple packages)"],
+      ["GHMC", "Inventaa", "Dundigal, Hyderabad", "Precast EWS housing S+P+G+9 — 11 nos."],
+      ["GHMC", "PSV Precast", "Dundigal, Hyderabad", "Precast EWS housing S+P+G+9 — 2 nos."],
+      ["GHMC", "Eco-Care", "Dundigal, Hyderabad", "Precast EWS housing S+P+G+9 — 3 nos."],
+      ["APUIAML", "KMV / Inventaa", "Andhra Pradesh", "Economic township — 5 precast towers of 6 storeys, 7,00,000 sft"],
+      ["Deepak Cables (I) Ltd.", "—", "Bengaluru", "S+8 fully concrete-wall buildings, 650 units (Kaniminike LIG & MIG)"],
+      ["Deepak Cables (I) Ltd.", "—", "Bengaluru", "G+3 fully concrete-wall buildings, 670 units (Kaniminike EWS)"],
+      ["Deepak Cables (I) Ltd.", "—", "Bengaluru", "S+7 fully concrete-wall buildings, 840 units (Gunjur EWS)"],
+      ["Deepak Cables (I) Ltd.", "—", "Bengaluru", "S+6 fully concrete-wall buildings, 312 units (Thippasandra EWS)"],
+      ["CCE R&D / Girdharilal Constructions", "—", "New Delhi", "S+8 and S+4 towers at Mayur Vihar and Ghitorni, 7,50,000 sft (precast)"],
+      ["Military Engineer Services", "—", "Secunderabad", "Overhead tank, swimming pool and warehouses"],
+      ["A.P. Housing Corporation", "—", "Andhra Pradesh", "Composite construction"]
+    ] },
+    { "id": "developers", "name": "Developers & private", "columns": ["Client", "Location", "Project"], "rows": [
+      ["Vasavi Infratech Developers", "Hyderabad", "Vasavi Urban — 12 towers of 2B+S+23, 3 club houses, 55 lakh sft on 22 acres"],
+      ["Vertex Developers", "Hyderabad", "69 villas (G+2) at Bowrampet; 35-storey tower at Nallagandla (peer review)"],
+      ["Landcraft Developers", "Ghaziabad", "2B+30 storey towers, Golf Links; 3 towers of 30+2 storeys (10 lakh sft); shopping complex B+G+2; 20-storey River Front project, Noida"],
+      ["Carol Infrastructure Pvt. Ltd.", "Ghaziabad", "3 towers of 30+2 storeys, 10 lakh sft"],
+      ["Aashiana & Landcraft", "Gurgaon", "10 towers of 2B+30 storeys"],
+      ["Janapriya Engineers Syndicate", "Hyderabad", "250 G+1 precast villas"],
+      ["Pragathi Green Meadows & Resorts", "Hyderabad", "Precast villa design"],
+      ["Skanda Prefab Industries", "Hyderabad / Sri Lanka", "Design of 4 residential towers of 12 storeys in Sri Lanka"],
+      ["SSR Constructions", "Hyderabad", "Function hall on an 8,400 sqm plot"],
+      ["My Home Constructions", "Hyderabad", "Single-storey precast training office"],
+      ["Mr. Srinivas Reddy", "Rajahmundry", "Shopping complex & residential building"],
+      ["Mr. V. Sriram", "Rajahmundry", "G+5 residential apartment, 2 lakh sft"],
+      ["Mr. Kannan", "Hyderabad", "G+3 residence at Saket"],
+      ["Mr. T. Swamy", "Hyderabad", "G+4 residential apartment at Erragadda"],
+      ["Mr. N.N. Sastry", "Hyderabad", "G+4 residential apartment at Chikkadpally"]
+    ] },
+    { "id": "industrial", "name": "Industrial & corporate", "columns": ["Client", "Location", "Project"], "rows": [
+      ["Amazon – Tata Projects Ltd.", "Hyderabad", "Precast wall panels for warehouse"],
+      ["Sai Life Sciences", "Hyderabad", "1,00,000 sft precast pharma laboratory"],
+      ["Jindal Steel & Power Ltd.", "Raigarh / Angul", "Corporate tower; LGS and EPS-panel buildings"],
+      ["NTPC", "Ramagundam / Barh", "Fly-ash brick plant; lightweight aggregate plant"],
+      ["Deepak Cables (I) Ltd.", "Odisha", "Integrated aluminium downstream industry"],
+      ["Solaria Corporation", "Hyderabad & USA", "Solar panel frame system"],
+      ["PSV Precast", "Hyderabad", "Precast concrete plant design"],
+      ["RDF", "Bibi Nagar, Nalgonda", "12 MW power plant"]
+    ] },
+    { "id": "pmc", "name": "Project management, advisory & QS", "columns": ["Client", "Location", "Work"], "rows": [
+      ["Punj Lloyd Ltd.", "Gurgaon", "Design solutions during execution"],
+      ["Indu Projects Ltd.", "Hyderabad", "Design solutions and tender advisory"],
+      ["Sunway Opus International Ltd.", "Hyderabad", "Quantity surveying (QS)"]
+    ] }
+  ],
+  "summary": {
+    "name": "Projects designed so far, abroad and in India",
+    "columns": ["#", "Projects", "Developer / Client"],
+    "rows": [
+      ["1", "Multi-storey towers of 40 to 60 storeys", "Dubai"],
+      ["2", "38-storey Dusit Dubai Tower", "Engineers Office, Dubai"],
+      ["3", "2B+30 storey towers in NCR using Mivan construction", "Landcraft Developers, Ghaziabad"],
+      ["4", "2B+S+23 storey towers in Hyderabad using Mivan construction", "Vasavi Developers, Hyderabad"],
+      ["5", "20-storey residential project in Noida", "River Front Project, Landcraft Developers"],
+      ["6", "6 towers of 2B+9/8 storey residential towers", "MLA Quarters, Bhubaneswar"],
+      ["7", "Residential and commercial precast structures of S+9, S+7, S+10 etc.; precast for universities and pharma", "Hyderabad, NCR, AP and Telangana"],
+      ["8", "Other technologies — LGS (JSPL Raigarh), composite (AP Housing Corporation), polymer wall (AP), industrial structures (Bhubaneswar, Hyderabad), wooden structures (Dubai)", "Various"],
+      ["9", "Commercial structures for offices, function halls etc.", "AP and Telangana"],
+      ["10", "Educational institutes", "Telangana and AP"]
+    ]
+  }
+}

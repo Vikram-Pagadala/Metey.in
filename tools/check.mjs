@@ -5,7 +5,7 @@ import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const excluded = new Set(['.git', 'node_modules', 'src', 'tools', 'tests', 'integrations', 'test-results', 'playwright-report']);
+const excluded = new Set(['.git', 'node_modules', 'src', 'tools', 'tests', 'integrations', 'metey-content', 'test-results', 'playwright-report']);
 function walk(dir) {
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap(entry => {
     if (excluded.has(entry.name) || entry.name.startsWith('.')) return [];

@@ -1,33 +1,40 @@
-"""Draws the "Major commissions" map of South India into src/map.svg.
+"""Draws the "Projects across India" map into src/map.svg.
 
 One-off generator; run it again only to change the places or the frame:
-    curl -L -o /tmp/adm1.geojson https://raw.githubusercontent.com/nvkelso/natural-earth-vector/v5.1.2/geojson/ne_10m_admin_1_states_provinces.geojson
-    python3 tools/make-map.py /tmp/adm1.geojson
+    curl -L -o adm1.geojson https://raw.githubusercontent.com/nvkelso/natural-earth-vector/v5.1.2/geojson/ne_10m_admin_1_states_provinces.geojson
+    python3 tools/make-map.py adm1.geojson
 Boundaries: Natural Earth (public domain), naturalearthdata.com.
 """
-import json, math, sys, pathlib
+import html, json, math, sys, pathlib
 
-LON0, LON1, LAT0, LAT1 = 72.4, 87.9, 7.7, 22.5   # frame: Goa to Odisha, Kanyakumari to Odisha's north
-K = 32                                           # pixels per degree of latitude
-CX = math.cos(math.radians(15))                  # equirectangular, true at 15°N
+# frame: Gujarat to Assam, Kanyakumari to just north of Delhi. The frame stops short of the
+# northern frontier on purpose: Natural Earth draws it de facto, which differs from India's official map.
+LON0, LON1, LAT0, LAT1 = 68.0, 97.4, 7.6, 30.8
+K = 24                                           # pixels per degree of latitude
+CX = math.cos(math.radians(20))                  # equirectangular, true at 20°N
 PAD = 12
 W = round((LON1 - LON0) * CX * K) + 2 * PAD
 H = round((LAT1 - LAT0) * K) + 2 * PAD
 
 HQ = ("HYDERABAD", 17.385, 78.487)
 HQ_LINK = ("/contact/", "Head office, Hyderabad: contact details")
-# label side: 1 = right of the pin, -1 = left; each pin opens the project it stands for
+# label side: 1 = right of the pin, -1 = left; each pin opens a project in that place
 PLACES = [
-    ("AMARAVATI", 16.513, 80.517, 1, "/projects/kethanakonda/", "Technology Demonstration Housing, Kethanakonda"),
-    ("VISAKHAPATNAM", 17.687, 83.219, 1, "/projects/#register", "Visakhapatnam economic city, in the project register"),
-    ("ODISHA", 20.296, 85.825, -1, "/projects/odisha/", "Insulated Wall Construction, Odisha"),
-    ("BANGALORE", 12.972, 77.595, 1, "/projects/montessori/", "Montessori School, Bangalore"),
-    ("GOA", 15.491, 73.828, 1, "/projects/goa-villas/", "Goa Villas"),
+    ("DELHI NCR", 28.61, 77.21, -1, "/projects/drdo-precast-housing-ncr/", "DRDO Precast Residential Housing, NCR"),
+    ("PATNA", 25.56, 84.87, 1, "/projects/iit-patna-secondary-school/", "IIT Patna Secondary School, Bihta"),
+    ("NUMALIGARH", 26.62, 93.73, -1, "/projects/nursing-school-numaligarh/", "Nursing School cum Hostel Block, Numaligarh, Assam"),
+    ("RAIGARH", 21.90, 83.40, -1, "/projects/jindal-corporate-tower-raigarh/", "Corporate Tower, Jindal Steel & Power, Raigarh"),
+    ("BHUBANESWAR", 20.30, 85.82, 1, "/projects/mla-quarters-bhubaneswar/", "MLA Quarters, Bhubaneswar"),
+    ("VISAKHAPATNAM", 17.69, 83.22, 1, "/projects/aptidco-pmay-housing/", "APTIDCO PMAY Housing, Visakhapatnam and Vizianagaram"),
+    ("VIJAYAWADA", 16.51, 80.65, 1, "/projects/apcpdcl-corporate-office-vijayawada/", "APCPDCL Corporate Office, Vijayawada"),
+    ("CHENNAI", 13.08, 80.27, 1, "/projects/nlc-chennai-precast/", "2B+9 Storey Precast Structure for NLC, Chennai"),
+    ("BENGALURU", 12.97, 77.59, -1, "/projects/bda-bangalore-concrete-wall/", "Bangalore Development Authority Housing"),
+    ("GOA", 15.49, 73.83, -1, "/projects/goa-villas/", "Goa Villas"),
 ]
-ASSAM = (26.6, 93.8)                             # off the map: shown as a line leaving the frame
-ASSAM_LINK = ("/projects/nursing-school/", "Nursing School, Numaligarh Refinery, Assam")
 # states with METEY work; clicking one lists its projects
-WORKED = {"Telangana": "telangana", "Andhra Pradesh": "andhra-pradesh", "Karnataka": "karnataka", "Goa": "goa", "Odisha": "odisha"}
+WORKED = {"Telangana": "telangana", "Andhra Pradesh": "andhra-pradesh", "Karnataka": "karnataka", "Goa": "goa", "Odisha": "odisha",
+          "Assam": "assam", "Bihar": "bihar", "Uttar Pradesh": "uttar-pradesh", "Haryana": "haryana", "Chhattisgarh": "chhattisgarh",
+          "Tamil Nadu": "tamil-nadu", "Delhi": "delhi"}
 
 
 def xy(lat, lon):
@@ -93,11 +100,12 @@ def main(src):
     s = [f'<defs><clipPath id="mapClip"><rect x="0" y="0" width="{W}" height="{H}"/></clipPath></defs>',
          f'<rect class="sea" x="0" y="0" width="{W}" height="{H}"/>',
          f'<g clip-path="url(#mapClip)"><path class="lk" d="{"".join(lanka)}"/>{"".join(shapes)}</g>',
-         f'<text class="sea-l" x="{xy(13.5, 74.2)[0]:.0f}" y="{xy(13.5, 74.2)[1]:.0f}">Arabian Sea</text>',
-         f'<text class="sea-l" x="{xy(15.2, 84.6)[0]:.0f}" y="{xy(15.2, 84.6)[1]:.0f}">Bay of Bengal</text>']
+         f'<text class="sea-l" x="{xy(14.5, 68.9)[0]:.0f}" y="{xy(14.5, 68.9)[1]:.0f}">Arabian Sea</text>',
+         f'<text class="sea-l" x="{xy(15.6, 85.4)[0]:.0f}" y="{xy(15.6, 85.4)[1]:.0f}">Bay of Bengal</text>']
 
     n = 0
     for name, lat, lon, side, href, label in PLACES:
+        label = html.escape(label)
         x, y = xy(lat, lon)
         tx, anchor = (x + 13, "") if side > 0 else (x - 13, ' text-anchor="end"')
         s.append(f'<g style="--n:{n}"><line x1="{hx:.1f}" y1="{hy:.1f}" x2="{x:.1f}" y2="{y:.1f}" class="ln" pathLength="1"/>'
@@ -105,23 +113,15 @@ def main(src):
                  f'<text x="{tx:.1f}" y="{y + 4:.1f}"{anchor}>{name}</text></a></g>')
         n += 1
 
-    # Assam lies far to the north-east: run the line to the edge of the frame and label it there
-    ax, ay = xy(*ASSAM)
-    t = min((PAD - hy) / (ay - hy), (W - PAD - hx) / (ax - hx))
-    ex, ey = hx + (ax - hx) * t, hy + (ay - hy) * t
-    ang = math.degrees(math.atan2(ey - hy, ex - hx))
-    s.append(f'<g style="--n:{n}"><line x1="{hx:.1f}" y1="{hy:.1f}" x2="{ex:.1f}" y2="{ey:.1f}" class="ln off" pathLength="1"/>'
-             f'<a class="dest" href="{ASSAM_LINK[0]}" aria-label="{ASSAM_LINK[1]}"><title>{ASSAM_LINK[1]}</title><path d="M0 0l-11 -5v10z" class="arrow" transform="translate({ex:.1f} {ey:.1f}) rotate({ang:.1f})"/>'
-             f'<text x="{ex - 18:.1f}" y="{ey + 6:.1f}" text-anchor="end">ASSAM</text></a></g>')  # sits above the line
-
     s.append(f'<a class="hq-link" href="{HQ_LINK[0]}" aria-label="{HQ_LINK[1]}"><title>{HQ_LINK[1]}</title>'
              f'<circle cx="{hx:.1f}" cy="{hy:.1f}" r="10" class="pulse"/><circle cx="{hx:.1f}" cy="{hy:.1f}" r="10" class="pulse p2"/>'
              f'<circle cx="{hx:.1f}" cy="{hy:.1f}" r="7" class="home"/>'
              f'<text x="{hx - 14:.1f}" y="{hy - 10:.1f}" text-anchor="end" class="hq">HYDERABAD</text>'
              f'<text x="{hx - 14:.1f}" y="{hy + 4:.1f}" text-anchor="end" class="sub">Head office</text></a>')
 
-    svg = (f'<svg class="wm map" viewBox="0 0 {W} {H}" role="img" aria-label="Map of South India marking where METEY has worked, '
-           f'from the head office in Hyderabad: Amaravati, Visakhapatnam, Odisha, Bangalore and Goa, and Assam in the north-east">'
+    places = ", ".join(p[0].title() for p in PLACES)
+    svg = (f'<svg class="wm map" viewBox="0 0 {W} {H}" role="img" aria-label="Map of India marking where METEY has worked, '
+           f'with lines from the head office in Hyderabad to {places}">'
            + "".join(s) + "</svg>")
     out = pathlib.Path(__file__).resolve().parent.parent / "src" / "map.svg"
     out.write_text(svg + "\n")

@@ -1,5 +1,5 @@
 // Browser tests: every page at desktop, tablet and phone widths, then every button, menu, filter,
-// gallery, form and 3D Lab control, checked by what the visitor would see.
+// gallery, slideshow and form, checked by what the visitor would see.
 //   npm install && npm test
 // Uses Google Chrome if installed (or CHROME_PATH), otherwise Playwright's Chromium (npx playwright install chromium).
 import { chromium } from 'playwright-core';
@@ -13,10 +13,10 @@ const PORT = Number(process.env.PORT || 8765);
 const BASE = `http://127.0.0.1:${PORT}`;
 const server = spawn(process.execPath, [path.join(root, 'tools/serve.mjs')], { env: { ...process.env, PORT: String(PORT) }, stdio: ['ignore', 'pipe', 'inherit'] });
 await new Promise((resolve, reject) => { server.stdout.once('data', resolve); server.once('exit', () => reject(new Error('Preview server did not start'))); });
+process.on('exit', () => server.kill());
 
 const chrome = [process.env.CHROME_PATH, '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', '/usr/bin/google-chrome', '/usr/bin/chromium'].find(p => p && fs.existsSync(p));
-// SwiftShader gives headless Chrome WebGL, so the 3D viewers run as they would on a real device
-const b = await chromium.launch({ executablePath: chrome, args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
+const b = await chromium.launch({ executablePath: chrome });
 let pass = 0, fail = 0;
 const ok = (c, m) => { if (c) { pass++; console.log('  ✓ ' + m); } else { fail++; console.log('  ✗ ' + m); } };
 async function open(path, vp = [1440, 900], extra = {}) {
@@ -29,8 +29,8 @@ async function open(path, vp = [1440, 900], extra = {}) {
 }
 
 /* ---------- layout: no errors, no missing files, no sideways scrolling ---------- */
-const ROUTES = ['/', '/firm/', '/practice/', '/projects/', '/insights/', '/3d-lab/', '/careers/', '/contact/', '/projects/jindal/', '/no-such-page/'];
-for (const [name, vp] of Object.entries({ desktop: [1440, 900], tablet: [820, 1180], phone: [390, 844] })) {
+const ROUTES = ['/', '/about/', '/services/', '/projects/', '/clients/', '/team/', '/insights/', '/technologies/', '/careers/', '/contact/', '/projects/jindal-corporate-tower-raigarh/', '/no-such-page/'];
+for (const [name, vp] of Object.entries({ desktop: [1440, 900], tablet: [820, 1180], phone: [375, 812] })) {
   console.log(`\n# Layout (${name})`);
   const ctx = await b.newContext({ viewport: { width: vp[0], height: vp[1] }, hasTouch: name !== 'desktop', isMobile: name === 'phone' });
   for (const route of ROUTES) {
@@ -49,19 +49,62 @@ for (const [name, vp] of Object.entries({ desktop: [1440, 900], tablet: [820, 11
 
 const attr = (p, s, a) => p.getAttribute(s, a);
 
-for (const vp of [[1440, 900], [390, 844]]) {
+/* ---------- every project page: all its images load, nothing scrolls sideways ---------- */
+const DATA = JSON.parse(fs.readFileSync(path.join(root, 'src/data/projects.json'), 'utf8'));
+for (const [name, vp] of Object.entries({ desktop: [1440, 900], phone: [375, 812] })) {
+  console.log(`\n# Project pages (${name})`);
+  const ctx = await b.newContext({ viewport: { width: vp[0], height: vp[1] }, isMobile: name === 'phone' });
+  for (const pr of DATA) {
+    const p = await ctx.newPage(), problems = [];
+    p.on('pageerror', e => problems.push(e.message));
+    p.on('response', r => { if (r.status() >= 400) problems.push(`${r.status()} ${r.url()}`); });
+    await p.goto(`${BASE}/projects/${pr.slug}/`, { waitUntil: 'load' });
+    await p.evaluate(() => document.querySelectorAll('img[loading=lazy]').forEach(i => { i.loading = 'eager'; }));
+    await p.waitForFunction(() => [...document.images].every(i => i.complete), null, { timeout: 15000 }).catch(() => {});
+    const r = await p.evaluate(() => ({ wide: document.documentElement.scrollWidth - document.documentElement.clientWidth, n: document.querySelectorAll('.gal-b').length,
+      broken: [...document.images].filter(i => i.complete && !i.naturalWidth && i.getAttribute('src')).map(i => i.getAttribute('src')) }));
+    ok(!problems.length && r.wide <= 0 && !r.broken.length && r.n === pr.images.length,
+      `${pr.slug}: ${r.n}/${pr.images.length} images${r.wide > 0 ? `, scrolls sideways ${r.wide}px` : ''}${r.broken.length ? ' broken ' + r.broken.join(', ') : ''}${problems.length ? ' ' + problems.join('; ') : ''}`);
+    await p.close();
+  }
+  await ctx.close();
+}
+
+console.log('\n# Moved pages redirect');
+for (const [from, to] of [['/firm/', '/about/'], ['/practice/', '/services/'], ['/3d-lab/', '/technologies/'], ['/3d-lab/?model=jindal', '/technologies/'], ['/projects/jindal/', '/projects/jindal-corporate-tower-raigarh/'], ['/projects/landcraft', '/projects/golf-links-ghaziabad-landcraft/']]) {
+  const p = await open(from);
+  ok(new URL(p.url()).pathname === to, `${from} → ${to}`);
+  await p.context().close();
+}
+{
+  const p = await open('/#project-vasavi');
+  await p.waitForTimeout(500);
+  ok(new URL(p.url()).pathname === '/projects/vasavi-urban-bachupally/', 'old one-page link /#project-vasavi reaches the renamed project');
+  await p.context().close();
+}
+
+for (const vp of [[1440, 900], [375, 812]]) {
   const tag = vp[0] > 1000 ? 'desktop' : 'mobile';
   console.log(`\n# Home (${tag})`);
   let p = await open('/', vp);
-  // hero model controls
-  await p.locator('.hero-model').scrollIntoViewIfNeeded(); await p.waitForTimeout(2500);
-  ok(!(await p.locator('.hero-model-controls').isHidden()), 'hero 3D controls appear once the model loads');
-  await p.click('[data-preview-mode=structure]');
-  ok(await attr(p, '[data-preview-mode=structure]', 'aria-pressed') === 'true' && await attr(p, '[data-preview-mode=blend]', 'aria-pressed') === 'false', 'Structure view button toggles pressed state');
-  await p.click('#hero-model-spin');
-  ok((await p.textContent('#hero-model-spin')).includes('Resume') && await attr(p, '#hero-model-spin', 'aria-pressed') === 'false', 'Pause spin → Resume spin');
-  await p.click('#hero-model-spin');
-  ok((await p.textContent('#hero-model-spin')).includes('Pause'), 'Resume spin → Pause spin');
+  // hero: iconic projects
+  const HERO = JSON.parse(fs.readFileSync(path.join(root, 'src/data/site.json'), 'utf8')).home.hero.slides;
+  ok(await p.locator('#heroSlides .hs').count() === HERO.length && await p.$eval('#heroSlides .hs.on img', i => i.complete && i.naturalWidth > 600), `hero shows ${HERO.length} iconic projects, the first photograph loaded`);
+  await p.click('#heroDots [data-hs="3"]'); await p.waitForTimeout(1800);
+  ok(await p.$eval('#heroSlides .hs.on', e => e.getAttribute('data-slide')) === '3' && await attr(p, '#heroDots [data-hs="3"]', 'aria-current') === 'true', 'hero dot 4 shows the fourth project');
+  ok(await p.$eval('#heroSlides .hs.on img', i => i.complete && i.naturalWidth > 600), 'its photograph loads when shown');
+  ok(await p.$eval('#heroSlides .hs.on figcaption a', a => a.getAttribute('href')) === `/projects/${HERO[3].project}/`, 'hero caption links to the project');
+  ok(await p.locator('.hero-model, #lab, canvas, script[src*="three"], script[src*="hero-model"]').count() === 0, 'no 3D content on the home page');
+  ok((await p.textContent('.mq-l')) === 'Trusted by' && await p.locator('#mqClients span').count() > 8, 'bold clients strip with its label');
+  const stats = await p.$$eval('#stats .stat', ss => ss.map(x => x.textContent.replace(/\s+/g, ' ').trim()));
+  ok(stats.length === 6 && !stats.some(t => /\b48\b/.test(t)) && stats.some(t => t.includes('₹6Cr')), 'key numbers: no 48 years, ₹6Cr in full');
+  await p.locator('.stat-roll').scrollIntoViewIfNeeded(); await p.waitForTimeout(4000);
+  ok(await attr(p, '.stat-roll .ticket', 'aria-label') === '95,00,000 sft' && await p.$$eval('.stat-roll .reel', rs => rs.map(r => Math.round((r.getBoundingClientRect().top - r.firstElementChild.getBoundingClientRect().top) / r.getBoundingClientRect().height)).join('')) === '9500000', 'total area ticket rolls to 95,00,000 sft');
+  await p.locator('#types').scrollIntoViewIfNeeded(); await p.waitForTimeout(600);
+  await p.$$eval('#typesRow .arch img', is => is.forEach(i => { i.loading = 'eager'; }));
+  await p.waitForFunction(() => [...document.querySelectorAll('#typesRow .arch img')].every(i => i.complete), null, { timeout: 15000 }).catch(() => {});
+  ok(await p.locator('#typesRow .arch svg').count() === 0 && await p.$$eval('#typesRow .arch img', is => is.length === 7 && is.every(i => i.naturalWidth >= 1000)), 'sectors show seven full-size project photographs');
+  ok(!(await p.textContent('main')).includes('End-to-End') && await p.locator('#systems .eyebrow').first().textContent() === 'Construction Technologies' && await p.locator('#systems a[href="/technologies/"]').count() === 1, 'Construction Technologies links to its page; no End-to-End section');
   // types row
   await p.locator('#types').scrollIntoViewIfNeeded(); await p.waitForTimeout(600);
   const sl0 = await p.$eval('#typesRow', e => e.scrollLeft);
@@ -110,13 +153,25 @@ for (const vp of [[1440, 900], [390, 844]]) {
   console.log(`\n# Projects (${tag})`);
   p = await open('/projects/', vp);
   const total = await p.locator('#projGrid .card').count();
-  const chips = await p.$$eval('#chips [data-sector]', bs => bs.map(x => x.getAttribute('data-sector')));
-  for (const s of chips) {
-    await p.click(`#chips [data-sector="${s}"]`); await p.waitForTimeout(100);
-    const vis = await p.locator('#projGrid .card:not([hidden])').count();
-    const right = await p.$$eval('#projGrid .card:not([hidden])', (cs, s) => cs.every(c => s === 'all' || c.dataset.sector === s), s);
-    ok(vis > 0 && right && await attr(p, `#chips [data-sector="${s}"]`, 'aria-pressed') === 'true', `chip "${s}" shows ${vis}/${total}`);
+  ok(total === DATA.length, `${total} project cards for ${DATA.length} projects`);
+  for (const [row, key] of [['categories', 'cats'], ['sectors', 'sectors']]) {
+    const values = await p.$$eval(`[data-filter="${row}"] [data-value]`, bs => bs.map(x => x.getAttribute('data-value')));
+    for (const v of values) {
+      await p.locator(`[data-filter="${row}"] [data-value="${v}"]`).click(); await p.waitForTimeout(80);
+      const vis = await p.locator('#projGrid .card:not([hidden])').count();
+      const want = v === 'all' ? DATA.length : DATA.filter(d => (d[row] || []).includes(v)).length;
+      ok(vis === want && await attr(p, `[data-filter="${row}"] [data-value="${v}"]`, 'aria-pressed') === 'true', `${row} "${v}" shows ${vis}/${want}`);
+    }
+    await p.locator(`[data-filter="${row}"] [data-value="all"]`).click();
   }
+  await p.locator('[data-filter="categories"] [data-value="precast"]').click();
+  await p.locator('[data-filter="sectors"] [data-value="government-housing"]').click(); await p.waitForTimeout(80);
+  const both = DATA.filter(d => (d.categories || []).includes('precast') && (d.sectors || []).includes('government-housing')).length;
+  ok(await p.locator('#projGrid .card:not([hidden])').count() === both && both > 0, `precast + government housing together shows ${both}`);
+  await p.locator('[data-filter="categories"] [data-value="interiors"]').click(); await p.waitForTimeout(80);
+  ok(await p.locator('#projGrid .card:not([hidden])').count() === 0 && !(await p.locator('#filterNone').isHidden()), 'no match shows a message');
+  await p.click('#filterReset'); await p.waitForTimeout(80);
+  ok(await p.locator('#projGrid .card:not([hidden])').count() === total && await p.locator('#filterNone').isHidden(), '"Show all projects" resets both filters');
   await p.context().close();
   p = await open('/projects/?state=karnataka', vp);
   const kv = await p.locator('#projGrid .card:not([hidden])').count();
@@ -129,7 +184,7 @@ for (const vp of [[1440, 900], [390, 844]]) {
   await p.context().close();
 
   console.log(`\n# Project gallery (${tag})`);
-  p = await open('/projects/jindal/', vp);
+  p = await open('/projects/jindal-corporate-tower-raigarh/', vp);
   await p.locator('.gal-b').first().scrollIntoViewIfNeeded(); await p.waitForTimeout(800);
   const nThumbs = await p.locator('.gal-b.ok').count();
   ok(nThumbs > 1, `${nThumbs} gallery thumbnails loaded`);
@@ -155,13 +210,77 @@ for (const vp of [[1440, 900], [390, 844]]) {
   ok(!p.errors.length, 'no page errors ' + p.errors.join(';'));
   await p.context().close();
 
+  p = await open('/projects/carol-infrastructure-ghaziabad/', vp);
+  await p.locator('.gal-b').first().scrollIntoViewIfNeeded(); await p.waitForTimeout(600);
+  ok(await p.locator('.pd-grid .shot img').count() === 0, 'project with only low-res images opens on the drawn elevation');
+  await p.locator('.gal-b').first().click(); await p.waitForTimeout(600);
+  const lr = await p.$eval('#lbImg', i => ({ shown: i.getBoundingClientRect().width, natural: i.naturalWidth }));
+  ok(lr.natural > 0 && lr.shown <= lr.natural + 1, `low-res image is not enlarged (${Math.round(lr.shown)}px shown, ${lr.natural}px real)`);
+  await p.keyboard.press('Escape');
+  await p.context().close();
+
+  console.log(`\n# Team, clients and contact (${tag})`);
+  p = await open('/team/', vp);
+  const people = JSON.parse(fs.readFileSync(path.join(root, 'src/data/team.json'), 'utf8')).groups.reduce((n, g) => n + g.people.length, 0);
+  ok(await p.locator('.pcard').count() === people && await p.locator('.pcard .face').first().textContent() === 'KM', `${people} team cards with initials avatars`);
+  for (const im of await p.locator('.pcard .face img').all()) await im.scrollIntoViewIfNeeded();
+  await p.waitForTimeout(800);
+  ok(await p.locator('.pcard .face img').count() === 7 &&await p.$$eval('.pcard .face img', is => is.every(i => i.complete && i.naturalWidth > 100)), 'seven team photos from the earlier site load');
+  ok(await p.$eval('.portrait img', i => i.getAttribute('src').endsWith('/er-ca-prasad.webp') && i.naturalWidth === 640), "founder's new photo loads");
+  ok(await p.locator('#director-experience .xp li').count() === 6 && await p.locator('#director-experience img').count() === 4, "Director's experience: 6 entries and 4 images, separate from projects");
+  await p.context().close();
+  p = await open('/services/', vp);
+  ok(await p.locator('#pracIndex .bubble svg.ic').count() === 7 && await p.$$eval('#pracIndex .bubble', bs => bs.every(b => !b.textContent.trim())), 'services index uses icons, not letters');
+  ok(await p.$eval('#pracIndex a[aria-current]', a => a.getAttribute('href')) === '#p-architecture', 'first service is marked on load');
+  await p.click('#pracIndex a[href="#p-construction-stage"]'); await p.waitForTimeout(1500);
+  ok(await p.$$eval('#pracIndex a[aria-current]', as => as.map(a => a.getAttribute('href')).join()) === '#p-construction-stage', 'clicked service (PMC) is marked');
+  ok(new Set(await p.$$eval('#pracIndex .bubble', bs => bs.map(b => getComputedStyle(b).borderColor))).size === 1, 'all index bubbles share one colour');
+  ok(await p.locator('#pracIndex a[href="/technologies/"]').count() === 1 && await p.locator('#p-precast').count() === 0, 'services page links to the technologies page');
+  await p.context().close();
+
+  console.log(`\n# Technologies (${tag})`);
+  const TECH = JSON.parse(fs.readFileSync(path.join(root, 'src/data/services.json'), 'utf8')).technologies.items;
+  p = await open('/technologies/', vp);
+  ok(await p.locator('#techBody .techsec').count() === TECH.length && await p.locator('#techIndex a').count() === TECH.length, `${TECH.length} technologies, each with its own section`);
+  ok(await p.locator('#precast .dg').count() === 1 && await p.locator('#monolithic .dg').count() === 1, 'precast and monolithic sections show how they are built');
+  const nPrecast = DATA.filter(d => (d.categories || []).includes('precast')).length;
+  ok(await p.locator('#precast .tech-projects li').count() === nPrecast, `precast lists its ${nPrecast} projects`);
+  ok(await p.$eval('#techIndex a[aria-current]', a => a.getAttribute('href')) === '#precast', 'first technology is marked on load');
+  await p.click('#techIndex a[href="#monolithic"]'); await p.waitForTimeout(1500);
+  ok(await p.$$eval('#techIndex a[aria-current]', as => as.map(a => a.getAttribute('href')).join()) === '#monolithic', 'clicked technology is marked');
+  await p.locator('#timber .gal-b').first().scrollIntoViewIfNeeded(); await p.waitForTimeout(800);
+  await p.locator('#timber .gal-b.ok').first().click(); await p.waitForTimeout(400);
+  ok(await p.evaluate(() => document.getElementById('lb').open), 'technology photographs open in the lightbox');
+  await p.keyboard.press('Escape');
+  ok(!p.errors.length, 'no page errors ' + p.errors.join(';'));
+  await p.context().close();
+  p = await open('/services/#p-precast', vp); await p.waitForTimeout(500);
+  ok(new URL(p.url()).pathname === '/technologies/', 'old /services/#p-precast link reaches the technologies page');
+  await p.context().close();
+  p = await open('/about/', vp);
+  ok(await p.locator('#history .timeline li').count() === 3 && (await p.textContent('#history')).includes('PS Engineering Consultant'), 'about: history from PS Engineering Consultant');
+  ok(!(await p.textContent('#expertise h2')).includes('48'), 'about: 48 years only in the founder text');
+  await p.context().close();
+  p = await open('/projects/apcpdcl-corporate-office-vijayawada/', vp);
+  ok(await attr(p, '.pd-grid a[href="https://www.apcpdcl.in/"]', 'target') === '_blank', 'project links to the client website');
+  await p.context().close();
+  p = await open('/clients/', vp);
+  ok(await p.locator('.ctable').count() === 4 && await p.locator('table.summary tbody tr').count() === 10, 'clients: four tables and the ten-row summary');
+  ok(await p.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth), 'client tables fit the screen');
+  await p.context().close();
+  p = await open('/contact/', vp);
+  const opts = await p.$$eval('#f-service option', o => o.map(x => x.textContent));
+  ok(opts.includes('MEP (through co-consultants)') && opts.includes('Project Management Consultancy (PMC)') && opts.includes('Construction Technologies'), 'enquiry form lists the current services');
+  ok(await p.locator('.contact-list a[href="tel:+919700159325"]').count() > 0, 'contact page leads with +91 97001 59325');
+  await p.context().close();
+
   console.log(`\n# Contact (${tag})`);
   p = await open('/contact/', vp);
   const copy = p.locator('[data-copy]').first();
   await copy.click(); await p.waitForTimeout(150);
   const ct = await copy.textContent();
   ok(ct === 'Copied' || ct === 'Selected', `copy button → "${ct}"`);
-  ok(await p.evaluate(() => navigator.clipboard.readText().catch(() => '?')) === '+914024145925', 'clipboard holds phone number');
+  ok(await p.evaluate(() => navigator.clipboard.readText().catch(() => '?')) === '+919700159325', 'clipboard holds phone number');
   await p.waitForTimeout(1800); ok(await copy.textContent() === 'Copy', 'copy label resets');
   await p.click('#enquiry button[type=submit]');
   ok((await p.textContent('#formStatus')).includes('Incomplete') && await attr(p, '#f-name', 'aria-invalid') === 'true', 'empty submit shows validation');
@@ -172,86 +291,19 @@ for (const vp of [[1440, 900], [390, 844]]) {
   await p.fill('#f-email', 'test@example.com'); await p.selectOption('#f-service', { index: 2 });
   await p.click('#enquiry button[type=submit]');
   const links = await p.$$eval('#formStatus a', as => as.map(a => a.href));
-  ok(links.length === 2 && links[0].startsWith('mailto:info@metey.in') && links[1].startsWith('https://wa.me/'), 'valid submit offers email + WhatsApp links');
-  ok(decodeURIComponent(links[0]).includes('Structural engineering') && decodeURIComponent(links[0]).includes('Test User'), 'email link carries the enquiry');
+  ok(links.length === 2 && links[0].startsWith('mailto:designs@metey.in') && links[1].startsWith('https://wa.me/'), 'valid submit offers email + WhatsApp links');
+  ok(decodeURIComponent(links[0]).includes('Structural Consultancy') && decodeURIComponent(links[0]).includes('Test User'), 'email link carries the enquiry');
   ok(await attr(p, 'a[href$=".vcf"]', 'download') !== null, 'vCard download link');
   ok(!p.errors.length, 'no page errors ' + p.errors.join(';'));
   await p.context().close();
 
-  console.log(`\n# 3D Lab (${tag})`);
-  p = await open('/3d-lab/?model=dundigal', vp);
-  await p.waitForTimeout(1500);
-  ok((await p.textContent('#viewer-status')).includes('LIVE'), 'viewer starts');
-  ok(await p.$eval('#tab-dundigal', e => e.classList.contains('active')) && (await p.textContent('#hud-typology-title')).includes('Dundigal'), '?model=dundigal preselects Dundigal');
-  for (const [id, name, route] of [['sailife', 'Sai Life', 'sai-life'], ['jindal', 'Jindal', 'jindal'], ['dundigal', 'Dundigal', 'dundigal']]) {
-    await p.click('#tab-' + id); await p.waitForTimeout(300);
-    ok((await p.textContent('#hud-typology-title')).includes(name) && await attr(p, '#model-project-link', 'href') === `/projects/${route}/` && p.url().includes('model=' + id) && await attr(p, '#tab-' + id, 'aria-pressed') === 'true', `tab ${id} updates HUD, link, URL, pressed`);
-  }
-  await p.click('#btn-mode-struct');
-  ok(await p.inputValue('#slider-xray') === '100' && (await p.textContent('#val-xray')) === '100%' && await attr(p, '#btn-mode-struct', 'aria-pressed') === 'true', 'Structural X-Ray → slider 100%');
-  await p.click('#btn-mode-arch');
-  ok(await p.inputValue('#slider-xray') === '0' && await attr(p, '#btn-mode-arch', 'aria-pressed') === 'true', 'Architecture → slider 0%');
-  await p.fill('#slider-xray', '70');
-  ok((await p.textContent('#val-xray')) === '70%' && await attr(p, '#btn-mode-struct', 'aria-pressed') === 'true', 'X-ray slider 70% → structural mode');
-  await p.fill('#slider-explode', '40');
-  ok((await p.textContent('#val-explode')) === '40%', 'explode slider label');
-  await p.click('#tab-jindal'); await p.waitForTimeout(300);
-  ok(await p.inputValue('#slider-xray') === '70' && (await p.textContent('#val-xray')) === '70%', 'slider values persist across model switch');
-  await p.click('#btn-toggle-assembly');
-  ok((await p.textContent('#status-assembly')) === 'ERECTING' && await attr(p, '#btn-toggle-assembly', 'aria-pressed') === 'true', 'assembly play');
-  await p.click('#btn-toggle-assembly');
-  ok((await p.textContent('#status-assembly')) === 'PAUSED' && await attr(p, '#btn-toggle-assembly', 'aria-pressed') === 'false', 'assembly pause');
-  await p.click('#btn-autorotate');
-  ok((await p.textContent('#autorotate-label')).includes('ON') && await attr(p, '#btn-autorotate', 'aria-pressed') === 'true', 'auto-spin on');
-  for (const c of ['cam-elev', 'cam-top', 'cam-found', 'cam-persp']) {
-    await p.click('#' + c);
-    ok(await attr(p, '#' + c, 'aria-pressed') === 'true' && (await p.$$eval('[data-preset][aria-pressed=true]', x => x.length)) === 1, `camera ${c} pressed alone`);
-  }
-  ok((await p.textContent('#autorotate-label')).includes('OFF') && await attr(p, '#btn-autorotate', 'aria-pressed') === 'false', 'camera preset turns auto-spin off');
-  await p.click('#btn-autorotate');
-  ok((await p.textContent('#autorotate-label')).includes('ON'), 'auto-spin back on after camera preset (one click)');
-  for (const l of ['light-sunset', 'light-night', 'light-day']) {
-    await p.click('#' + l);
-    ok(await attr(p, '#' + l, 'aria-pressed') === 'true' && (await p.$$eval('[data-lighting][aria-pressed=true]', x => x.length)) === 1, `lighting ${l}`);
-  }
-  await p.click('#cam-persp'); await p.waitForTimeout(500);
-  await p.locator('#viewport-3d').scrollIntoViewIfNeeded(); await p.waitForTimeout(800);
-  // pick a pin whose dot is not covered by another pin's label
-  const pinIdx = await p.$$eval('.hotspot-pin:not([hidden])', ps => ps.findIndex(x => { const r = x.querySelector('.hotspot-dot').getBoundingClientRect(); const e = document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2); return e && e.closest('.hotspot-pin') === x; }));
-  const pin = p.locator('.hotspot-pin:not([hidden])').nth(Math.max(0, pinIdx));
-  if (pinIdx >= 0) {
-    const label = await pin.getAttribute('aria-label');
-    const dot = await pin.locator('.hotspot-dot').boundingBox();
-    const clickPin = () => p.mouse.click(dot.x + dot.width / 2, dot.y + dot.height / 2);
-    await clickPin(); await p.waitForTimeout(200);
-    ok(await p.$eval('#hotspot-detail-card', e => e.classList.contains('visible')) && label.includes(await p.textContent('#hotspot-card-title')), 'hotspot opens detail card');
-    ok(await p.$eval('#hotspot-detail-card', e => { const r = e.getBoundingClientRect(); const c = document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2); return r.top >= 0 && r.bottom <= innerHeight && !!c && e.contains(c); }), 'detail card is on screen and on top when opened');
-    await p.click('#hotspot-close'); await p.waitForTimeout(100);
-    ok(!(await p.$eval('#hotspot-detail-card', e => e.classList.contains('visible'))), 'close button hides detail card');
-    await clickPin(); await p.waitForTimeout(100); await p.keyboard.press('Escape'); await p.waitForTimeout(100);
-    ok(!(await p.$eval('#hotspot-detail-card', e => e.classList.contains('visible'))), 'Escape hides detail card');
-  } else ok(false, 'hotspot pins visible');
-  ok(await attr(p, '.exp-exit-btn', 'href') === '/', 'back link');
-  ok(!p.errors.length, 'no page errors ' + p.errors.join(';'));
-  await p.context().close();
 }
 
-console.log('\n# Reduced motion + no-WebGL fallbacks');
+console.log('\n# Reduced motion');
 let p = await open('/', [1440, 900], { reducedMotion: 'reduce' });
-await p.locator('.hero-model').scrollIntoViewIfNeeded(); await p.waitForTimeout(2500);
-ok((await p.textContent('#hero-model-spin')).includes('Resume'), 'reduced motion: hero spin starts paused');
+await p.waitForTimeout(7500);
+ok(await p.$eval('#heroSlides .hs.on', e => e.getAttribute('data-slide')) === '0', 'reduced motion: hero stays on the first project');
 await p.context().close();
-p = await open('/3d-lab/?model=bogus');
-ok(await p.$eval('#tab-jindal', e => e.classList.contains('active')), 'unknown ?model falls back to Jindal');
-await p.context().close();
-const ctx = await b.newContext(); await ctx.addInitScript(() => { HTMLCanvasElement.prototype.getContext = () => null; });
-p = await ctx.newPage(); p.errors = []; p.on('pageerror', e => p.errors.push(e.message));
-await p.goto(BASE + '/3d-lab/'); await p.waitForTimeout(1500);
-ok(!(await p.locator('.viewer-fallback').isHidden()) && await p.$eval('#tab-jindal', e => e.disabled), 'no WebGL: fallback shown, controls disabled');
-await p.goto(BASE + '/'); await p.locator('.hero-model').scrollIntoViewIfNeeded(); await p.waitForTimeout(2000);
-ok(await p.locator('.hero-model-fallback').isVisible() && await p.locator('.hero-model-controls').isHidden(), 'no WebGL: hero keeps photo');
-ok(!p.errors.length, 'no page errors ' + p.errors.join(';'));
-await ctx.close();
 
 await b.close();
 server.kill();

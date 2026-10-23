@@ -7,10 +7,17 @@ import { fileURLToPath } from 'node:url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const port = Number(process.env.PORT || 8000);
 const types = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.png': 'image/png', '.webp': 'image/webp', '.svg': 'image/svg+xml', '.woff2': 'font/woff2', '.pdf': 'application/pdf', '.vcf': 'text/vcard', '.xml': 'application/xml', '.txt': 'text/plain; charset=utf-8' };
-const privateRoots = new Set(['src', 'tools', 'tests', 'integrations', 'node_modules', 'test-results', 'playwright-report']);
+// the same moved-page redirects Vercel applies (written into vercel.json by the build)
+const moved = new Map((JSON.parse(await fs.readFile(path.join(root, 'vercel.json'), 'utf8')).redirects || []).map(r => [r.source, r.destination]));
+const privateRoots = new Set(['src', 'tools', 'tests', 'integrations', 'metey-content', 'node_modules', 'test-results', 'playwright-report']);
 http.createServer(async (request, response) => {
   try {
     const url = new URL(request.url, 'http://localhost');
+    if (moved.has(url.pathname)) {
+      response.writeHead(308, { Location: moved.get(url.pathname) + url.search });
+      response.end();
+      return;
+    }
     const name = decodeURIComponent(url.pathname);
     const parts = name.split('/').filter(Boolean);
     if (parts.some(p => p.startsWith('.')) || privateRoots.has(parts[0])) throw new Error('Private path');

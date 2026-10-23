@@ -1,0 +1,68 @@
+{
+  "articles": [
+    {
+      "title": "Structural Connections for Precast Concrete Buildings",
+      "source": "Master Builder · July 2015",
+      "spine": "Precast Connections",
+      "file": "/assets/uploads/2019/09/STRUCTURAL-CONNECTIONS-FOR-PRECAST-CONCRETE-BUILDINGS-MASTER-BUILDER-JULY2015.pdf"
+    },
+    {
+      "title": "Innovative Green Building Technologies for the PMAY Scheme",
+      "source": "Master Builder · July 2016",
+      "spine": "Green Building, PMAY",
+      "file": "/assets/uploads/2019/09/Article-published-in-july-2016-edition-of-Master-Builder-Innovative-green-building-technologies-for-PMAY-scheme.pdf"
+    },
+    {
+      "title": "Article in NBM&CW",
+      "source": "NBM&CW · February 2017",
+      "spine": "NBM&CW, Feb 2017",
+      "file": "/assets/uploads/2019/09/NBMCW-Article-FEB-2017-issue.pdf"
+    },
+    {
+      "title": "Behavioral Study of Precast Concrete Structure",
+      "source": "Part one",
+      "spine": "Precast Behaviour I",
+      "file": "/assets/uploads/2019/09/Behavioral-Study-of-Precast-Concrete-Structure.pdf"
+    },
+    {
+      "title": "Behavioral Study of Precast Concrete Structure",
+      "source": "Part two",
+      "spine": "Precast Behaviour II",
+      "file": "/assets/uploads/2019/09/Behavioral-Study-of-Precast-Concrete-Structure-Part-2.pdf"
+    },
+    {
+      "title": "Affordable Housing Construction in Andhra Pradesh",
+      "source": "Article",
+      "spine": "Affordable Housing, AP",
+      "file": "/assets/uploads/2019/09/Affordable-Housing-Construction-in-Andhra-Pradesh.pdf"
+    },
+    {
+      "title": "Article for the PSEC website",
+      "source": "Sai Kiran",
+      "spine": "PSEC Article",
+      "file": "/assets/uploads/2019/09/Psec-website-Article-by-sai-kiran.pdf"
+    }
+  ],
+  "events": [
+    {
+      "title": "Green Building Congress",
+      "source": "Hyderabad · 2019",
+      "note": "Indian Green Building Council"
+    },
+    {
+      "title": "A Regional Perspective on DfMA",
+      "source": "Singapore",
+      "note": "Conference presentation"
+    },
+    {
+      "title": "Workshop on Fire Safety in Buildings",
+      "source": "Visakhapatnam · 2019",
+      "note": "GVP College of Engineering"
+    },
+    {
+      "title": "National Techno Event, Udghosh",
+      "source": "Guntur · 2019",
+      "note": "Chalapathi Institute of Engineering and Technology"
+    }
+  ]
+}

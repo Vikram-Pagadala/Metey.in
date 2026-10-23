@@ -12,3 +12,4 @@ test-results/
 playwright-report/
 *.log
 .vercel/
+metey-content/

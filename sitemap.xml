@@ -6,23 +6,44 @@
     <image:image><image:loc>https://metey.in/assets/og-image.jpg</image:loc></image:image>
   </url>
   <url>
-    <loc>https://metey.in/firm/</loc>
+    <loc>https://metey.in/about/</loc>
     <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://metey.in/practice/</loc>
+    <loc>https://metey.in/services/</loc>
     <lastmod>2026-10-22</lastmod>
+  </url>
+  <url>
+    <loc>https://metey.in/technologies/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://metey.in/assets/images/metey/technologies/precast/precast-building-erection.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/technologies/precast/precast-tower-cranes.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/technologies/composite/composite-construction-deck.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/technologies/insulated-wall/insulated-wall-construction.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/technologies/lgs/light-gauge-steel-construction.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/technologies/perma-form/perma-form-panel.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/technologies/perma-form/perma-form-wall.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/technologies/wooden-structures/glulam-timber.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/technologies/wooden-structures/timber-steel-connection.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/technologies/wooden-structures/timber-roof-truss.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/technologies/wooden-structures/timber-hall-interior.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/technologies/wooden-structures/timber-roof-structure.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://metey.in/projects/</loc>
     <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://metey.in/insights/</loc>
+    <loc>https://metey.in/clients/</loc>
     <lastmod>2026-10-22</lastmod>
   </url>
   <url>
-    <loc>https://metey.in/3d-lab/</loc>
+    <loc>https://metey.in/team/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://metey.in/assets/images/metey/team/er-ca-prasad.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://metey.in/insights/</loc>
     <lastmod>2026-10-22</lastmod>
   </url>
   <url>
@@ -32,6 +53,316 @@
   <url>
     <loc>https://metey.in/contact/</loc>
     <lastmod>2026-10-22</lastmod>
+  </url>
+  <url>
+    <loc>https://metey.in/projects/apcpdcl-corporate-office-vijayawada/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/apcpdcl-corporate-office-vijayawada/apcpdcl-render-1.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/apcpdcl-corporate-office-vijayawada/apcpdcl-render-2.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/apcpdcl-corporate-office-vijayawada/apcpdcl-render-3.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/apcpdcl-corporate-office-vijayawada/apcpdcl-render-4.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/apcpdcl-corporate-office-vijayawada/apcpdcl-render-5.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/apcpdcl-corporate-office-vijayawada/apcpdcl-built-photo.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://metey.in/projects/hostel-blocks-tg-universities/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/hostel-blocks-tg-universities/hostel-block-render-1.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/hostel-blocks-tg-universities/hostel-block-render-2.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/hostel-blocks-tg-universities/hostel-block-render-3.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/hostel-blocks-tg-universities/hostel-block-render-4.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/hostel-blocks-tg-universities/dormitory-floor-plan-1.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/hostel-blocks-tg-universities/dormitory-floor-plan-2.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://metey.in/projects/diet-academic-block/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/diet-academic-block/diet-academic-block-1.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/diet-academic-block/diet-academic-block-2.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/diet-academic-block/diet-academic-block-3.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://metey.in/projects/college-data-sciences-bachupally/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/college-data-sciences-bachupally/college-data-sciences-1.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/college-data-sciences-bachupally/college-data-sciences-2.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/college-data-sciences-bachupally/college-data-sciences-3.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://metey.in/projects/aptidco-pmay-housing/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/aptidco-pmay-housing/pmay-layout-1.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/aptidco-pmay-housing/pmay-layout-2.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/aptidco-pmay-housing/pmay-layout-3.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/aptidco-pmay-housing/pmay-layout-4.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/aptidco-pmay-housing/pmay-layout-5.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/aptidco-pmay-housing/pmay-township-render-1.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/aptidco-pmay-housing/pmay-township-render-2.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/aptidco-pmay-housing/pmay-township-render-3.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/aptidco-pmay-housing/pmay-365sft-unit-plan-1.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/aptidco-pmay-housing/pmay-365sft-unit-plan-2.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/aptidco-pmay-housing/pmay-365sft-unit-plan-3.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/aptidco-pmay-housing/pmay-365sft-unit-plan-4.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/aptidco-pmay-housing/pmay-housing-constructed-1.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/aptidco-pmay-housing/pmay-housing-constructed-2.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://metey.in/projects/mig-housing-visakhapatnam/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/mig-housing-visakhapatnam/mig-housing-1.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/mig-housing-visakhapatnam/mig-housing-2.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/mig-housing-visakhapatnam/mig-housing-3.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/mig-housing-visakhapatnam/mig-housing-4.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://metey.in/projects/gsl-medical-college-rajahmundry/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/gsl-medical-college-rajahmundry/food-court-render.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/gsl-medical-college-rajahmundry/simulation-lab-interior.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/gsl-medical-college-rajahmundry/hostel-block-1.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/gsl-medical-college-rajahmundry/hostel-block-2.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://metey.in/projects/nursing-school-numaligarh/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/nursing-school-numaligarh/nursing-school-render.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/nursing-school-numaligarh/teaching-block-render.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/nursing-school-numaligarh/nursing-school-aerial.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/nursing-school-numaligarh/nursing-school-construction-1.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/nursing-school-numaligarh/nursing-school-construction-2.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/nursing-school-numaligarh/nursing-school-construction-3.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/nursing-school-numaligarh/nursing-school-steel-frame-1.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/nursing-school-numaligarh/nursing-school-steel-frame-2.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/nursing-school-numaligarh/nursing-school-steel-frame-3.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/nursing-school-numaligarh/nursing-school-steel-frame-4.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2018/11/Nursing-schooll1.jpg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2018/11/Nursing-schooll5.jpg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2018/11/Nursing-schooll10.jpg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2018/11/Nursing-schooll15.jpg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2018/11/Nursing-schooll20.jpg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2018/11/IMG-20170917-WA0043.jpg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2018/11/IMG-20170916-WA0020.jpg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2018/11/IMG-20170907-WA0012.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://metey.in/projects/iit-patna-secondary-school/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/iit-patna-secondary-school/iit-patna-school-render.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://metey.in/projects/adap-tv-office-interiors/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/adap-tv-office-interiors/adap-tv-office-1.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/adap-tv-office-interiors/adap-tv-office-2.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/adap-tv-office-interiors/adap-tv-office-layout.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://metey.in/projects/ssk-residential-rajahmundry/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/ssk-residential-rajahmundry/ssk-apartment-render.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://metey.in/projects/jetdcl-small-scale-industry/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/jetdcl-small-scale-industry/jetdcl-render.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://metey.in/projects/vasavi-urban-bachupally/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/vasavi-urban-bachupally/vasavi-urban-render.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/vasavi-urban-bachupally/vasavi-urban-site-1.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/vasavi-urban-bachupally/vasavi-urban-site-2.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/vasavi-urban-bachupally/vasavi-urban-site-3.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2020/09/WhatsApp-Image-2020-09-22-at-6.35.11-PM.jpeg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2020/09/WhatsApp-Image-2020-09-22-at-6.35.12-PM.jpeg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2020/09/WhatsApp-Image-2020-09-22-at-6.35.19-PM-1.jpeg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2020/09/WhatsApp-Image-2020-09-22-at-6.35.19-PM.jpeg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2020/09/WhatsApp-Image-2020-09-22-at-6.35.20-PM-1.jpeg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2020/09/WhatsApp-Image-2020-09-22-at-6.35.20-PM.jpeg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2020/09/WhatsApp-Image-2020-09-22-at-6.35.21-PM-1.jpeg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2020/09/WhatsApp-Image-2020-09-22-at-6.35.21-PM.jpeg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://metey.in/projects/golf-links-ghaziabad-landcraft/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/golf-links-ghaziabad-landcraft/tower-elevation.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/golf-links-ghaziabad-landcraft/tower-2a-model-1.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/golf-links-ghaziabad-landcraft/tower-2a-model-2.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/golf-links-ghaziabad-landcraft/tower-2a-model-3.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/golf-links-ghaziabad-landcraft/tower-2a-model-4.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/golf-links-ghaziabad-landcraft/during-construction.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/golf-links-ghaziabad-landcraft/after-completion.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/golf-links-ghaziabad-landcraft/zonal-shopping-complex.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2020/05/7.jpg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2020/05/8.jpg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2020/05/9.jpg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2020/05/10.jpg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2020/05/11.jpg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2020/05/12.jpg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2020/05/13.jpg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2020/05/14.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://metey.in/projects/gurgaon-towers-aashiana-landcraft/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/gurgaon-towers-aashiana-landcraft/tower-elevation.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://metey.in/projects/carol-infrastructure-ghaziabad/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/carol-infrastructure-ghaziabad/towers-construction-1.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/carol-infrastructure-ghaziabad/towers-construction-2.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://metey.in/projects/jindal-corporate-tower-raigarh/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/jindal-corporate-tower-raigarh/structural-model.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2018/09/Jindal-corporate-tower-2.jpg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2018/09/Jindal-corporate-tower-1.jpg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2018/09/Jindal-corporate-tower-3.jpg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2018/09/Jindal-corporate-tower-4.jpg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2018/09/Jindal-corporate-tower-5.jpg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2018/09/Jindal-corporate-tower-6.jpg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2018/09/Jindal-corporate-tower-7.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://metey.in/projects/bda-bangalore-concrete-wall/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/bda-bangalore-concrete-wall/bda-render-1.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/bda-bangalore-concrete-wall/bda-render-2.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://metey.in/projects/nlc-chennai-precast/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/nlc-chennai-precast/nlc-building-render.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://metey.in/projects/drdo-precast-housing-ncr/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/drdo-precast-housing-ncr/type-vi-plan.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/drdo-precast-housing-ncr/type-vi-3d.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/drdo-precast-housing-ncr/type-v-plan.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/drdo-precast-housing-ncr/type-v-3d.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/drdo-precast-housing-ncr/type-iii-3d.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/drdo-precast-housing-ncr/type-iii-plan.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/drdo-precast-housing-ncr/construction-1.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/drdo-precast-housing-ncr/construction-2.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://metey.in/projects/ghmc-2bhk-dundigal/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/ghmc-2bhk-dundigal/precast-layout-drawing.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/ghmc-2bhk-dundigal/precast-ews-construction-1.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/ghmc-2bhk-dundigal/precast-ews-construction-2.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/ghmc-2bhk-dundigal/precast-ews-construction-3.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/ghmc-2bhk-dundigal/precast-ews-construction-4.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/ghmc-2bhk-dundigal/precast-ews-construction-5.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2018/11/EWS-Housing-Dundigal1.jpg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2018/11/EWS-Housing-Dundigal2.jpg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2018/11/EWS-Housing-Dundigal3.jpg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2018/11/EWS-Housing-Dundigal4.jpg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2018/11/EWS-Housing-Dundigal5.jpg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2018/11/EWS-Housing-Dundigal6.jpg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2018/11/EWS-Housing-Dundigal7.jpg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2018/11/EWS-Housing-Dundigal8.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://metey.in/projects/precast-residential-2b10-hyderabad/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/precast-residential-2b10-hyderabad/render-1.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/precast-residential-2b10-hyderabad/render-2.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/precast-residential-2b10-hyderabad/render-3.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://metey.in/projects/precast-duplex-apartments-hyderabad/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/precast-duplex-apartments-hyderabad/construction-1.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/precast-duplex-apartments-hyderabad/construction-2.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/precast-duplex-apartments-hyderabad/construction-3.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/precast-duplex-apartments-hyderabad/construction-4.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://metey.in/projects/footwear-industry-vijayawada/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/footwear-industry-vijayawada/precast-structure.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://metey.in/projects/sai-life-sciences-pharma/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/sai-life-sciences-pharma/sai-life-building.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2020/09/WhatsApp-Image-2020-09-02-at-11.10.06-AM.jpeg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2020/09/WhatsApp-Image-2020-09-02-at-11.10.07-AM-1.jpeg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2020/09/WhatsApp-Image-2020-09-02-at-11.10.07-AM.jpeg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2020/09/WhatsApp-Image-2020-09-02-at-11.10.08-AM-1.jpeg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2020/09/WhatsApp-Image-2020-09-02-at-11.10.08-AM.jpeg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2020/09/WhatsApp-Image-2020-09-02-at-11.10.09-AM.jpeg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://metey.in/projects/pharma-precast-hyderabad/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/pharma-precast-hyderabad/construction-1.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/pharma-precast-hyderabad/construction-2.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://metey.in/projects/precast-vijayawada/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/precast-vijayawada/precast-construction-1.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/precast-vijayawada/precast-construction-2.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/precast-vijayawada/precast-construction-3.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/precast-vijayawada/precast-construction-4.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://metey.in/projects/janapriya-precast-villas/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/janapriya-precast-villas/villas-render-1.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/janapriya-precast-villas/villas-render-2.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://metey.in/projects/jspl-angul-eps-composite/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/jspl-angul-eps-composite/11-storey-composite-model.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/jspl-angul-eps-composite/eps-buildings-1.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/jspl-angul-eps-composite/eps-buildings-2.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/jspl-angul-eps-composite/eps-buildings-3.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/jspl-angul-eps-composite/eps-buildings-4.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://metey.in/projects/insulated-panel-sonepat/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/insulated-panel-sonepat/structural-model.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://metey.in/projects/mla-quarters-bhubaneswar/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/mla-quarters-bhubaneswar/aerial-render.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/mla-quarters-bhubaneswar/type-vi-drop-off-render.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://metey.in/projects/university-of-hyderabad-quarters/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/university-of-hyderabad-quarters/quarters-render.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://metey.in/projects/12mw-power-plant-bibinagar/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/12mw-power-plant-bibinagar/power-plant-aerial.webp</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2018/09/11MW-Power-plant-4.jpg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2018/09/11MW-Power-plant-1.jpg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2018/09/11MW-Power-plant-2.jpg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2018/09/11MW-Power-plant-3.jpg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2018/09/11MW-Power-plant-5.jpg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2018/09/11MW-Power-plant-6.jpg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2018/09/11MW-Power-plant-7.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://metey.in/projects/industrial-structures/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/industrial-structures/flyash-brick-plant-drawing.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://metey.in/projects/peer-review/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://metey.in/assets/images/metey/projects/peer-review/high-rise-towers-aerial.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://metey.in/projects/kethanakonda/</loc>
@@ -44,75 +375,6 @@
     <image:image><image:loc>https://metey.in/assets/uploads/2018/09/Kethanakonda-29.jpg</image:loc></image:image>
     <image:image><image:loc>https://metey.in/assets/uploads/2018/09/Kethanakonda-36.jpg</image:loc></image:image>
     <image:image><image:loc>https://metey.in/assets/uploads/2018/09/Kethanakonda-50.jpg</image:loc></image:image>
-  </url>
-  <url>
-    <loc>https://metey.in/projects/vasavi/</loc>
-    <lastmod>2026-10-22</lastmod>
-    <image:image><image:loc>https://metey.in/assets/uploads/2020/09/WhatsApp-Image-2020-09-22-at-6.35.11-PM.jpeg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2020/09/WhatsApp-Image-2020-09-22-at-6.35.12-PM.jpeg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2020/09/WhatsApp-Image-2020-09-22-at-6.35.19-PM-1.jpeg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2020/09/WhatsApp-Image-2020-09-22-at-6.35.19-PM.jpeg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2020/09/WhatsApp-Image-2020-09-22-at-6.35.20-PM-1.jpeg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2020/09/WhatsApp-Image-2020-09-22-at-6.35.20-PM.jpeg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2020/09/WhatsApp-Image-2020-09-22-at-6.35.21-PM-1.jpeg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2020/09/WhatsApp-Image-2020-09-22-at-6.35.21-PM.jpeg</image:loc></image:image>
-  </url>
-  <url>
-    <loc>https://metey.in/projects/jindal/</loc>
-    <lastmod>2026-10-22</lastmod>
-    <image:image><image:loc>https://metey.in/assets/uploads/2018/09/Jindal-corporate-tower-2.jpg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2018/09/Jindal-corporate-tower-1.jpg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2018/09/Jindal-corporate-tower-3.jpg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2018/09/Jindal-corporate-tower-4.jpg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2018/09/Jindal-corporate-tower-5.jpg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2018/09/Jindal-corporate-tower-6.jpg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2018/09/Jindal-corporate-tower-7.jpg</image:loc></image:image>
-  </url>
-  <url>
-    <loc>https://metey.in/projects/sai-life/</loc>
-    <lastmod>2026-10-22</lastmod>
-    <image:image><image:loc>https://metey.in/assets/uploads/2020/09/WhatsApp-Image-2020-09-02-at-11.10.06-AM.jpeg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2020/09/WhatsApp-Image-2020-09-02-at-11.10.07-AM-1.jpeg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2020/09/WhatsApp-Image-2020-09-02-at-11.10.07-AM.jpeg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2020/09/WhatsApp-Image-2020-09-02-at-11.10.08-AM-1.jpeg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2020/09/WhatsApp-Image-2020-09-02-at-11.10.08-AM.jpeg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2020/09/WhatsApp-Image-2020-09-02-at-11.10.09-AM.jpeg</image:loc></image:image>
-  </url>
-  <url>
-    <loc>https://metey.in/projects/nursing-school/</loc>
-    <lastmod>2026-10-22</lastmod>
-    <image:image><image:loc>https://metey.in/assets/uploads/2018/11/Nursing-schooll1.jpg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2018/11/Nursing-schooll5.jpg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2018/11/Nursing-schooll10.jpg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2018/11/Nursing-schooll15.jpg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2018/11/Nursing-schooll20.jpg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2018/11/IMG-20170917-WA0043.jpg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2018/11/IMG-20170916-WA0020.jpg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2018/11/IMG-20170907-WA0012.jpg</image:loc></image:image>
-  </url>
-  <url>
-    <loc>https://metey.in/projects/dundigal/</loc>
-    <lastmod>2026-10-22</lastmod>
-    <image:image><image:loc>https://metey.in/assets/uploads/2018/11/EWS-Housing-Dundigal1.jpg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2018/11/EWS-Housing-Dundigal2.jpg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2018/11/EWS-Housing-Dundigal3.jpg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2018/11/EWS-Housing-Dundigal4.jpg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2018/11/EWS-Housing-Dundigal5.jpg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2018/11/EWS-Housing-Dundigal6.jpg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2018/11/EWS-Housing-Dundigal7.jpg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2018/11/EWS-Housing-Dundigal8.jpg</image:loc></image:image>
-  </url>
-  <url>
-    <loc>https://metey.in/projects/ews-monolithic/</loc>
-    <lastmod>2026-10-22</lastmod>
-    <image:image><image:loc>https://metey.in/assets/uploads/2018/09/EWS-MONOLITHIC-CONSTRUCTION-AP11.jpg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2018/09/EWS-MONOLITHIC-CONSTRUCTION-AP1.jpg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2018/09/EWS-MONOLITHIC-CONSTRUCTION-AP4.jpg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2018/09/EWS-MONOLITHIC-CONSTRUCTION-AP7.jpg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2018/09/EWS-MONOLITHIC-CONSTRUCTION-AP10.jpg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2018/09/EWS-MONOLITHIC-CONSTRUCTION-AP13.jpg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2018/09/EWS-MONOLITHIC-CONSTRUCTION-AP16.jpg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2018/09/EWS-MONOLITHIC-CONSTRUCTION-AP19.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://metey.in/projects/mandadam/</loc>
@@ -136,6 +398,18 @@
     <image:image><image:loc>https://metey.in/assets/uploads/2018/09/Insulated-wall-construction-Orissa8.jpg</image:loc></image:image>
   </url>
   <url>
+    <loc>https://metey.in/projects/ews-monolithic/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://metey.in/assets/uploads/2018/09/EWS-MONOLITHIC-CONSTRUCTION-AP11.jpg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2018/09/EWS-MONOLITHIC-CONSTRUCTION-AP1.jpg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2018/09/EWS-MONOLITHIC-CONSTRUCTION-AP4.jpg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2018/09/EWS-MONOLITHIC-CONSTRUCTION-AP7.jpg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2018/09/EWS-MONOLITHIC-CONSTRUCTION-AP10.jpg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2018/09/EWS-MONOLITHIC-CONSTRUCTION-AP13.jpg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2018/09/EWS-MONOLITHIC-CONSTRUCTION-AP16.jpg</image:loc></image:image>
+    <image:image><image:loc>https://metey.in/assets/uploads/2018/09/EWS-MONOLITHIC-CONSTRUCTION-AP19.jpg</image:loc></image:image>
+  </url>
+  <url>
     <loc>https://metey.in/projects/goa-villas/</loc>
     <lastmod>2026-10-22</lastmod>
     <image:image><image:loc>https://metey.in/assets/uploads/2018/11/Goa-Villasl1.jpg</image:loc></image:image>
@@ -146,18 +420,6 @@
     <image:image><image:loc>https://metey.in/assets/uploads/2018/11/Goa-Villasl6.jpg</image:loc></image:image>
     <image:image><image:loc>https://metey.in/assets/uploads/2018/11/Goa-Villasl7.jpg</image:loc></image:image>
     <image:image><image:loc>https://metey.in/assets/uploads/2018/11/Goa-Villasl8.jpg</image:loc></image:image>
-  </url>
-  <url>
-    <loc>https://metey.in/projects/landcraft/</loc>
-    <lastmod>2026-10-22</lastmod>
-    <image:image><image:loc>https://metey.in/assets/uploads/2020/05/7.jpg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2020/05/8.jpg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2020/05/9.jpg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2020/05/10.jpg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2020/05/11.jpg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2020/05/12.jpg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2020/05/13.jpg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2020/05/14.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://metey.in/projects/conference-hall/</loc>
@@ -182,16 +444,5 @@
     <image:image><image:loc>https://metey.in/assets/uploads/2018/11/Montessory-school20.jpg</image:loc></image:image>
     <image:image><image:loc>https://metey.in/assets/uploads/2018/11/Montessory-school24.jpg</image:loc></image:image>
     <image:image><image:loc>https://metey.in/assets/uploads/2018/11/Montessory-school28.jpg</image:loc></image:image>
-  </url>
-  <url>
-    <loc>https://metey.in/projects/power-plant/</loc>
-    <lastmod>2026-10-22</lastmod>
-    <image:image><image:loc>https://metey.in/assets/uploads/2018/09/11MW-Power-plant-4.jpg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2018/09/11MW-Power-plant-1.jpg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2018/09/11MW-Power-plant-2.jpg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2018/09/11MW-Power-plant-3.jpg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2018/09/11MW-Power-plant-5.jpg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2018/09/11MW-Power-plant-6.jpg</image:loc></image:image>
-    <image:image><image:loc>https://metey.in/assets/uploads/2018/09/11MW-Power-plant-7.jpg</image:loc></image:image>
   </url>
 </urlset>

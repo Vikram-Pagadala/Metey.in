@@ -8,9 +8,9 @@
 <link rel="canonical" href="{{url}}">
 <link rel="icon" type="image/png" href="/assets/favicon.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-<meta name="theme-color" content="#0D1A3B">
+<meta name="theme-color" content="#0B1124">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="METEY Engineering &amp; Consultancy">
+<meta property="og:site_name" content="{{companyName}}">
 <meta property="og:locale" content="en_IN">
 <meta property="og:url" content="{{url}}">
 <meta property="og:title" content="{{title}}">
@@ -23,7 +23,8 @@
 {{head}}
 <script>(function(d){d.classList.add("js");try{if(sessionStorage.getItem("metey-intro"))d.classList.add("intro-seen");else sessionStorage.setItem("metey-intro","1")}catch(e){}})(document.documentElement)</script>
 <link rel="preload" href="/assets/fonts/eb-garamond-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/assets/fonts/cormorant-garamond-500.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/bodoni-moda-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/site.css">
 {{styles}}
 </head>
@@ -46,8 +47,8 @@
 <div class="prog" id="prog" aria-hidden="true"></div>
 
 <header class="top" id="top">
-  <a class="mark" href="/" aria-label="METEY Engineering and Consultancy, home">
-    <span class="plaque"><img src="/assets/logo.png" alt="METEY" width="116" height="150"></span>
+  <a class="mark" href="/" aria-label="{{companyName}}, home">
+    <span class="plaque"><img src="{{logo}}" alt="METEY" width="176" height="207"></span>
     <small>Engineering &amp;<br>Consultancy</small>
   </a>
   <nav class="nav" aria-label="Main">
@@ -65,29 +66,21 @@
 </main>
 
 <footer class="navy">
-  <div class="frieze" aria-hidden="true"></div>
   <div class="wrap">
     <div class="foot">
       <div class="foot-brand">
-        <span class="foot-logo"><img src="/assets/logo.png" alt="METEY" width="116" height="150" loading="lazy"></span>
-        <p>METEY Engineering and Consultancy Pvt. Ltd.<br>Architecture, structure, interiors and precast.<br>Committed to people. Committed to the future.</p>
+        <span class="foot-logo"><img src="{{logo}}" alt="METEY" width="176" height="207" loading="lazy"></span>
+        <p>{{companyName}}<br>Architecture, structure, interiors and precast.<br>{{tagline}}</p>
       </div>
       <div>
         <h2>Site</h2>
         <ul class="foot-links">
-          <li><a href="/firm/">The Firm</a></li>
-          <li><a href="/practice/">Practice</a></li>
-          <li><a href="/projects/">Projects</a></li>
-          <li><a href="/insights/">Insights</a></li>
-          <li><a href="/3d-lab/">3D Lab</a></li>
-          <li><a href="/careers/">Careers</a></li>
-          <li><a href="/contact/">Contact</a></li>
+          {{footLinks}}
         </ul>
       </div>
       <div>
         <h2>Hyderabad</h2>
-        <p>2-4-216, Road 9A,<br>Snehapuri Colony, New Nagole,<br>Hyderabad 500035</p>
-        <p><a href="tel:+914024145925">+91 40 2414 5925</a><br><a href="mailto:info@metey.in">info@metey.in</a></p>
+        {{footContact}}
       </div>
       <div>
         <h2>Amaravati</h2>
@@ -95,9 +88,9 @@
       </div>
     </div>
     <div class="legal">
-      <span>© 2013–{{year}} METEY Engineering and Consultancy Pvt. Ltd. · All rights reserved.</span>
+      <span>© 2013–{{year}} {{companyName}} · All rights reserved.</span>
       <span class="credit">Designed and maintained by <a href="https://in.linkedin.com/in/vikrampagadala" target="_blank" rel="noopener">Vikram Pagadala</a></span>
-      <span class="legal-tag">Chartered Architectural &amp; Structural Engineering Consultancy · Hyderabad &amp; Amaravati</span>
+      <span class="legal-tag">Formerly PS Engineering Consultant · Hyderabad &amp; Amaravati</span>
     </div>
   </div>
 </footer>
