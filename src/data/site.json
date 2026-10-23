@@ -43,7 +43,8 @@
         "address": "prasad@metey.in"
       }
     ],
-    "whatsapp": "919700159325",
+    "whatsapp": "919494756526",
+    "enquiryEmail": "bharat@metey.in",
     "people": [
       {
         "label": "Director",
@@ -98,7 +99,7 @@
         },
         {
           "project": "jindal-corporate-tower-raigarh",
-          "src": "/assets/uploads/2018/09/Jindal-corporate-tower-1.jpg"
+          "src": "/assets/uploads/2018/09/Jindal-corporate-tower-1.webp"
         },
         {
           "project": "ghmc-2bhk-dundigal",
@@ -117,6 +118,15 @@
     "intro": [
       "We're creative consultants, passionate about designing innovative, functional spaces that inspire and delight. Our team of architects and structural designers collaborates to deliver exceptional solutions for residential, commercial, institutional, industrial and interior projects.",
       "Our approach integrates aesthetics and functionality, ensuring each project not only meets but exceeds expectations."
+    ],
+    "sectors": [
+      { "name": "Offices", "project": "apcpdcl-corporate-office-vijayawada", "image": "/assets/images/metey/projects/apcpdcl-corporate-office-vijayawada/apcpdcl-built-photo.webp" },
+      { "name": "Commercial", "project": "jindal-corporate-tower-raigarh", "image": "/assets/uploads/2018/09/Jindal-corporate-tower-1.webp" },
+      { "name": "Educational institutions", "project": "iit-patna-secondary-school", "image": "/assets/images/metey/projects/iit-patna-secondary-school/iit-patna-school-render.webp" },
+      { "name": "Hospitals", "project": "gsl-medical-college-rajahmundry", "image": "/assets/images/metey/projects/gsl-medical-college-rajahmundry/hostel-block-1.webp" },
+      { "name": "Shopping malls", "project": "golf-links-ghaziabad-landcraft", "image": "/assets/images/metey/projects/golf-links-ghaziabad-landcraft/zonal-shopping-complex.webp" },
+      { "name": "Residential", "project": "vasavi-urban-bachupally", "image": "/assets/images/metey/projects/vasavi-urban-bachupally/vasavi-urban-render.webp" },
+      { "name": "Industrial structures", "project": "sai-life-sciences-pharma", "image": "/assets/images/metey/projects/sai-life-sciences-pharma/sai-life-building.webp" }
     ],
     "counters": [
       {

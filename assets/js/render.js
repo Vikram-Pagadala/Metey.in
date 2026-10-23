@@ -10,7 +10,6 @@ const ARR = '<svg aria-hidden="true"><use href="#arr"/></svg>';
 const SLATE = ["#2C4A6E","#A9B8C8"];
 const PAL = { terra:SLATE, teal:SLATE, blue:SLATE, plum:SLATE, ochre:SLATE, green:SLATE, brass:["#8A6420","#D9B25F"] };
 const SKY_ONE = ["#C3CDD7","#E2E6EA","#ECE9E3"];
-const GROUP_C = { architects:"terra", "structural-engineers":"blue", "design-engineers":"teal", "site-engineers":"ochre", administration:"plum" };
 const SERVICE_C = { architecture:"terra", structural:"blue", mep:"green", interiors:"plum", technologies:"teal", "peer-review":"ochre", pmc:"blue" };
 
 /* filters on the projects page, in the order the content pack lists them */
@@ -63,6 +62,16 @@ const ART = {
     s += P("M300 188H480V44Z","ba dr") + P("M352 170H462V84Z","ba dr") + R(40,196,440,18,"ba dr");
     for (let x = 52; x < 480; x += 12) s += L(x,196,x,(x - 52) % 60 === 0 ? 208 : 203,"bb dr");
     return s;
+  },
+  /* a tower crane lowering a precast wall panel into the last gap of a building rising floor by floor */
+  technologies(){
+    let s = L(0,206,520,206,"ba dr");
+    for (let fl = 0; fl < 4; fl++) [0,1,2,3].forEach(c => { if (fl === 3 && c > 1) return; const x = 250 + c * 45, y = 172 - fl * 34; s += R(x,y,45,34,"ba dr") + R(x+15,y+9,15,15,"bb dr"); });
+    s += L(144,206,144,30,"ba dr") + L(156,206,156,30,"ba dr");
+    for (let y = 206; y > 40; y -= 16) s += L(144,y,156,y-16,"bb dr");
+    s += L(70,30,440,30,"ba dr") + L(70,40,156,40,"ba dr") + P("M150 30L150 6L70 30M150 6L440 30","ba dr") + R(74,40,30,18,"ba dr") + R(156,40,20,14,"ba dr");
+    const hang = R(359,26,10,6,"ba dr") + L(364,32,364,50,"bb dr") + P("M364 50L344 62M364 50L384 62","bb dr") + R(344,62,40,30,"bb dr") + R(358,70,13,13,"ba dr");
+    return s + `<g class="sway">${hang}</g>`;
   },
   projects(){
     let s = "";
@@ -236,20 +245,52 @@ const DG = {
     s += A(hc, "a-slide", t); t += .6;
     s += note(40,316,"STEEL FRAME",null,null,t) + note(392,180,"DECK SLAB",[388,184],[376,192],t+.2) + note(196,84,"HOLLOW-CORE SLAB",[240,88],[240,104],t+.4);
     return s;
+  },
+  perma(){
+    const gy = 296, top = 76, xl = 180, xr = 290, sk = 10, cx = (xl + sk + xr) / 2;
+    let s = dgGround(), t = .2;
+    s += A(R(xl,top,sk,gy-top,"pn"), "a-grow", t) + A(R(xr,top,sk,gy-top,"pn"), "a-grow", t + .25); t += 1;
+    for (let y = top + 22; y < gy - 10; y += 36){ s += `<line x1="${xl+sk}" y1="${y}" x2="${xr}" y2="${y}" class="ms a-draw" style="--t:${f(t)}s"/>`; t += .1; }
+    s += A(P(`M${cx-26} 24H${cx+26}L${cx+8} 50H${cx-8}Z`,"nz"), "a-fade", t);
+    for (let k = 0; k < 4; k++) s += `<circle cx="${f(cx - 3 + (k % 2) * 6)}" cy="56" r="1.8" class="sp a-pour" style="--t:${f(t + .3 + k * .25)}s"/>`;
+    t += .4;
+    const lh = (gy - top) / 3;
+    for (let i = 0; i < 3; i++){ s += A(R(xl+sk,gy-(i+1)*lh,xr-xl-sk,lh,"cc"), "a-grow", t); t += .8; }
+    s += note(40,120,"PERMANENT PANELS",[150,124],[xl,124],1) + note(310,200,"CONCRETE IN LIFTS",[306,204],[xr - 30,204],t - 1.4) + note(240,316,"THE PANELS STAY AS THE FINISHED WALL",null,null,t,"middle");
+    return s;
+  },
+  polymer(){
+    const gy = 296, x0 = 90, w = 30, n = 10, h = 168, top = gy - h;
+    let s = dgGround(), t = .2;
+    for (let i = 0; i < n; i++){
+      const x = x0 + i * w, door = i === 6, ph = door ? 40 : h;
+      s += A(R(x,top,w,ph,"pn") + L(x+w/2,top+6,x+w/2,top+ph-6,"jn") + (door || i === 5 || i === n - 1 ? "" : R(x+w-3,top+12,6,ph-24,"lk")), "a-drop", t); t += .16;
+    }
+    s += A(R(x0-6,top-12,n*w+12,12,"cc"), "a-slide", t); t += .6;
+    s += note(40,96,"INTERLOCKING POLYMER PANELS",[150,100],[150,top+30],t) + note(x0 + 6 * w + w / 2,316,"OPENING",null,null,t+.2,"middle") + note(410,96,"SLAB",[420,100],[x0 + n * w - 10,top-6],t+.4,"end");
+    return s;
+  },
+  timber(){
+    const gy = 296, xl = 108, xr = 372, eave = 190, apex = 96, cx = (xl + xr) / 2, d = 13;
+    let s = dgGround(), t = .2;
+    s += A(R(xl,eave,d,gy-eave,"tb"), "a-grow", t) + A(R(xr-d,eave,d,gy-eave,"tb"), "a-grow", t + .2); t += 1;
+    const rafter = (x1, x2) => P(`M${x1} ${eave}L${cx} ${apex}L${cx} ${apex + 18}L${x2} ${eave + 12}Z`,"tb") + L(x1 + (x2 > x1 ? 8 : -8),eave + 1,cx,apex + 6,"lam") + L(x1 + (x2 > x1 ? 6 : -6),eave + 5,cx,apex + 12,"lam");
+    s += A(rafter(xl, xl + d), "a-fade", t) + A(rafter(xr, xr - d), "a-fade", t + .3); t += .9;
+    [[xl + d, eave + 12],[xr - d, eave + 12],[cx, apex + 18]].forEach(p => { s += A(C(p[0],p[1],5,"nz"), "a-fade", t); t += .15; });
+    for (let k = 1; k < 5; k++){ const u = k / 5; [[xl,1],[xr,-1]].forEach(([x1]) => { const px = x1 + (cx - x1) * u, py = eave + (apex - eave) * u; s += A(R(px - 4,py - 9,8,8,"tb"), "a-drop", t); }); t += .14; }
+    s += `<path d="M${xl - 10} ${eave - 8}L${cx} ${apex - 14}L${xr + 10} ${eave - 8}" class="st a-draw" style="--t:${f(t)}s"/>`;
+    s += note(40,316,"GLULAM PORTAL FRAME",null,null,1.2) + note(cx,250,"STEEL CONNECTIONS",[cx + 68,246],[xr - d - 3,eave + 14],t - .9,"middle") + note(40,70,"TIMBER PURLINS",[96,74],[xl + (cx - xl) * .4,eave + (apex - eave) * .4 - 9],t);
+    return s;
   }
 };
+/* diagrams for the technologies page only (the home page explorer shows SYSTEMS) */
+const TECH_SYSTEMS = [
+  { id:"perma", name:"Perma form", line:"Permanent formwork panels are set up and tied, then filled with concrete; the panels stay as the faces of the wall.", cap:"Panels set and tied, concrete poured in lifts, the formwork stays as the finished wall" },
+  { id:"polymer", name:"Polymer wall", line:"Interlocking polymer wall panels are set up side by side and joined on site, then topped with the slab.", cap:"Polymer panels locked together one by one, then the slab" },
+  { id:"timber", name:"Timber", line:"Glulam columns and rafters are raised as portal frames, joined with steel connectors and tied with timber purlins.", cap:"Glulam frame raised, steel connections fixed, purlins placed, then the roof" }
+];
 const diagram = id => `<svg class="dg" viewBox="0 0 480 330" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Animated diagram">${DG[id]()}</svg>`;
 
-/* ---- building types: a photograph of one of our projects for each sector (full size: the tall arch crops it) ---- */
-const TYPES2 = [
-  { name:"Offices", c:"blue", go:"apcpdcl-corporate-office-vijayawada", img:"/assets/images/metey/projects/apcpdcl-corporate-office-vijayawada/apcpdcl-built-photo.webp" },
-  { name:"Commercial", c:"ochre", go:"jindal-corporate-tower-raigarh", img:"/assets/uploads/2018/09/Jindal-corporate-tower-1.jpg" },
-  { name:"Educational institutions", c:"plum", go:"iit-patna-secondary-school", img:"/assets/images/metey/projects/iit-patna-secondary-school/iit-patna-school-render.webp" },
-  { name:"Hospitals", c:"teal", go:"gsl-medical-college-rajahmundry", img:"/assets/images/metey/projects/gsl-medical-college-rajahmundry/hostel-block-1.webp" },
-  { name:"Shopping malls", c:"terra", go:"golf-links-ghaziabad-landcraft", img:"/assets/images/metey/projects/golf-links-ghaziabad-landcraft/zonal-shopping-complex.webp" },
-  { name:"Residential", c:"green", go:"vasavi-urban-bachupally", img:"/assets/images/metey/projects/vasavi-urban-bachupally/vasavi-urban-render.webp" },
-  { name:"Industrial structures", c:"brass", go:"sai-life-sciences-pharma", img:"/assets/images/metey/projects/sai-life-sciences-pharma/sai-life-building.webp" }
-];
 const grad = (id, st) => `<linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${st[0]}"/><stop offset=".62" stop-color="${st[1]}"/><stop offset="1" stop-color="${st[2]}"/></linearGradient>`;
 
 /* ======================= links between pages ======================= */
@@ -260,12 +301,11 @@ const href = r => r === "home" ? "/" : r.indexOf("project-") === 0 ? `/projects/
 /* data files hold plain text, so everything taken from them is escaped on the way into HTML */
 const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const ticks = a => `<ul class="ticks">${a.map(x => `<li>${esc(x)}</li>`).join("")}</ul>`;
-/* initials avatar: "Mr. K. Akhil Sai Mohan" -> KM */
-const initials = n => { const w = n.replace(/^(Mr|Ms|Mrs|Dr|Er)\.\s*/, "").replace(/\./g, " ").split(/\s+/).filter(Boolean); return (w[0][0] + (w.length > 1 ? w[w.length - 1][0] : "")).toUpperCase(); };
 const pad = n => (n < 10 ? "0" : "") + n;
 const more = (r, t) => `<a class="more" href="${href(r)}">${esc(t)} ${ARR}</a>`;
-/* the first sentence, not fooled by abbreviations such as "e.g." */
-const firstSentence = t => t.split(/(?<=\b[a-z\d]{2,}\.)\s+(?=[A-Z])/i)[0];
+/* sentences, not fooled by abbreviations such as "e.g." */
+const sentences = t => t.split(/(?<=\b[a-z\d]{2,}\.)\s+(?=[A-Z])/i);
+const firstSentence = t => sentences(t)[0];
 const optionName = (list, k) => (list.find(s => s[0] === k) || ["", ""])[1];
 const sectorName = k => optionName(SECTORS, k);
 const categoryName = k => optionName(CATEGORIES, k);
@@ -296,7 +336,16 @@ const shot = (p, big, eager) => {
   return `<div class="shot">${plate(p.form, colour(p))}${im ? pic(im, big ? { sizes: SIZES_BIG, eager } : { thumb: true, alt: "" }) : ""}<span class="tag"></span></div>`;
 };
 const kicker = p => (p.sectors || []).length ? p.sectors.map(sectorName).join(" · ") : (p.categories || []).map(categoryName).join(" · ");
-const card = (p, i) => `<a class="card c-${colour(p)}" href="${href("project-" + p.slug)}" data-cats="${(p.categories || []).join(" ")}" data-sectors="${(p.sectors || []).join(" ")}" data-states="${(p.states || []).join(" ")}" style="--i:${i}"><div class="mat tilt">${shot(p)}</div>${kicker(p) ? `<p class="eyebrow">${esc(kicker(p))}</p>` : ""}<h3>${esc(p.title)}</h3>${p.location || p.client ? `<p class="meta">${esc(p.location || p.client)}</p>` : ""}</a>`;
+/* a distinction such as "Andhra Pradesh's first Net Zero Building": the short tag on cards, the full line on the project */
+const LEAF = '<svg class="leaf" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 13C3 7 7 3 14 2c0 7-4 11-10 11M3 13l6-6"/></svg>';
+const badge = (p, full) => p.tag ? `<p class="badge">${LEAF}${esc(full && p.highlight || p.tag)}</p>` : "";
+const certificate = p => {
+  const c = p.certificate;
+  if (!c || !c.src) return "";
+  if (/\.pdf$/i.test(c.src)) return `<p data-rv><a class="more" href="${c.src}" target="_blank" rel="noopener">View the ${esc(c.label)} (PDF) ${ARR}</a></p>`;
+  return `<figure class="cert" data-rv><button class="gal-b" type="button" data-full="${c.src}" data-w="${c.width}" aria-label="Enlarge the ${esc(c.label)}">${pic(c, { alt: c.label })}</button><figcaption>${esc(c.label)}</figcaption></figure>`;
+};
+const card = (p, i) => `<a class="card c-${colour(p)}" href="${href("project-" + p.slug)}" data-cats="${(p.categories || []).join(" ")}" data-sectors="${(p.sectors || []).join(" ")}" data-states="${(p.states || []).join(" ")}" style="--i:${i}"><div class="mat tilt">${shot(p)}</div>${kicker(p) ? `<p class="eyebrow">${esc(kicker(p))}</p>` : ""}${badge(p)}<h3>${esc(p.title)}</h3>${p.location || p.client ? `<p class="meta">${esc(p.location || p.client)}</p>` : ""}</a>`;
 const chipRow = (name, key, list) => `<div class="chips" role="group" aria-label="Filter by ${name}" data-filter="${key}"><span class="chips-l">${name}</span>${list.map(s => {
   const n = s[0] === "all" ? PROJECTS.length : PROJECTS.filter(p => (p[key] || []).indexOf(s[0]) >= 0).length;
   return n ? `<button class="chip c-${SEC_C[s[0]] || "brass"}" type="button" data-value="${s[0]}" aria-pressed="${s[0] === "all"}">${s[1]} · ${n}</button>` : "";
@@ -313,11 +362,12 @@ function projectPage(p){
   if (p.status) facts.push(["Status", p.status]);
   if (p.archivePhotos) facts.push(["Archive", p.archivePhotos + " photographs"]);
   const gallery = `<div class="gal-wrap"><h2 class="h3">Drawings and photographs</h2><div class="gal">${p.images.map((im, k) => `<button class="gal-b" type="button" data-full="${im.src}" data-w="${im.width}" aria-label="Enlarge image ${k + 1} of ${p.images.length}">${pic(im, { thumb: true })}</button>`).join("")}</div></div>`;
-  return `<div class="pd-grid"><div class="mat" data-rv="wipe" style="--wc:${PAL[colour(p)][0]}">${shot(p, true, true)}</div><div class="stack" style="gap:1.5rem">${kicker(p) ? `<p class="eyebrow tint c-${colour(p)}" data-rv>${esc(kicker(p))}</p>` : ""}<h1 data-split>${esc(p.title)}</h1>` +
+  return `<div class="pd-grid"><div class="mat" data-rv="wipe" style="--wc:${PAL[colour(p)][0]}">${shot(p, true, true)}</div><div class="stack" style="gap:1.5rem">${kicker(p) ? `<p class="eyebrow tint c-${colour(p)}" data-rv>${esc(kicker(p))}</p>` : ""}<h1 data-split>${esc(p.title)}</h1>${p.tag ? `<div data-rv>${badge(p, true)}</div>` : ""}` +
     (p.description ? `<p data-rv>${esc(p.description)}</p>` : "") +
     (p.list ? (p.archived ? `<ol class="nums" data-rv>${p.list.map(x => `<li>${esc(x)}</li>`).join("")}</ol>` : `<div data-rv>${ticks(p.list)}</div>`) : "") +
     (p.keyFacts ? `<div class="stack" data-rv><p class="label">Key facts</p>${ticks(p.keyFacts)}</div>` : "") +
     (facts.length ? `<dl class="facts" data-rv>${facts.map(x => `<div><dt>${x[0]}</dt><dd>${esc(x[1])}</dd></div>`).join("")}</dl>` : "") +
+    certificate(p) +
     (p.website ? `<p data-rv><a class="more" href="${p.website.url}" target="_blank" rel="noopener">Visit the ${esc(p.website.name)} website ${ARR}</a></p>` : "") +
     `<p class="note" data-rv>Project calculations, comprehensive structural detailing sheets, and technical parameters available on client consultation.</p></div></div>${gallery}` +
     `<nav class="pd-nav" aria-label="More projects"><a class="more prev" href="${href("project-" + prev.slug)}">${ARR} ${esc(prev.title)}</a><a class="more" href="${href("project-" + next.slug)}">${esc(next.title)} ${ARR}</a></nav>`;
@@ -358,7 +408,7 @@ const render = {
   heroButtons: () => D.site.home.hero.buttons.map((b, i) => i ? `<a class="more" href="${b[1]}">${esc(b[0])} ${ARR}</a>` : `<a class="btn" href="${b[1]}">${esc(b[0])} ${ARR}</a>`).join("\n        "),
   intro: () => D.site.home.intro.map((t, i) => `<p${i ? ' class="soft"' : ' class="dropcap"'} data-rv>${esc(t)}</p>`).join(""),
   counters: () => D.site.home.counters.filter(s => s.value != null).map((s, i) => {
-    if (s.roll) return `<div class="stat stat-roll" data-rv data-in><div class="ticket" aria-label="${esc(s.value.toLocaleString("en-IN"))} ${esc(s.unit || "")}"><b aria-hidden="true">${s.value.toLocaleString("en-IN").split("").map(ch => /\d/.test(ch) ? `<span class="reel" style="--n:${ch}"><span>${"0123456789".split("").map(d => `<i>${d}</i>`).join("")}</span></span>` : `<span class="sep">${ch}</span>`).join("")}</b>${s.unit ? `<span class="unit">${esc(s.unit)}</span>` : ""}</div><p>${esc(s.label)}</p></div>`;
+    if (s.roll) return `<div class="stat stat-roll" data-rv data-in><div class="ticket" data-roll="${s.value}" aria-label="${esc(s.value.toLocaleString("en-IN"))} ${esc(s.unit || "")}"><b aria-hidden="true">${s.value.toLocaleString("en-IN").split("").map(ch => /\d/.test(ch) ? `<span class="reel" style="--n:${ch}"><span>${"0123456789".split("").map(d => `<i>${d}</i>`).join("")}</span></span>` : `<span class="sep">${ch}</span>`).join("")}</b>${s.unit ? `<span class="unit">${esc(s.unit)}</span>` : ""}</div><p>${esc(s.label)}</p></div>`;
     const big = s.value >= 1000 && s.from == null;
     const shown = big ? s.value.toLocaleString("en-IN") : s.value;
     return `<div class="stat c-${["brass","terra","teal","blue","plum","ochre"][i % 6]}" data-rv data-in style="--d:${(i % 3) * .12}s"><div class="medal"><svg viewBox="0 0 100 100" aria-hidden="true"><circle class="r1" cx="50" cy="50" r="48.5"/><circle class="r2" cx="50" cy="50" r="42"/><circle class="r3" cx="50" cy="50" r="42" pathLength="1" transform="rotate(-90 50 50)"/></svg><b>${s.prefix ? esc(s.prefix) : ""}<span data-count="${s.value}" data-from="${s.from || 0}"${big ? " data-group" : ""}>${shown}</span>${s.suffix ? esc(s.suffix) : ""}</b></div>${s.unit ? `<p class="unit">${esc(s.unit)}</p>` : ""}<p>${esc(s.label)}</p></div>`;
@@ -370,7 +420,12 @@ const render = {
   sysTabs: () => SYSTEMS.map((s, i) => `<button class="sys-tab c-${s.c}${i ? "" : " on"}" type="button" role="tab" id="sys-tab-${i}" aria-controls="sysStage" data-sys="${i}" aria-selected="${!i}"><i></i><b>${s.name}</b><span>${s.line}</span></button>`).join(""),
   sysStage: () => diagram(SYSTEMS[0].id),
   sysCap: () => SYSTEMS[0].cap,
-  types: () => TYPES2.map((t, i) => { const p = project(t.go), im = p.images.find(x => x.src === t.img); return `<div class="type c-${t.c}" data-rv style="--d:${i * .08}s"><div class="arch tilt">${pic(Object.assign({}, im, { thumb: null }))}</div><h3>${t.name}</h3>${p ? more("project-" + p.slug, p.title) : ""}</div>`; }).join(""),
+  /* sectors: a numbered list, each with one of our projects; the photograph of the sector in view fills the frame beside it */
+  sectors: () => D.site.home.sectors.map((t, i) => {
+    const p = project(t.project), im = p.images.find(x => x.src === t.image);
+    return `<li class="sx-i${i ? "" : " on"}"><a class="sx-a" href="${href("project-" + p.slug)}"><span class="sx-n">${pad(i + 1)}</span><span class="sx-t"><b>${esc(t.name)}</b><span>${esc(p.title)}</span></span>${ARR}</a>` +
+      `<figure class="sx-f">${pic(im, { alt: `${t.name}: ${p.title}`, sizes: "(max-width: 60rem) 96px, 45vw" })}<figcaption>${esc(p.title)}${p.location ? `<span>${esc(p.location)}</span>` : ""}</figcaption></figure></li>`;
+  }).join(""),
   stateCount: () => { const s = statesWorked(); const ut = s.filter(x => x.id === "delhi").length; return `${s.length - ut} states${ut ? " and Delhi" : ""}`; },
   places: () => statesWorked().map((s, i) => {
     const names = s.projects.slice(0, 2).map(p => `<a href="${href("project-" + p.slug)}">${esc(p.title)}</a>`).join(", ");
@@ -379,7 +434,7 @@ const render = {
   }).join(""),
   carDots: () => FEAT.map((p, i) => `<button type="button" data-dot="${i}" aria-label="${esc(p.title)}"${i ? "" : ' aria-current="true"'}></button>`).join(""),
   carFrame: i => shot(FEAT[i], true),
-  carBody: i => { const p = FEAT[i]; return `<p class="car-count"><b>${pad(i + 1)}</b> / ${pad(FEAT.length)}</p>${kicker(p) ? `<p class="eyebrow tint c-${colour(p)}">${esc(kicker(p))}</p>` : ""}<h3>${esc(p.title)}</h3><p class="soft">${esc(p.description ? firstSentence(p.description) : (p.keyFacts || []).join(" · "))}${p.location ? `<br><span class="car-meta">${esc(p.location)}</span>` : ""}</p><p>${more("project-" + p.slug, "View project")}</p>`; },
+  carBody: i => { const p = FEAT[i]; return `<p class="car-count"><b>${pad(i + 1)}</b> / ${pad(FEAT.length)}</p>${kicker(p) ? `<p class="eyebrow tint c-${colour(p)}">${esc(kicker(p))}</p>` : ""}<h3>${esc(p.title)}</h3>${badge(p, true)}<p class="soft">${esc(p.description ? (p.tag && sentences(p.description)[1]) || firstSentence(p.description) : (p.keyFacts || []).join(" · "))}${p.location ? `<br><span class="car-meta">${esc(p.location)}</span>` : ""}</p><p>${more("project-" + p.slug, "View project")}</p>`; },
   /* every slide after the first waits in a <template>, so its images load only when it is shown */
   carTemplates: () => FEAT.map((p, i) => `<template id="carF${i}">${render.carFrame(i)}</template><template id="carB${i}">${render.carBody(i)}</template>`).join(""),
 
@@ -392,11 +447,8 @@ const render = {
 
   /* ---- team ---- */
   founder: () => { const f = D.team.founder; return `<figure class="portrait" data-rv>${pic(f.photo)}</figure><div class="stack"><p class="eyebrow" data-rv>Founder &amp; Director</p><h2 data-split>${esc(f.name)}</h2><p class="label" data-rv>${esc(f.role)}</p><div data-rv>${ticks(f.profile)}</div></div>`; },
-  teamCount: () => 1 + D.team.groups.reduce((n, g) => n + g.people.length, 0),
-  teamGroups: () => D.team.groups.map(g => `<section class="tgroup c-${GROUP_C[g.id] || "brass"}" id="${g.id}" aria-labelledby="${g.id}-h"><h2 class="h3" id="${g.id}-h" data-rv>${esc(g.name)}</h2><div class="people">${g.people.map((m, i) => {
-    const facts = [["Qualification", m.qualification], ["Experience", m.experience], ["Work", m.work]].filter(x => x[1]);
-    return `<article class="pcard" data-rv style="--d:${(i % 4) * .06}s"><div class="face" aria-hidden="true">${initials(m.name)}${m.photo ? `<img src="${m.photo.src}" alt="" width="${m.photo.width}" height="${m.photo.height}" loading="lazy" decoding="async">` : ""}</div><div class="pcard-b"><h3>${esc(m.name)}</h3>${m.role ? `<p class="role">${esc(m.role)}</p>` : ""}${facts.length ? `<dl>${facts.map(x => `<div><dt>${x[0]}</dt><dd>${esc(x[1])}</dd></div>`).join("")}</dl>` : ""}${m.about ? `<p class="soft">${esc(m.about)}</p>` : ""}</div></article>`;
-  }).join("")}</div></section>`).join(""),
+  teamCount: () => 1 + D.team.members.length,
+  teamMembers: () => `<ul class="team-grid">${D.team.members.map((m, i) => `<li class="tcard" data-rv style="--d:${(i % 5) * .06}s">${pic(m.photo, { alt: `${m.name}, ${m.designation}`, cls: "team-photo" })}<h3>${esc(m.name)}</h3><p class="role">${esc(m.designation)}</p></li>`).join("")}</ul>`,
   experience: () => { const x = D.team.directorExperience; return `<p class="soft" data-rv>${esc(x.note)}</p><ul class="xp" data-rv>${x.items.map(it => `<li><h3>${esc(it.name)}</h3>${it.text ? `<p>${esc(it.text)}</p>` : ""}</li>`).join("")}</ul>${thumbs(x.images, "pf", true)}`; },
 
   /* ---- services ---- */
@@ -413,7 +465,7 @@ const render = {
   techIntro: () => esc(TECH.text),
   techIndex: () => TECH.items.map(t => `<a class="c-${SERVICE_C.technologies}" href="#${t.id}"><span class="bubble num">${pad(TECH.items.indexOf(t) + 1)}</span><span>${esc(t.name)}</span></a>`).join(""),
   techBody: () => TECH.items.map((t, i) => {
-    const sys = t.system && SYSTEMS.find(x => x.id === t.system);
+    const sys = t.system && SYSTEMS.concat(TECH_SYSTEMS).find(x => x.id === t.system);
     const rel = (t.category ? PROJECTS.filter(p => (p.categories || []).indexOf(t.category) >= 0) : (t.projects || []).map(project).filter(Boolean));
     const papers = (t.papers || []).flatMap(k => D.insights.articles.filter(a => a.title.toLowerCase().indexOf(k) >= 0));
     const side = sys ? `<figure class="tech-fig sys-stage navy"><span class="corner a"></span><span class="corner b"></span><span class="corner c"></span><span class="corner d"></span><div class="sys-svg">${diagram(sys.id)}</div><figcaption class="sys-cap">${esc(sys.cap)}</figcaption></figure>` : "";

@@ -33,7 +33,6 @@ function imgLoaded(t){
   const p = t.parentNode; if (!p) return;
   if (t.naturalWidth < 40){ imgFailed(t); return; }
   if (p.classList.contains("shot")) setTimeout(() => p.classList.add("has"), p.closest(".car") ? 1100 : 350);
-  else if (p.classList.contains("face")) p.classList.add("has");
   else if (p.classList.contains("gal-b")) p.classList.add("ok");
 }
 function imgFailed(t){
@@ -95,7 +94,33 @@ function countUp(b){
   const step = t => { const k = Math.min(1, (t - t0) / 1900), e = 1 - Math.pow(1 - k, 3); show(Math.round(from + (to - from) * e)); if (k < 1) requestAnimationFrame(step); else b._c = 0; };
   requestAnimationFrame(step);
 }
-function reveal(el){ if (el.classList.contains("in")) return; el.classList.add("in"); $$("[data-count]", el).forEach(countUp); }
+/* the lottery ticket: every reel rolls while the number counts from 1 up to its value, for ten seconds.
+   The count climbs on a log scale (units, tens, hundreds … each get the same time) and eases into the last digits. */
+function rollTicket(t){
+  if (t._r) return; t._r = 1;
+  const to = +t.getAttribute("data-roll"), reels = $$(".reel", t);
+  const put = v => { const d = String(v).padStart(reels.length, "0").slice(-reels.length); reels.forEach((r, i) => r.style.setProperty("--n", d[i])); };
+  if (RM){ put(to); return; }
+  const t0 = performance.now();
+  const step = now => { const k = Math.min(1, (now - t0) / 10000), e = 1 - Math.pow(1 - k, 2); put(k < 1 ? Math.max(1, Math.round(Math.pow(to, e))) : to); if (k < 1) requestAnimationFrame(step); else celebrate(t); };
+  put(1); requestAnimationFrame(step);
+}
+/* when the ticket stops: a party popper fires from each end */
+function celebrate(t){
+  t.classList.add("done");
+  const box = document.createElement("div"), COL = ["#C9A96E", "#E6D7B3", "#2E8B57", "#3B5BA9", "#1A2546", "#B08A4E"];
+  box.className = "confetti"; box.setAttribute("aria-hidden", "true");
+  for (let i = 0; i < 56; i++){
+    const left = i % 2 === 0, a = (left ? -170 + Math.random() * 90 : -100 + Math.random() * 90) * Math.PI / 180, d = 90 + Math.random() * 150;
+    const s = document.createElement("i");
+    if (i % 4 === 0) s.className = "o";
+    s.style.cssText = `left:${left ? 0 : 100}%;--c:${COL[i % COL.length]};--x:${Math.round(Math.cos(a) * d)}px;--y:${Math.round(Math.sin(a) * d)}px;--r:${Math.round(Math.random() * 720 - 360)}deg;--dl:${(Math.random() * .15).toFixed(2)}s`;
+    box.appendChild(s);
+  }
+  t.appendChild(box);
+  setTimeout(() => box.remove(), 2400);
+}
+function reveal(el){ if (el.classList.contains("in")) return; el.classList.add("in"); $$("[data-count]", el).forEach(countUp); $$("[data-roll]", el).forEach(rollTicket); }
 function startIO(){
   if ("IntersectionObserver" in window){
     io = new IntersectionObserver(es => { es.forEach(e => { if (e.isIntersecting){ reveal(e.target); io.unobserve(e.target); } }); }, { threshold:.06, rootMargin:"0px 0px -5% 0px" });
@@ -172,27 +197,28 @@ function hsShow(i){
 }
 if (hero && slides.length){
   $("#heroDots").addEventListener("click", e => { const d = e.target.closest("[data-hs]"); if (d) hsShow(+d.getAttribute("data-hs")); });
-  hero.addEventListener("mouseenter", () => { hsHold = true; clearTimeout(hsT); });
-  hero.addEventListener("mouseleave", () => { hsHold = false; hsArm(); });
-  hero.addEventListener("focusin", () => { hsHold = true; clearTimeout(hsT); });
-  hero.addEventListener("focusout", () => { hsHold = false; hsArm(); });
+  /* the projects keep changing under the pointer; only keyboard focus (a caption link in reach) holds the slide */
+  hero.addEventListener("focusin", e => { if (e.target.matches(":focus-visible")){ hsHold = true; clearTimeout(hsT); } });
+  hero.addEventListener("focusout", () => { if (hsHold){ hsHold = false; hsArm(); } });
   document.addEventListener("visibilitychange", hsArm);
   if ("IntersectionObserver" in window) new IntersectionObserver(es => { es.forEach(e => { hsOn = e.isIntersecting; hsArm(); }); }, { threshold:.2 }).observe(hero);
   window.addEventListener("load", () => { hsLoad(1); hsArm(); });
 }
 
-/* ======================= home: building types row ======================= */
-const typesRow = $("#typesRow");
-if (typesRow){
-  const typesBy = d => typesRow.scrollBy({ left:d * typesRow.clientWidth * .7, behavior:RM ? "auto" : "smooth" });
-  $("#typesPrev").addEventListener("click", () => typesBy(-1));
-  $("#typesNext").addEventListener("click", () => typesBy(1));
-  /* drag to scroll with a mouse */
-  let down = false, sx = 0, sl = 0, moved = 0;
-  typesRow.addEventListener("pointerdown", e => { if (e.pointerType !== "mouse") return; down = true; moved = 0; sx = e.clientX; sl = typesRow.scrollLeft; });
-  window.addEventListener("pointermove", e => { if (!down) return; const dx = e.clientX - sx; moved = Math.max(moved, Math.abs(dx)); if (moved > 5){ typesRow.classList.add("drag"); typesRow.scrollLeft = sl - dx; } });
-  window.addEventListener("pointerup", () => { down = false; setTimeout(() => typesRow.classList.remove("drag"), 0); });
-  typesRow.addEventListener("click", e => { if (moved > 5){ e.preventDefault(); e.stopPropagation(); } }, true);
+/* ======================= home: sectors ======================= */
+/* pointing at or tabbing to a sector shows its photograph; on wide screens the list also moves on by itself while in view */
+const sx = $("#sectors");
+if (sx){
+  const items = $$(".sx-i", sx), wide = window.matchMedia ? matchMedia("(min-width: 60.01rem)") : { matches: true };
+  let sxI = 0, sxT = null, sxOn = false, sxHold = false;
+  const sxArm = () => { clearTimeout(sxT); const run = sxOn && !sxHold && !RM && wide.matches; sx.classList.toggle("auto", run); if (run) sxT = setTimeout(() => sxShow(sxI + 1), 4500); };
+  const sxShow = i => { sxI = (i + items.length) % items.length; items.forEach((it, k) => it.classList.toggle("on", k === sxI)); sxArm(); };
+  items.forEach((it, k) => { const a = $(".sx-a", it); a.addEventListener("mouseenter", () => sxShow(k)); a.addEventListener("focus", () => sxShow(k)); });
+  sx.addEventListener("mouseenter", () => { sxHold = true; sxArm(); });
+  sx.addEventListener("mouseleave", () => { sxHold = false; sxArm(); });
+  sx.addEventListener("focusin", () => { sxHold = true; sxArm(); });
+  sx.addEventListener("focusout", () => { sxHold = false; sxArm(); });
+  if ("IntersectionObserver" in window) new IntersectionObserver(es => { es.forEach(e => { sxOn = e.isIntersecting; sxArm(); }); }, { threshold:.35 }).observe(sx);
 }
 
 /* ======================= projects: category and sector filters, and state filter from the map ======================= */
@@ -306,7 +332,7 @@ document.addEventListener("click", e => {
 const form = $("#enquiry");
 if (form){
   const st = $("#formStatus"), btn = $("button[type=submit]", form);
-  const OFFICE = form.getAttribute("data-email"), CC = form.getAttribute("data-cc"), WA = form.getAttribute("data-whatsapp");
+  const OFFICE = form.getAttribute("data-email"), WA = form.getAttribute("data-whatsapp");
   const fields = { name: $("#f-name"), email: $("#f-email"), msg: $("#f-msg") };
   const validEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
   const ARR = '<svg aria-hidden="true"><use href="#arr"/></svg>';
@@ -317,7 +343,7 @@ if (form){
     const subject = encodeURIComponent(`Project enquiry${d.ref ? ` [${d.ref}]` : ""}: ${d.service} - ${d.name}`);
     const body = encodeURIComponent(`Name: ${d.name}\nPhone: ${d.phone}\nEmail: ${d.email}\nService: ${d.service}\n\nProject brief:\n${d.message}${d.ref ? `\n\nReference: ${d.ref}` : ""}`);
     const wa = encodeURIComponent(`Hello METEY Engineering, I would like to discuss a project (${d.service}). My name is ${d.name}.${d.ref ? ` Enquiry reference ${d.ref}.` : ""}`);
-    return `<div class="links"><a class="more" href="mailto:${OFFICE}?cc=${CC}&subject=${subject}&body=${body}">Email us directly ${ARR}</a><a class="more" href="https://wa.me/${WA}?text=${wa}" target="_blank" rel="noopener">Message on WhatsApp ${ARR}</a></div>`;
+    return `<div class="links"><a class="more" href="mailto:${OFFICE}?subject=${subject}&body=${body}">Email us directly ${ARR}</a><a class="more" href="https://wa.me/${WA}?text=${wa}" target="_blank" rel="noopener">Message on WhatsApp ${ARR}</a></div>`;
   };
 
   form.addEventListener("submit", e => {

@@ -15,14 +15,28 @@
 - [Technologies](https://metey.in/technologies/): Precast, monolithic (Mivan), composite, insulated wall (EPS), light gauge steel, Perma form, polymer wall and timber structures, designed by Metey across India.
 - [Projects](https://metey.in/projects/): 42 projects in 11 states and Delhi: PMAY and EWS housing, precast and monolithic towers, education, commercial and industrial buildings.
 - [Clients](https://metey.in/clients/): METEY clients include DRDO, GHMC, APTIDCO, APCPDCL, Tata Projects, NTPC, Jindal Steel & Power, Numaligarh Refinery and IIT Patna.
-- [Team](https://metey.in/team/): Er. C.A. Prasad, Director & Chief Structural Engineer with 48 years of experience, and METEY's architects, structural engineers and quantity surveyors.
+- [Team](https://metey.in/team/): Meet METEY's Hyderabad team: Er. C.A. Prasad, Director & Chief Structural Engineer (48 years), with architects, structural, design and site engineers.
 - [Insights](https://metey.in/insights/): Technical papers by METEY on precast concrete connections, monolithic EWS housing and green building technologies for PMAY, and talks at national conferences.
 - [Careers](https://metey.in/careers/): Internships and careers for civil and structural engineers and architects at METEY, Hyderabad, mentored by chartered engineers on live projects.
 - [Contact](https://metey.in/contact/): Contact Metey Engineering & Consultancy, New Nagole, Hyderabad: +91 97001 59325, designs@metey.in. Structural and architectural design across India.
 
+## Team
+
+- Er. C.A. Prasad: Director & Chief Structural Engineer
+- Er. Chunduru Ankamma: Design Engineer / BIM Modeller
+- Er. Anjaneya Reddy: QS Engineer / BIM Modeller
+- Er. Varun Kumar: Structural Engineer
+- Er. Sireesha: Design Engineer / CAD Engineer
+- Er. Swathi: Structural Engineer
+- Ar. Durga: Architect
+- Ar. Kamalalaya: Sr. Architect
+- Er. Prasanna: Design Engineer / CAD Engineer
+- Er. Shiva: Site Engineer
+- Er. Akhila Suvartchala: Structural Engineer
+
 ## Projects
 
-- [APCPDCL Corporate Office, Vijayawada](https://metey.in/projects/apcpdcl-corporate-office-vijayawada/): APCPDCL was formed on 5 December 2019 to serve the electricity needs of seven districts of Andhra Pradesh. The new headquarters houses Operations &…
+- [APCPDCL Corporate Office, Vijayawada](https://metey.in/projects/apcpdcl-corporate-office-vijayawada/): The APCPDCL corporate office is Andhra Pradesh's first Net Zero building. APCPDCL was formed on 5 December 2019 to serve the electricity needs of seven…
 - [Hostel Blocks (Dormitory cum Dining) for Telangana Universities](https://metey.in/projects/hostel-blocks-tg-universities/): The Tribal Welfare Department approved student hostels at all seven universities of Telangana. This hostel at Kakatiya University has two blocks with…
 - [DIET Academic Block (Samagra Shiksha)](https://metey.in/projects/diet-academic-block/): The academic block includes classrooms, a library, a conference room and a mini auditorium. A central courtyard brings in plenty of light and ventilation,…
 - [College for Data Sciences, Bachupally, Hyderabad](https://metey.in/projects/college-data-sciences-bachupally/): Built entirely with precast technology. Floor and wall finishes/paint are avoided for easy maintenance. A central courtyard is used for gatherings and as a…

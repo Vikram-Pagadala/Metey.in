@@ -3,7 +3,7 @@
 The contact form on metey.in sends each enquiry to a small Google Apps Script. The script:
 
 - adds a row to a Google Sheet (date, reference number, name, email, phone, service, message), and
-- emails the enquiry to info@metey.in (cc prasad@metey.in). Hitting **Reply** answers the visitor directly.
+- emails the enquiry to bharat@metey.in only. Hitting **Reply** answers the visitor directly.
 
 Until the script is connected, the form doesn't claim to have sent anything. It offers "Email us directly" and "WhatsApp" links instead, with the visitor's details already filled in.
 
@@ -26,11 +26,11 @@ Until the script is connected, the form doesn't claim to have sent anything. It 
    ```
 
 8. Run `node tools/build.mjs`, then commit and push. Vercel redeploys the site.
-9. Send a test enquiry from https://metey.in/contact/. A row should appear in the sheet, and an email should reach info@metey.in.
+9. Send a test enquiry from https://metey.in/contact/. A row should appear in the sheet, and an email should reach bharat@metey.in.
 
 ## Good to know
 
 - **Changing the script later:** use **Deploy → Manage deployments → ✏️ Edit → Version: New version → Deploy**. That keeps the same URL. A *New deployment* creates a new URL, which you'd have to paste into `build.mjs` again.
-- **Changing who gets notified:** edit `NOTIFY_TO` / `NOTIFY_CC` at the top of the script, then redeploy as above.
+- **Changing who gets notified:** edit `NOTIFY_TO` at the top of the script, then redeploy as above. Also change `enquiryEmail` in `src/data/site.json`, where the form's "Email us directly" link sends, and rebuild. The form's WhatsApp number is `whatsapp` in the same file.
 - **Daily limit:** a free Gmail account can send about 100 notification emails a day; Google Workspace accounts get about 1,500. Enquiries are always saved to the sheet, even if the email limit is reached.
 - **Spam:** the form has a hidden field that people never see. Bots that fill it in are silently ignored.

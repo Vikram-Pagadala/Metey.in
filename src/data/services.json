@@ -219,6 +219,7 @@
       },
       {
         "id": "perma-form",
+        "system": "perma",
         "name": "Perma form",
         "text": "Permanent formwork panels that stay as part of the wall.",
         "images": [
@@ -236,11 +237,13 @@
       },
       {
         "id": "polymer-wall",
+        "system": "polymer",
         "name": "Polymer wall construction",
         "text": "Used for projects in Andhra Pradesh."
       },
       {
         "id": "timber",
+        "system": "timber",
         "name": "Timber / wooden structures",
         "text": "Glulam and timber structures (designed in Dubai, UAE).",
         "images": [

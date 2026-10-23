@@ -5,6 +5,8 @@
     "client": "Andhra Pradesh Central Power Distribution Company Ltd. (APCPDCL)",
     "location": "Near Ramavarappadu, Vijayawada, Andhra Pradesh",
     "category": "Architecture · Commercial / Government office · Conventional construction",
+    "highlight": "Andhra Pradesh's first Net Zero Building",
+    "tag": "Net Zero Building",
     "categories": [
       "architecture",
       "conventional"
@@ -19,7 +21,7 @@
       "350–400 staff",
       "Parking for 45–60 cars"
     ],
-    "description": "APCPDCL was formed on 5 December 2019 to serve the electricity needs of seven districts of Andhra Pradesh. The new headquarters houses Operations & Maintenance, Customer Service and Assessment departments, plus Planning, Projects, Telecom, IT & SAP, SCADA, Civil and P&MM wings. Director rooms and a conference hall are on the third floor. The building is now constructed.",
+    "description": "The APCPDCL corporate office is Andhra Pradesh's first Net Zero building. APCPDCL was formed on 5 December 2019 to serve the electricity needs of seven districts of Andhra Pradesh. The new headquarters houses Operations & Maintenance, Customer Service and Assessment departments, plus Planning, Projects, Telecom, IT & SAP, SCADA, Civil and P&MM wings. Director rooms and a conference hall are on the third floor. The building is now constructed.",
     "images": [
       {
         "src": "/assets/images/metey/projects/apcpdcl-corporate-office-vijayawada/apcpdcl-render-1.webp",
@@ -67,6 +69,10 @@
     "website": {
       "url": "https://www.apcpdcl.in/",
       "name": "APCPDCL"
+    },
+    "certificate": {
+      "label": "Net Zero Building certificate",
+      "confirm": "Net Zero certificate still to add: put the file in assets/images/metey/projects/apcpdcl-corporate-office-vijayawada/ and set certificate.src to its path (an image or a PDF)."
     }
   },
   {
@@ -519,63 +525,63 @@
       },
       {
         "src": "/assets/uploads/2018/11/Nursing-schooll1.jpg",
-        "thumb": "/assets/uploads/2018/11/Nursing-schooll1-400x284.jpg",
+        "thumb": "/assets/uploads/2018/11/Nursing-schooll1-400x284.webp",
         "alt": "Nursing School cum Hostel Block, Numaligarh, Assam, photograph 1",
         "width": 1040,
         "height": 584,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/11/Nursing-schooll5.jpg",
-        "thumb": "/assets/uploads/2018/11/Nursing-schooll5-400x284.jpg",
+        "src": "/assets/uploads/2018/11/Nursing-schooll5.webp",
+        "thumb": "/assets/uploads/2018/11/Nursing-schooll5-400x284.webp",
         "alt": "Nursing School cum Hostel Block, Numaligarh, Assam, photograph 2",
         "width": 1040,
         "height": 584,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/11/Nursing-schooll10.jpg",
-        "thumb": "/assets/uploads/2018/11/Nursing-schooll10-400x284.jpg",
+        "src": "/assets/uploads/2018/11/Nursing-schooll10.webp",
+        "thumb": "/assets/uploads/2018/11/Nursing-schooll10-400x284.webp",
         "alt": "Nursing School cum Hostel Block, Numaligarh, Assam, photograph 3",
         "width": 720,
         "height": 1280,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/11/Nursing-schooll15.jpg",
-        "thumb": "/assets/uploads/2018/11/Nursing-schooll15-400x284.jpg",
+        "src": "/assets/uploads/2018/11/Nursing-schooll15.webp",
+        "thumb": "/assets/uploads/2018/11/Nursing-schooll15-400x284.webp",
         "alt": "Nursing School cum Hostel Block, Numaligarh, Assam, photograph 4",
         "width": 1040,
         "height": 584,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/11/Nursing-schooll20.jpg",
-        "thumb": "/assets/uploads/2018/11/Nursing-schooll20-400x284.jpg",
+        "src": "/assets/uploads/2018/11/Nursing-schooll20.webp",
+        "thumb": "/assets/uploads/2018/11/Nursing-schooll20-400x284.webp",
         "alt": "Nursing School cum Hostel Block, Numaligarh, Assam, photograph 5",
         "width": 1040,
         "height": 584,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/11/IMG-20170917-WA0043.jpg",
-        "thumb": "/assets/uploads/2018/11/IMG-20170917-WA0043-400x284.jpg",
+        "src": "/assets/uploads/2018/11/IMG-20170917-WA0043.webp",
+        "thumb": "/assets/uploads/2018/11/IMG-20170917-WA0043-400x284.webp",
         "alt": "Nursing School cum Hostel Block, Numaligarh, Assam, photograph 6",
         "width": 1280,
         "height": 960,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/11/IMG-20170916-WA0020.jpg",
-        "thumb": "/assets/uploads/2018/11/IMG-20170916-WA0020-400x284.jpg",
+        "src": "/assets/uploads/2018/11/IMG-20170916-WA0020.webp",
+        "thumb": "/assets/uploads/2018/11/IMG-20170916-WA0020-400x284.webp",
         "alt": "Nursing School cum Hostel Block, Numaligarh, Assam, photograph 7",
         "width": 1280,
         "height": 960,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/11/IMG-20170907-WA0012.jpg",
-        "thumb": "/assets/uploads/2018/11/IMG-20170907-WA0012-400x284.jpg",
+        "src": "/assets/uploads/2018/11/IMG-20170907-WA0012.webp",
+        "thumb": "/assets/uploads/2018/11/IMG-20170907-WA0012-400x284.webp",
         "alt": "Nursing School cum Hostel Block, Numaligarh, Assam, photograph 8",
         "width": 1040,
         "height": 584,
@@ -759,63 +765,63 @@
       },
       {
         "src": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-22-at-6.35.11-PM.jpeg",
-        "thumb": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-22-at-6.35.11-PM-400x284.jpeg",
+        "thumb": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-22-at-6.35.11-PM-400x284.webp",
         "alt": "Vasavi Urban, Bachupally, Hyderabad, photograph 1",
         "width": 1280,
         "height": 1138,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-22-at-6.35.12-PM.jpeg",
-        "thumb": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-22-at-6.35.12-PM-400x284.jpeg",
+        "src": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-22-at-6.35.12-PM.webp",
+        "thumb": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-22-at-6.35.12-PM-400x284.webp",
         "alt": "Vasavi Urban, Bachupally, Hyderabad, photograph 2",
         "width": 773,
         "height": 1280,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-22-at-6.35.19-PM-1.jpeg",
-        "thumb": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-22-at-6.35.19-PM-1-400x284.jpeg",
+        "src": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-22-at-6.35.19-PM-1.webp",
+        "thumb": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-22-at-6.35.19-PM-1-400x284.webp",
         "alt": "Vasavi Urban, Bachupally, Hyderabad, photograph 3",
         "width": 1280,
         "height": 1135,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-22-at-6.35.19-PM.jpeg",
-        "thumb": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-22-at-6.35.19-PM-400x284.jpeg",
+        "src": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-22-at-6.35.19-PM.webp",
+        "thumb": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-22-at-6.35.19-PM-400x284.webp",
         "alt": "Vasavi Urban, Bachupally, Hyderabad, photograph 4",
         "width": 1280,
         "height": 1138,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-22-at-6.35.20-PM-1.jpeg",
-        "thumb": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-22-at-6.35.20-PM-1-400x284.jpeg",
+        "src": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-22-at-6.35.20-PM-1.webp",
+        "thumb": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-22-at-6.35.20-PM-1-400x284.webp",
         "alt": "Vasavi Urban, Bachupally, Hyderabad, photograph 5",
         "width": 770,
         "height": 1280,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-22-at-6.35.20-PM.jpeg",
-        "thumb": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-22-at-6.35.20-PM-400x284.jpeg",
+        "src": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-22-at-6.35.20-PM.webp",
+        "thumb": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-22-at-6.35.20-PM-400x284.webp",
         "alt": "Vasavi Urban, Bachupally, Hyderabad, photograph 6",
         "width": 1194,
         "height": 1280,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-22-at-6.35.21-PM-1.jpeg",
-        "thumb": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-22-at-6.35.21-PM-1-400x284.jpeg",
+        "src": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-22-at-6.35.21-PM-1.webp",
+        "thumb": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-22-at-6.35.21-PM-1-400x284.webp",
         "alt": "Vasavi Urban, Bachupally, Hyderabad, photograph 7",
         "width": 1280,
         "height": 1132,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-22-at-6.35.21-PM.jpeg",
-        "thumb": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-22-at-6.35.21-PM-400x284.jpeg",
+        "src": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-22-at-6.35.21-PM.webp",
+        "thumb": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-22-at-6.35.21-PM-400x284.webp",
         "alt": "Vasavi Urban, Bachupally, Hyderabad, photograph 8",
         "width": 1280,
         "height": 1221,
@@ -906,63 +912,63 @@
       },
       {
         "src": "/assets/uploads/2020/05/7.jpg",
-        "thumb": "/assets/uploads/2020/05/7-400x284.jpg",
+        "thumb": "/assets/uploads/2020/05/7-400x284.webp",
         "alt": "Golf Links Project, Ghaziabad — Landcraft Developers, photograph 1",
         "width": 761,
         "height": 516,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2020/05/8.jpg",
-        "thumb": "/assets/uploads/2020/05/8-400x284.jpg",
+        "src": "/assets/uploads/2020/05/8.webp",
+        "thumb": "/assets/uploads/2020/05/8-400x284.webp",
         "alt": "Golf Links Project, Ghaziabad — Landcraft Developers, photograph 2",
         "width": 755,
         "height": 505,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2020/05/9.jpg",
-        "thumb": "/assets/uploads/2020/05/9-400x284.jpg",
+        "src": "/assets/uploads/2020/05/9.webp",
+        "thumb": "/assets/uploads/2020/05/9-400x284.webp",
         "alt": "Golf Links Project, Ghaziabad — Landcraft Developers, photograph 3",
         "width": 669,
         "height": 503,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2020/05/10.jpg",
-        "thumb": "/assets/uploads/2020/05/10-400x284.jpg",
+        "src": "/assets/uploads/2020/05/10.webp",
+        "thumb": "/assets/uploads/2020/05/10-400x284.webp",
         "alt": "Golf Links Project, Ghaziabad — Landcraft Developers, photograph 4",
         "width": 754,
         "height": 497,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2020/05/11.jpg",
-        "thumb": "/assets/uploads/2020/05/11-400x284.jpg",
+        "src": "/assets/uploads/2020/05/11.webp",
+        "thumb": "/assets/uploads/2020/05/11-400x284.webp",
         "alt": "Golf Links Project, Ghaziabad — Landcraft Developers, photograph 5",
         "width": 596,
         "height": 499,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2020/05/12.jpg",
-        "thumb": "/assets/uploads/2020/05/12-400x284.jpg",
+        "src": "/assets/uploads/2020/05/12.webp",
+        "thumb": "/assets/uploads/2020/05/12-400x284.webp",
         "alt": "Golf Links Project, Ghaziabad — Landcraft Developers, photograph 6",
         "width": 660,
         "height": 492,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2020/05/13.jpg",
-        "thumb": "/assets/uploads/2020/05/13-400x284.jpg",
+        "src": "/assets/uploads/2020/05/13.webp",
+        "thumb": "/assets/uploads/2020/05/13-400x284.webp",
         "alt": "Golf Links Project, Ghaziabad — Landcraft Developers, photograph 7",
         "width": 749,
         "height": 494,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2020/05/14.jpg",
-        "thumb": "/assets/uploads/2020/05/14-400x284.jpg",
+        "src": "/assets/uploads/2020/05/14.webp",
+        "thumb": "/assets/uploads/2020/05/14-400x284.webp",
         "alt": "Golf Links Project, Ghaziabad — Landcraft Developers, photograph 8",
         "width": 675,
         "height": 502,
@@ -1068,55 +1074,55 @@
       },
       {
         "src": "/assets/uploads/2018/09/Jindal-corporate-tower-2.jpg",
-        "thumb": "/assets/uploads/2018/09/Jindal-corporate-tower-2-400x284.jpg",
+        "thumb": "/assets/uploads/2018/09/Jindal-corporate-tower-2-400x284.webp",
         "alt": "Corporate Tower, Jindal Steel & Power, Raigarh, photograph 1",
         "width": 1200,
         "height": 797,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/09/Jindal-corporate-tower-1.jpg",
-        "thumb": "/assets/uploads/2018/09/Jindal-corporate-tower-1-400x284.jpg",
+        "src": "/assets/uploads/2018/09/Jindal-corporate-tower-1.webp",
+        "thumb": "/assets/uploads/2018/09/Jindal-corporate-tower-1-400x284.webp",
         "alt": "Corporate Tower, Jindal Steel & Power, Raigarh, photograph 2",
         "width": 1200,
         "height": 797,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/09/Jindal-corporate-tower-3.jpg",
-        "thumb": "/assets/uploads/2018/09/Jindal-corporate-tower-3-400x284.jpg",
+        "src": "/assets/uploads/2018/09/Jindal-corporate-tower-3.webp",
+        "thumb": "/assets/uploads/2018/09/Jindal-corporate-tower-3-400x284.webp",
         "alt": "Corporate Tower, Jindal Steel & Power, Raigarh, photograph 3",
         "width": 1200,
         "height": 797,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/09/Jindal-corporate-tower-4.jpg",
-        "thumb": "/assets/uploads/2018/09/Jindal-corporate-tower-4-400x284.jpg",
+        "src": "/assets/uploads/2018/09/Jindal-corporate-tower-4.webp",
+        "thumb": "/assets/uploads/2018/09/Jindal-corporate-tower-4-400x284.webp",
         "alt": "Corporate Tower, Jindal Steel & Power, Raigarh, photograph 4",
         "width": 1200,
         "height": 797,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/09/Jindal-corporate-tower-5.jpg",
-        "thumb": "/assets/uploads/2018/09/Jindal-corporate-tower-5-400x284.jpg",
+        "src": "/assets/uploads/2018/09/Jindal-corporate-tower-5.webp",
+        "thumb": "/assets/uploads/2018/09/Jindal-corporate-tower-5-400x284.webp",
         "alt": "Corporate Tower, Jindal Steel & Power, Raigarh, photograph 5",
         "width": 1200,
         "height": 797,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/09/Jindal-corporate-tower-6.jpg",
-        "thumb": "/assets/uploads/2018/09/Jindal-corporate-tower-6-400x284.jpg",
+        "src": "/assets/uploads/2018/09/Jindal-corporate-tower-6.webp",
+        "thumb": "/assets/uploads/2018/09/Jindal-corporate-tower-6-400x284.webp",
         "alt": "Corporate Tower, Jindal Steel & Power, Raigarh, photograph 6",
         "width": 1200,
         "height": 797,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/09/Jindal-corporate-tower-7.jpg",
-        "thumb": "/assets/uploads/2018/09/Jindal-corporate-tower-7-400x284.jpg",
+        "src": "/assets/uploads/2018/09/Jindal-corporate-tower-7.webp",
+        "thumb": "/assets/uploads/2018/09/Jindal-corporate-tower-7-400x284.webp",
         "alt": "Corporate Tower, Jindal Steel & Power, Raigarh, photograph 7",
         "width": 1200,
         "height": 797,
@@ -1339,63 +1345,63 @@
       },
       {
         "src": "/assets/uploads/2018/11/EWS-Housing-Dundigal1.jpg",
-        "thumb": "/assets/uploads/2018/11/EWS-Housing-Dundigal1-400x284.jpg",
+        "thumb": "/assets/uploads/2018/11/EWS-Housing-Dundigal1-400x284.webp",
         "alt": "GHMC 2BHK Housing, Dundigal, Hyderabad, photograph 1",
         "width": 1200,
         "height": 600,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/11/EWS-Housing-Dundigal2.jpg",
-        "thumb": "/assets/uploads/2018/11/EWS-Housing-Dundigal2-400x284.jpg",
+        "src": "/assets/uploads/2018/11/EWS-Housing-Dundigal2.webp",
+        "thumb": "/assets/uploads/2018/11/EWS-Housing-Dundigal2-400x284.webp",
         "alt": "GHMC 2BHK Housing, Dundigal, Hyderabad, photograph 2",
         "width": 1200,
         "height": 600,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/11/EWS-Housing-Dundigal3.jpg",
-        "thumb": "/assets/uploads/2018/11/EWS-Housing-Dundigal3-400x284.jpg",
+        "src": "/assets/uploads/2018/11/EWS-Housing-Dundigal3.webp",
+        "thumb": "/assets/uploads/2018/11/EWS-Housing-Dundigal3-400x284.webp",
         "alt": "GHMC 2BHK Housing, Dundigal, Hyderabad, photograph 3",
         "width": 1200,
         "height": 476,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/11/EWS-Housing-Dundigal4.jpg",
-        "thumb": "/assets/uploads/2018/11/EWS-Housing-Dundigal4-400x284.jpg",
+        "src": "/assets/uploads/2018/11/EWS-Housing-Dundigal4.webp",
+        "thumb": "/assets/uploads/2018/11/EWS-Housing-Dundigal4-400x284.webp",
         "alt": "GHMC 2BHK Housing, Dundigal, Hyderabad, photograph 4",
         "width": 1200,
         "height": 600,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/11/EWS-Housing-Dundigal5.jpg",
-        "thumb": "/assets/uploads/2018/11/EWS-Housing-Dundigal5-400x284.jpg",
+        "src": "/assets/uploads/2018/11/EWS-Housing-Dundigal5.webp",
+        "thumb": "/assets/uploads/2018/11/EWS-Housing-Dundigal5-400x284.webp",
         "alt": "GHMC 2BHK Housing, Dundigal, Hyderabad, photograph 5",
         "width": 1200,
         "height": 600,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/11/EWS-Housing-Dundigal6.jpg",
-        "thumb": "/assets/uploads/2018/11/EWS-Housing-Dundigal6-400x284.jpg",
+        "src": "/assets/uploads/2018/11/EWS-Housing-Dundigal6.webp",
+        "thumb": "/assets/uploads/2018/11/EWS-Housing-Dundigal6-400x284.webp",
         "alt": "GHMC 2BHK Housing, Dundigal, Hyderabad, photograph 6",
         "width": 1200,
         "height": 600,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/11/EWS-Housing-Dundigal7.jpg",
-        "thumb": "/assets/uploads/2018/11/EWS-Housing-Dundigal7-400x284.jpg",
+        "src": "/assets/uploads/2018/11/EWS-Housing-Dundigal7.webp",
+        "thumb": "/assets/uploads/2018/11/EWS-Housing-Dundigal7-400x284.webp",
         "alt": "GHMC 2BHK Housing, Dundigal, Hyderabad, photograph 7",
         "width": 1200,
         "height": 600,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/11/EWS-Housing-Dundigal8.jpg",
-        "thumb": "/assets/uploads/2018/11/EWS-Housing-Dundigal8-400x284.jpg",
+        "src": "/assets/uploads/2018/11/EWS-Housing-Dundigal8.webp",
+        "thumb": "/assets/uploads/2018/11/EWS-Housing-Dundigal8-400x284.webp",
         "alt": "GHMC 2BHK Housing, Dundigal, Hyderabad, photograph 8",
         "width": 1200,
         "height": 600,
@@ -1552,15 +1558,15 @@
       },
       {
         "src": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-02-at-11.10.06-AM.jpeg",
-        "thumb": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-02-at-11.10.06-AM-400x284.jpeg",
+        "thumb": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-02-at-11.10.06-AM-400x284.webp",
         "alt": "Sai Life Sciences R&T Building, photograph 1",
         "width": 1160,
         "height": 868,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-02-at-11.10.07-AM-1.jpeg",
-        "thumb": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-02-at-11.10.07-AM-1-400x284.jpeg",
+        "src": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-02-at-11.10.07-AM-1.webp",
+        "thumb": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-02-at-11.10.07-AM-1-400x284.webp",
         "alt": "Sai Life Sciences R&T Building, photograph 2",
         "width": 1160,
         "height": 868,
@@ -1568,31 +1574,31 @@
       },
       {
         "src": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-02-at-11.10.07-AM.jpeg",
-        "thumb": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-02-at-11.10.07-AM-400x284.jpeg",
+        "thumb": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-02-at-11.10.07-AM-400x284.webp",
         "alt": "Sai Life Sciences R&T Building, photograph 3",
         "width": 1160,
         "height": 868,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-02-at-11.10.08-AM-1.jpeg",
-        "thumb": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-02-at-11.10.08-AM-1-400x284.jpeg",
+        "src": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-02-at-11.10.08-AM-1.webp",
+        "thumb": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-02-at-11.10.08-AM-1-400x284.webp",
         "alt": "Sai Life Sciences R&T Building, photograph 4",
         "width": 1160,
         "height": 868,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-02-at-11.10.08-AM.jpeg",
-        "thumb": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-02-at-11.10.08-AM-400x284.jpeg",
+        "src": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-02-at-11.10.08-AM.webp",
+        "thumb": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-02-at-11.10.08-AM-400x284.webp",
         "alt": "Sai Life Sciences R&T Building, photograph 5",
         "width": 1160,
         "height": 868,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-02-at-11.10.09-AM.jpeg",
-        "thumb": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-02-at-11.10.09-AM-400x284.jpeg",
+        "src": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-02-at-11.10.09-AM.webp",
+        "thumb": "/assets/uploads/2020/09/WhatsApp-Image-2020-09-02-at-11.10.09-AM-400x284.webp",
         "alt": "Sai Life Sciences R&T Building, photograph 6",
         "width": 934,
         "height": 1280,
@@ -1904,55 +1910,55 @@
       },
       {
         "src": "/assets/uploads/2018/09/11MW-Power-plant-4.jpg",
-        "thumb": "/assets/uploads/2018/09/11MW-Power-plant-4-400x284.jpg",
+        "thumb": "/assets/uploads/2018/09/11MW-Power-plant-4-400x284.webp",
         "alt": "12 MW Power Plant, Bibi Nagar, photograph 1",
         "width": 1200,
         "height": 900,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/09/11MW-Power-plant-1.jpg",
-        "thumb": "/assets/uploads/2018/09/11MW-Power-plant-1-400x284.jpg",
+        "src": "/assets/uploads/2018/09/11MW-Power-plant-1.webp",
+        "thumb": "/assets/uploads/2018/09/11MW-Power-plant-1-400x284.webp",
         "alt": "12 MW Power Plant, Bibi Nagar, photograph 2",
         "width": 1200,
         "height": 1600,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/09/11MW-Power-plant-2.jpg",
-        "thumb": "/assets/uploads/2018/09/11MW-Power-plant-2-400x284.jpg",
+        "src": "/assets/uploads/2018/09/11MW-Power-plant-2.webp",
+        "thumb": "/assets/uploads/2018/09/11MW-Power-plant-2-400x284.webp",
         "alt": "12 MW Power Plant, Bibi Nagar, photograph 3",
         "width": 1200,
         "height": 1600,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/09/11MW-Power-plant-3.jpg",
-        "thumb": "/assets/uploads/2018/09/11MW-Power-plant-3-400x284.jpg",
+        "src": "/assets/uploads/2018/09/11MW-Power-plant-3.webp",
+        "thumb": "/assets/uploads/2018/09/11MW-Power-plant-3-400x284.webp",
         "alt": "12 MW Power Plant, Bibi Nagar, photograph 4",
         "width": 1200,
         "height": 900,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/09/11MW-Power-plant-5.jpg",
-        "thumb": "/assets/uploads/2018/09/11MW-Power-plant-5-400x284.jpg",
+        "src": "/assets/uploads/2018/09/11MW-Power-plant-5.webp",
+        "thumb": "/assets/uploads/2018/09/11MW-Power-plant-5-400x284.webp",
         "alt": "12 MW Power Plant, Bibi Nagar, photograph 5",
         "width": 1200,
         "height": 1600,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/09/11MW-Power-plant-6.jpg",
-        "thumb": "/assets/uploads/2018/09/11MW-Power-plant-6-400x284.jpg",
+        "src": "/assets/uploads/2018/09/11MW-Power-plant-6.webp",
+        "thumb": "/assets/uploads/2018/09/11MW-Power-plant-6-400x284.webp",
         "alt": "12 MW Power Plant, Bibi Nagar, photograph 6",
         "width": 1200,
         "height": 900,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/09/11MW-Power-plant-7.jpg",
-        "thumb": "/assets/uploads/2018/09/11MW-Power-plant-7-400x284.jpg",
+        "src": "/assets/uploads/2018/09/11MW-Power-plant-7.webp",
+        "thumb": "/assets/uploads/2018/09/11MW-Power-plant-7-400x284.webp",
         "alt": "12 MW Power Plant, Bibi Nagar, photograph 7",
         "width": 1200,
         "height": 1600,
@@ -2057,63 +2063,63 @@
     "images": [
       {
         "src": "/assets/uploads/2018/09/Kethanakonda-43.jpg",
-        "thumb": "/assets/uploads/2018/09/Kethanakonda-43-400x284.jpg",
+        "thumb": "/assets/uploads/2018/09/Kethanakonda-43-400x284.webp",
         "alt": "Technology Demonstration Housing, Kethanakonda, Amaravati region, Andhra Pradesh, photograph 1",
         "width": 1200,
         "height": 900,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/09/Kethanakonda-1.jpg",
-        "thumb": "/assets/uploads/2018/09/Kethanakonda-1-400x284.jpg",
+        "src": "/assets/uploads/2018/09/Kethanakonda-1.webp",
+        "thumb": "/assets/uploads/2018/09/Kethanakonda-1-400x284.webp",
         "alt": "Technology Demonstration Housing, Kethanakonda, Amaravati region, Andhra Pradesh, photograph 2",
         "width": 1200,
         "height": 900,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/09/Kethanakonda-8.jpg",
-        "thumb": "/assets/uploads/2018/09/Kethanakonda-8-400x284.jpg",
+        "src": "/assets/uploads/2018/09/Kethanakonda-8.webp",
+        "thumb": "/assets/uploads/2018/09/Kethanakonda-8-400x284.webp",
         "alt": "Technology Demonstration Housing, Kethanakonda, Amaravati region, Andhra Pradesh, photograph 3",
         "width": 1200,
         "height": 900,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/09/Kethanakonda-15.jpg",
-        "thumb": "/assets/uploads/2018/09/Kethanakonda-15-400x284.jpg",
+        "src": "/assets/uploads/2018/09/Kethanakonda-15.webp",
+        "thumb": "/assets/uploads/2018/09/Kethanakonda-15-400x284.webp",
         "alt": "Technology Demonstration Housing, Kethanakonda, Amaravati region, Andhra Pradesh, photograph 4",
         "width": 1200,
         "height": 900,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/09/Kethanakonda-22.jpg",
-        "thumb": "/assets/uploads/2018/09/Kethanakonda-22-400x284.jpg",
+        "src": "/assets/uploads/2018/09/Kethanakonda-22.webp",
+        "thumb": "/assets/uploads/2018/09/Kethanakonda-22-400x284.webp",
         "alt": "Technology Demonstration Housing, Kethanakonda, Amaravati region, Andhra Pradesh, photograph 5",
         "width": 1200,
         "height": 900,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/09/Kethanakonda-29.jpg",
-        "thumb": "/assets/uploads/2018/09/Kethanakonda-29-400x284.jpg",
+        "src": "/assets/uploads/2018/09/Kethanakonda-29.webp",
+        "thumb": "/assets/uploads/2018/09/Kethanakonda-29-400x284.webp",
         "alt": "Technology Demonstration Housing, Kethanakonda, Amaravati region, Andhra Pradesh, photograph 6",
         "width": 1200,
         "height": 900,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/09/Kethanakonda-36.jpg",
-        "thumb": "/assets/uploads/2018/09/Kethanakonda-36-400x284.jpg",
+        "src": "/assets/uploads/2018/09/Kethanakonda-36.webp",
+        "thumb": "/assets/uploads/2018/09/Kethanakonda-36-400x284.webp",
         "alt": "Technology Demonstration Housing, Kethanakonda, Amaravati region, Andhra Pradesh, photograph 7",
         "width": 1200,
         "height": 900,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/09/Kethanakonda-50.jpg",
-        "thumb": "/assets/uploads/2018/09/Kethanakonda-50-400x284.jpg",
+        "src": "/assets/uploads/2018/09/Kethanakonda-50.webp",
+        "thumb": "/assets/uploads/2018/09/Kethanakonda-50-400x284.webp",
         "alt": "Technology Demonstration Housing, Kethanakonda, Amaravati region, Andhra Pradesh, photograph 8",
         "width": 1200,
         "height": 900,
@@ -2142,39 +2148,39 @@
     "images": [
       {
         "src": "/assets/uploads/2019/06/20190620_091232.jpg",
-        "thumb": "/assets/uploads/2019/06/20190620_091232-400x284.jpg",
+        "thumb": "/assets/uploads/2019/06/20190620_091232-400x284.webp",
         "alt": "EWS Housing, Mandadam, Mandadam, Amaravati, photograph 1",
         "width": 1600,
         "height": 900,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2019/06/20190620_091428.jpg",
-        "thumb": "/assets/uploads/2019/06/20190620_091428-400x284.jpg",
+        "src": "/assets/uploads/2019/06/20190620_091428.webp",
+        "thumb": "/assets/uploads/2019/06/20190620_091428-400x284.webp",
         "alt": "EWS Housing, Mandadam, Mandadam, Amaravati, photograph 2",
         "width": 1600,
         "height": 900,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2019/06/20190620_091449.jpg",
-        "thumb": "/assets/uploads/2019/06/20190620_091449-400x284.jpg",
+        "src": "/assets/uploads/2019/06/20190620_091449.webp",
+        "thumb": "/assets/uploads/2019/06/20190620_091449-400x284.webp",
         "alt": "EWS Housing, Mandadam, Mandadam, Amaravati, photograph 3",
         "width": 1600,
         "height": 900,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2019/06/20190620_091501.jpg",
-        "thumb": "/assets/uploads/2019/06/20190620_091501-400x284.jpg",
+        "src": "/assets/uploads/2019/06/20190620_091501.webp",
+        "thumb": "/assets/uploads/2019/06/20190620_091501-400x284.webp",
         "alt": "EWS Housing, Mandadam, Mandadam, Amaravati, photograph 4",
-        "width": 1600,
-        "height": 900,
+        "width": 900,
+        "height": 1600,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2019/06/20190620_091530.jpg",
-        "thumb": "/assets/uploads/2019/06/20190620_091530-400x284.jpg",
+        "src": "/assets/uploads/2019/06/20190620_091530.webp",
+        "thumb": "/assets/uploads/2019/06/20190620_091530-400x284.webp",
         "alt": "EWS Housing, Mandadam, Mandadam, Amaravati, photograph 5",
         "width": 1600,
         "height": 900,
@@ -2203,63 +2209,63 @@
     "images": [
       {
         "src": "/assets/uploads/2018/09/Insulated-wall-construction-Orissa6.jpg",
-        "thumb": "/assets/uploads/2018/09/Insulated-wall-construction-Orissa6-400x284.jpg",
+        "thumb": "/assets/uploads/2018/09/Insulated-wall-construction-Orissa6-400x284.webp",
         "alt": "Insulated Wall Construction, Odisha, photograph 1",
         "width": 1200,
         "height": 900,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/09/Insulated-wall-construction-Orissa1.jpg",
-        "thumb": "/assets/uploads/2018/09/Insulated-wall-construction-Orissa1-400x284.jpg",
+        "src": "/assets/uploads/2018/09/Insulated-wall-construction-Orissa1.webp",
+        "thumb": "/assets/uploads/2018/09/Insulated-wall-construction-Orissa1-400x284.webp",
         "alt": "Insulated Wall Construction, Odisha, photograph 2",
         "width": 1200,
         "height": 900,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/09/Insulated-wall-construction-Orissa2.jpg",
-        "thumb": "/assets/uploads/2018/09/Insulated-wall-construction-Orissa2-400x284.jpg",
+        "src": "/assets/uploads/2018/09/Insulated-wall-construction-Orissa2.webp",
+        "thumb": "/assets/uploads/2018/09/Insulated-wall-construction-Orissa2-400x284.webp",
         "alt": "Insulated Wall Construction, Odisha, photograph 3",
         "width": 1200,
         "height": 900,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/09/Insulated-wall-construction-Orissa3.jpg",
-        "thumb": "/assets/uploads/2018/09/Insulated-wall-construction-Orissa3-400x284.jpg",
+        "src": "/assets/uploads/2018/09/Insulated-wall-construction-Orissa3.webp",
+        "thumb": "/assets/uploads/2018/09/Insulated-wall-construction-Orissa3-400x284.webp",
         "alt": "Insulated Wall Construction, Odisha, photograph 4",
         "width": 1200,
         "height": 900,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/09/Insulated-wall-construction-Orissa4.jpg",
-        "thumb": "/assets/uploads/2018/09/Insulated-wall-construction-Orissa4-400x284.jpg",
+        "src": "/assets/uploads/2018/09/Insulated-wall-construction-Orissa4.webp",
+        "thumb": "/assets/uploads/2018/09/Insulated-wall-construction-Orissa4-400x284.webp",
         "alt": "Insulated Wall Construction, Odisha, photograph 5",
         "width": 1200,
         "height": 1600,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/09/Insulated-wall-construction-Orissa5.jpg",
-        "thumb": "/assets/uploads/2018/09/Insulated-wall-construction-Orissa5-400x284.jpg",
+        "src": "/assets/uploads/2018/09/Insulated-wall-construction-Orissa5.webp",
+        "thumb": "/assets/uploads/2018/09/Insulated-wall-construction-Orissa5-400x284.webp",
         "alt": "Insulated Wall Construction, Odisha, photograph 6",
         "width": 1200,
         "height": 900,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/09/Insulated-wall-construction-Orissa7.jpg",
-        "thumb": "/assets/uploads/2018/09/Insulated-wall-construction-Orissa7-400x284.jpg",
+        "src": "/assets/uploads/2018/09/Insulated-wall-construction-Orissa7.webp",
+        "thumb": "/assets/uploads/2018/09/Insulated-wall-construction-Orissa7-400x284.webp",
         "alt": "Insulated Wall Construction, Odisha, photograph 7",
         "width": 1200,
         "height": 900,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/09/Insulated-wall-construction-Orissa8.jpg",
-        "thumb": "/assets/uploads/2018/09/Insulated-wall-construction-Orissa8-400x284.jpg",
+        "src": "/assets/uploads/2018/09/Insulated-wall-construction-Orissa8.webp",
+        "thumb": "/assets/uploads/2018/09/Insulated-wall-construction-Orissa8-400x284.webp",
         "alt": "Insulated Wall Construction, Odisha, photograph 8",
         "width": 1200,
         "height": 900,
@@ -2288,63 +2294,63 @@
     "images": [
       {
         "src": "/assets/uploads/2018/09/EWS-MONOLITHIC-CONSTRUCTION-AP11.jpg",
-        "thumb": "/assets/uploads/2018/09/EWS-MONOLITHIC-CONSTRUCTION-AP11-400x284.jpg",
+        "thumb": "/assets/uploads/2018/09/EWS-MONOLITHIC-CONSTRUCTION-AP11-400x284.webp",
         "alt": "EWS Monolithic Housing, Andhra Pradesh and Bangalore, photograph 1",
         "width": 1040,
         "height": 585,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/09/EWS-MONOLITHIC-CONSTRUCTION-AP1.jpg",
-        "thumb": "/assets/uploads/2018/09/EWS-MONOLITHIC-CONSTRUCTION-AP1-400x284.jpg",
+        "src": "/assets/uploads/2018/09/EWS-MONOLITHIC-CONSTRUCTION-AP1.webp",
+        "thumb": "/assets/uploads/2018/09/EWS-MONOLITHIC-CONSTRUCTION-AP1-400x284.webp",
         "alt": "EWS Monolithic Housing, Andhra Pradesh and Bangalore, photograph 2",
         "width": 1040,
         "height": 585,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/09/EWS-MONOLITHIC-CONSTRUCTION-AP4.jpg",
-        "thumb": "/assets/uploads/2018/09/EWS-MONOLITHIC-CONSTRUCTION-AP4-400x284.jpg",
+        "src": "/assets/uploads/2018/09/EWS-MONOLITHIC-CONSTRUCTION-AP4.webp",
+        "thumb": "/assets/uploads/2018/09/EWS-MONOLITHIC-CONSTRUCTION-AP4-400x284.webp",
         "alt": "EWS Monolithic Housing, Andhra Pradesh and Bangalore, photograph 3",
         "width": 1040,
         "height": 585,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/09/EWS-MONOLITHIC-CONSTRUCTION-AP7.jpg",
-        "thumb": "/assets/uploads/2018/09/EWS-MONOLITHIC-CONSTRUCTION-AP7-400x284.jpg",
+        "src": "/assets/uploads/2018/09/EWS-MONOLITHIC-CONSTRUCTION-AP7.webp",
+        "thumb": "/assets/uploads/2018/09/EWS-MONOLITHIC-CONSTRUCTION-AP7-400x284.webp",
         "alt": "EWS Monolithic Housing, Andhra Pradesh and Bangalore, photograph 4",
         "width": 1040,
         "height": 585,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/09/EWS-MONOLITHIC-CONSTRUCTION-AP10.jpg",
-        "thumb": "/assets/uploads/2018/09/EWS-MONOLITHIC-CONSTRUCTION-AP10-400x284.jpg",
+        "src": "/assets/uploads/2018/09/EWS-MONOLITHIC-CONSTRUCTION-AP10.webp",
+        "thumb": "/assets/uploads/2018/09/EWS-MONOLITHIC-CONSTRUCTION-AP10-400x284.webp",
         "alt": "EWS Monolithic Housing, Andhra Pradesh and Bangalore, photograph 5",
         "width": 1040,
         "height": 585,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/09/EWS-MONOLITHIC-CONSTRUCTION-AP13.jpg",
-        "thumb": "/assets/uploads/2018/09/EWS-MONOLITHIC-CONSTRUCTION-AP13-400x284.jpg",
+        "src": "/assets/uploads/2018/09/EWS-MONOLITHIC-CONSTRUCTION-AP13.webp",
+        "thumb": "/assets/uploads/2018/09/EWS-MONOLITHIC-CONSTRUCTION-AP13-400x284.webp",
         "alt": "EWS Monolithic Housing, Andhra Pradesh and Bangalore, photograph 6",
         "width": 1040,
         "height": 585,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/09/EWS-MONOLITHIC-CONSTRUCTION-AP16.jpg",
-        "thumb": "/assets/uploads/2018/09/EWS-MONOLITHIC-CONSTRUCTION-AP16-400x284.jpg",
+        "src": "/assets/uploads/2018/09/EWS-MONOLITHIC-CONSTRUCTION-AP16.webp",
+        "thumb": "/assets/uploads/2018/09/EWS-MONOLITHIC-CONSTRUCTION-AP16-400x284.webp",
         "alt": "EWS Monolithic Housing, Andhra Pradesh and Bangalore, photograph 7",
         "width": 1040,
         "height": 585,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/09/EWS-MONOLITHIC-CONSTRUCTION-AP19.jpg",
-        "thumb": "/assets/uploads/2018/09/EWS-MONOLITHIC-CONSTRUCTION-AP19-400x284.jpg",
+        "src": "/assets/uploads/2018/09/EWS-MONOLITHIC-CONSTRUCTION-AP19.webp",
+        "thumb": "/assets/uploads/2018/09/EWS-MONOLITHIC-CONSTRUCTION-AP19-400x284.webp",
         "alt": "EWS Monolithic Housing, Andhra Pradesh and Bangalore, photograph 8",
         "width": 1040,
         "height": 585,
@@ -2371,63 +2377,63 @@
     "images": [
       {
         "src": "/assets/uploads/2018/11/Goa-Villasl1.jpg",
-        "thumb": "/assets/uploads/2018/11/Goa-Villasl1-400x284.jpg",
+        "thumb": "/assets/uploads/2018/11/Goa-Villasl1-400x284.webp",
         "alt": "Goa Villas, Goa, photograph 1",
         "width": 1200,
         "height": 900,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/11/Goa-Villasl2.jpg",
-        "thumb": "/assets/uploads/2018/11/Goa-Villasl2-400x284.jpg",
+        "src": "/assets/uploads/2018/11/Goa-Villasl2.webp",
+        "thumb": "/assets/uploads/2018/11/Goa-Villasl2-400x284.webp",
         "alt": "Goa Villas, Goa, photograph 2",
         "width": 1200,
         "height": 900,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/11/Goa-Villasl3.jpg",
-        "thumb": "/assets/uploads/2018/11/Goa-Villasl3-400x284.jpg",
+        "src": "/assets/uploads/2018/11/Goa-Villasl3.webp",
+        "thumb": "/assets/uploads/2018/11/Goa-Villasl3-400x284.webp",
         "alt": "Goa Villas, Goa, photograph 3",
         "width": 1200,
         "height": 900,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/11/Goa-Villasl4.jpg",
-        "thumb": "/assets/uploads/2018/11/Goa-Villasl4-400x284.jpg",
+        "src": "/assets/uploads/2018/11/Goa-Villasl4.webp",
+        "thumb": "/assets/uploads/2018/11/Goa-Villasl4-400x284.webp",
         "alt": "Goa Villas, Goa, photograph 4",
         "width": 1200,
         "height": 1600,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/11/Goa-Villasl5.jpg",
-        "thumb": "/assets/uploads/2018/11/Goa-Villasl5-400x284.jpg",
+        "src": "/assets/uploads/2018/11/Goa-Villasl5.webp",
+        "thumb": "/assets/uploads/2018/11/Goa-Villasl5-400x284.webp",
         "alt": "Goa Villas, Goa, photograph 5",
         "width": 1200,
         "height": 1600,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/11/Goa-Villasl6.jpg",
-        "thumb": "/assets/uploads/2018/11/Goa-Villasl6-400x284.jpg",
+        "src": "/assets/uploads/2018/11/Goa-Villasl6.webp",
+        "thumb": "/assets/uploads/2018/11/Goa-Villasl6-400x284.webp",
         "alt": "Goa Villas, Goa, photograph 6",
         "width": 1200,
         "height": 900,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/11/Goa-Villasl7.jpg",
-        "thumb": "/assets/uploads/2018/11/Goa-Villasl7-400x284.jpg",
+        "src": "/assets/uploads/2018/11/Goa-Villasl7.webp",
+        "thumb": "/assets/uploads/2018/11/Goa-Villasl7-400x284.webp",
         "alt": "Goa Villas, Goa, photograph 7",
         "width": 1200,
         "height": 1200,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/11/Goa-Villasl8.jpg",
-        "thumb": "/assets/uploads/2018/11/Goa-Villasl8-400x284.jpg",
+        "src": "/assets/uploads/2018/11/Goa-Villasl8.webp",
+        "thumb": "/assets/uploads/2018/11/Goa-Villasl8-400x284.webp",
         "alt": "Goa Villas, Goa, photograph 8",
         "width": 1200,
         "height": 1200,
@@ -2453,63 +2459,63 @@
     "images": [
       {
         "src": "/assets/uploads/2018/11/Kethanakonda-conference-hall1.jpg",
-        "thumb": "/assets/uploads/2018/11/Kethanakonda-conference-hall1-400x284.jpg",
+        "thumb": "/assets/uploads/2018/11/Kethanakonda-conference-hall1-400x284.webp",
         "alt": "Conference Hall, Kethanakonda, Andhra Pradesh, photograph 1",
         "width": 1200,
         "height": 900,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/11/Kethanakonda-conference-hall2.jpg",
-        "thumb": "/assets/uploads/2018/11/Kethanakonda-conference-hall2-400x284.jpg",
+        "src": "/assets/uploads/2018/11/Kethanakonda-conference-hall2.webp",
+        "thumb": "/assets/uploads/2018/11/Kethanakonda-conference-hall2-400x284.webp",
         "alt": "Conference Hall, Kethanakonda, Andhra Pradesh, photograph 2",
         "width": 1200,
         "height": 900,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/11/Kethanakonda-conference-hall3.jpg",
-        "thumb": "/assets/uploads/2018/11/Kethanakonda-conference-hall3-400x284.jpg",
+        "src": "/assets/uploads/2018/11/Kethanakonda-conference-hall3.webp",
+        "thumb": "/assets/uploads/2018/11/Kethanakonda-conference-hall3-400x284.webp",
         "alt": "Conference Hall, Kethanakonda, Andhra Pradesh, photograph 3",
         "width": 1200,
         "height": 900,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/11/Kethanakonda-conference-hall4.jpg",
-        "thumb": "/assets/uploads/2018/11/Kethanakonda-conference-hall4-400x284.jpg",
+        "src": "/assets/uploads/2018/11/Kethanakonda-conference-hall4.webp",
+        "thumb": "/assets/uploads/2018/11/Kethanakonda-conference-hall4-400x284.webp",
         "alt": "Conference Hall, Kethanakonda, Andhra Pradesh, photograph 4",
         "width": 1200,
         "height": 900,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/11/2016-02-15-11.02.10.jpg",
-        "thumb": "/assets/uploads/2018/11/2016-02-15-11.02.10-400x284.jpg",
+        "src": "/assets/uploads/2018/11/2016-02-15-11.02.10.webp",
+        "thumb": "/assets/uploads/2018/11/2016-02-15-11.02.10-400x284.webp",
         "alt": "Conference Hall, Kethanakonda, Andhra Pradesh, photograph 5",
         "width": 1600,
         "height": 1200,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/11/2016-02-15-11.14.23.jpg",
-        "thumb": "/assets/uploads/2018/11/2016-02-15-11.14.23-400x284.jpg",
+        "src": "/assets/uploads/2018/11/2016-02-15-11.14.23.webp",
+        "thumb": "/assets/uploads/2018/11/2016-02-15-11.14.23-400x284.webp",
         "alt": "Conference Hall, Kethanakonda, Andhra Pradesh, photograph 6",
         "width": 1600,
         "height": 1200,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/11/2016-02-15-11.32.14.jpg",
-        "thumb": "/assets/uploads/2018/11/2016-02-15-11.32.14-400x284.jpg",
+        "src": "/assets/uploads/2018/11/2016-02-15-11.32.14.webp",
+        "thumb": "/assets/uploads/2018/11/2016-02-15-11.32.14-400x284.webp",
         "alt": "Conference Hall, Kethanakonda, Andhra Pradesh, photograph 7",
         "width": 1600,
         "height": 1200,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/11/2016-02-15-11.32.32.jpg",
-        "thumb": "/assets/uploads/2018/11/2016-02-15-11.32.32-400x284.jpg",
+        "src": "/assets/uploads/2018/11/2016-02-15-11.32.32.webp",
+        "thumb": "/assets/uploads/2018/11/2016-02-15-11.32.32-400x284.webp",
         "alt": "Conference Hall, Kethanakonda, Andhra Pradesh, photograph 8",
         "width": 1600,
         "height": 1200,
@@ -2535,63 +2541,63 @@
     "images": [
       {
         "src": "/assets/uploads/2018/11/Montessory-school1.jpg",
-        "thumb": "/assets/uploads/2018/11/Montessory-school1-400x284.jpg",
+        "thumb": "/assets/uploads/2018/11/Montessory-school1-400x284.webp",
         "alt": "Montessori School, Bangalore, photograph 1",
         "width": 1040,
         "height": 780,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/11/Montessory-school4.jpg",
-        "thumb": "/assets/uploads/2018/11/Montessory-school4-400x284.jpg",
+        "src": "/assets/uploads/2018/11/Montessory-school4.webp",
+        "thumb": "/assets/uploads/2018/11/Montessory-school4-400x284.webp",
         "alt": "Montessori School, Bangalore, photograph 2",
         "width": 1040,
         "height": 780,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/11/Montessory-school8.jpg",
-        "thumb": "/assets/uploads/2018/11/Montessory-school8-400x284.jpg",
+        "src": "/assets/uploads/2018/11/Montessory-school8.webp",
+        "thumb": "/assets/uploads/2018/11/Montessory-school8-400x284.webp",
         "alt": "Montessori School, Bangalore, photograph 3",
         "width": 1040,
         "height": 780,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/11/Montessory-school12.jpg",
-        "thumb": "/assets/uploads/2018/11/Montessory-school12-400x284.jpg",
+        "src": "/assets/uploads/2018/11/Montessory-school12.webp",
+        "thumb": "/assets/uploads/2018/11/Montessory-school12-400x284.webp",
         "alt": "Montessori School, Bangalore, photograph 4",
         "width": 1040,
         "height": 585,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/11/Montessory-school16.jpg",
-        "thumb": "/assets/uploads/2018/11/Montessory-school16-400x284.jpg",
+        "src": "/assets/uploads/2018/11/Montessory-school16.webp",
+        "thumb": "/assets/uploads/2018/11/Montessory-school16-400x284.webp",
         "alt": "Montessori School, Bangalore, photograph 5",
         "width": 1040,
         "height": 585,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/11/Montessory-school20.jpg",
-        "thumb": "/assets/uploads/2018/11/Montessory-school20-400x284.jpg",
+        "src": "/assets/uploads/2018/11/Montessory-school20.webp",
+        "thumb": "/assets/uploads/2018/11/Montessory-school20-400x284.webp",
         "alt": "Montessori School, Bangalore, photograph 6",
         "width": 1040,
         "height": 585,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/11/Montessory-school24.jpg",
-        "thumb": "/assets/uploads/2018/11/Montessory-school24-400x284.jpg",
+        "src": "/assets/uploads/2018/11/Montessory-school24.webp",
+        "thumb": "/assets/uploads/2018/11/Montessory-school24-400x284.webp",
         "alt": "Montessori School, Bangalore, photograph 7",
         "width": 1040,
         "height": 585,
         "archive": true
       },
       {
-        "src": "/assets/uploads/2018/11/Montessory-school28.jpg",
-        "thumb": "/assets/uploads/2018/11/Montessory-school28-400x284.jpg",
+        "src": "/assets/uploads/2018/11/Montessory-school28.webp",
+        "thumb": "/assets/uploads/2018/11/Montessory-school28-400x284.webp",
         "alt": "Montessori School, Bangalore, photograph 8",
         "width": 1040,
         "height": 585,

@@ -92,27 +92,43 @@ for (const vp of [[1440, 900], [375, 812]]) {
   ok(await p.locator('#heroSlides .hs').count() === HERO.length && await p.$eval('#heroSlides .hs.on img', i => i.complete && i.naturalWidth > 600), `hero shows ${HERO.length} iconic projects, the first photograph loaded`);
   await p.click('#heroDots [data-hs="3"]'); await p.waitForTimeout(1800);
   ok(await p.$eval('#heroSlides .hs.on', e => e.getAttribute('data-slide')) === '3' && await attr(p, '#heroDots [data-hs="3"]', 'aria-current') === 'true', 'hero dot 4 shows the fourth project');
+  if (tag === 'desktop') {
+    await p.mouse.move(vp[0] / 2, vp[1] / 2); await p.waitForTimeout(7200);
+    ok(await p.$eval('#heroSlides .hs.on', e => e.getAttribute('data-slide')) === '4', 'with the pointer over the hero, the projects keep changing');
+    await p.click('#heroDots [data-hs="3"]'); await p.waitForTimeout(1800);
+  }
   ok(await p.$eval('#heroSlides .hs.on img', i => i.complete && i.naturalWidth > 600), 'its photograph loads when shown');
   ok(await p.$eval('#heroSlides .hs.on figcaption a', a => a.getAttribute('href')) === `/projects/${HERO[3].project}/`, 'hero caption links to the project');
   ok(await p.locator('.hero-model, #lab, canvas, script[src*="three"], script[src*="hero-model"]').count() === 0, 'no 3D content on the home page');
   ok((await p.textContent('.mq-l')) === 'Trusted by' && await p.locator('#mqClients span').count() > 8, 'bold clients strip with its label');
   const stats = await p.$$eval('#stats .stat', ss => ss.map(x => x.textContent.replace(/\s+/g, ' ').trim()));
   ok(stats.length === 6 && !stats.some(t => /\b48\b/.test(t)) && stats.some(t => t.includes('₹6Cr')), 'key numbers: no 48 years, ₹6Cr in full');
-  await p.locator('.stat-roll').scrollIntoViewIfNeeded(); await p.waitForTimeout(4000);
-  ok(await attr(p, '.stat-roll .ticket', 'aria-label') === '95,00,000 sft' && await p.$$eval('.stat-roll .reel', rs => rs.map(r => Math.round((r.getBoundingClientRect().top - r.firstElementChild.getBoundingClientRect().top) / r.getBoundingClientRect().height)).join('')) === '9500000', 'total area ticket rolls to 95,00,000 sft');
-  await p.locator('#types').scrollIntoViewIfNeeded(); await p.waitForTimeout(600);
-  await p.$$eval('#typesRow .arch img', is => is.forEach(i => { i.loading = 'eager'; }));
-  await p.waitForFunction(() => [...document.querySelectorAll('#typesRow .arch img')].every(i => i.complete), null, { timeout: 15000 }).catch(() => {});
-  ok(await p.locator('#typesRow .arch svg').count() === 0 && await p.$$eval('#typesRow .arch img', is => is.length === 7 && is.every(i => i.naturalWidth >= 1000)), 'sectors show seven full-size project photographs');
+  const reels = () => p.$$eval('.stat-roll .reel', rs => rs.map(r => Math.round((r.getBoundingClientRect().top - r.firstElementChild.getBoundingClientRect().top) / r.getBoundingClientRect().height)).join(''));
+  await p.locator('.stat-roll').scrollIntoViewIfNeeded(); await p.waitForTimeout(2500);
+  const early = +(await reels());
+  ok(early >= 1 && early < 100000, `ticket counts up from 1 (${early} after 2.5 s)`);
+  await p.waitForTimeout(8500);
+  ok(await attr(p, '.stat-roll .ticket', 'aria-label') === '95,00,000 sft' && await reels() === '9500000', 'after 10 s the ticket stops at 95,00,000 sft');
+  ok(await p.$eval('.stat-roll .ticket', t => t.classList.contains('done')), 'the finished ticket celebrates (party poppers)');
+  // sectors: a list with one photograph per sector
+  const SECTORS = JSON.parse(fs.readFileSync(path.join(root, 'src/data/site.json'), 'utf8')).home.sectors;
+  await p.locator('#sectors').scrollIntoViewIfNeeded(); await p.waitForTimeout(600);
+  await p.$$eval('#sectors img', is => is.forEach(i => { i.loading = 'eager'; }));
+  await p.waitForFunction(() => [...document.querySelectorAll('#sectors img')].every(i => i.complete), null, { timeout: 15000 }).catch(() => {});
+  ok(JSON.stringify(await p.$$eval('#sectors .sx-t b', bs => bs.map(b => b.textContent))) === JSON.stringify(SECTORS.map(s => s.name)) && await p.$$eval('#sectors img', is => is.length === 7 && is.every(i => i.complete && i.naturalWidth > 0)), 'sectors list all seven, each with its project photograph');
+  if (tag === 'desktop') {
+    await p.hover('#sectors .sx-i:nth-child(4) .sx-a'); await p.waitForTimeout(1000);
+    ok(await p.$$eval('#sectors .sx-f', fs => fs.map(f => getComputedStyle(f).opacity).join()) === '0,0,0,1,0,0,0', 'pointing at a sector shows only its photograph');
+  } else ok(await p.$$eval('#sectors .sx-f', fs => fs.every(f => getComputedStyle(f).opacity === '1' && f.getBoundingClientRect().width < 120)), 'on phones every sector has its own small photograph');
+  ok(await p.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'sectors do not scroll sideways');
   ok(!(await p.textContent('main')).includes('End-to-End') && await p.locator('#systems .eyebrow').first().textContent() === 'Construction Technologies' && await p.locator('#systems a[href="/technologies/"]').count() === 1, 'Construction Technologies links to its page; no End-to-End section');
-  // types row
-  await p.locator('#types').scrollIntoViewIfNeeded(); await p.waitForTimeout(600);
-  const sl0 = await p.$eval('#typesRow', e => e.scrollLeft);
-  await p.click('#typesNext'); await p.waitForTimeout(900);
-  const sl1 = await p.$eval('#typesRow', e => e.scrollLeft);
-  ok(sl1 > sl0, `types → scrolls (${sl0}→${Math.round(sl1)})`);
-  await p.click('#typesPrev'); await p.waitForTimeout(900);
-  ok(await p.$eval('#typesRow', e => e.scrollLeft) < sl1, 'types ← scrolls back');
+  // the page keeps its height while scrolling (no placeholder sizes that grow as sections render)
+  const h0 = await p.evaluate(() => document.documentElement.scrollHeight);
+  for (let y = 0; y < h0; y += vp[1] * .7) { await p.evaluate(y => scrollTo(0, y), y); await p.waitForTimeout(60); }
+  const h1 = await p.evaluate(() => document.documentElement.scrollHeight);
+  ok(Math.abs(h1 - h0) < 40, `page height stays put while scrolling (${h0} → ${h1})`);
+  // logo: the wordmark spans the icon's width
+  ok(await p.evaluate(() => Math.abs(document.querySelector('.plaque-word').getBoundingClientRect().width - document.querySelector('.plaque-ic').getBoundingClientRect().width) < 1), 'METEY wordmark spans the logo end to end');
   // systems tabs
   await p.locator('#systems').scrollIntoViewIfNeeded(); await p.waitForTimeout(600);
   const tabs = await p.$$('#sysTabs [data-sys]');
@@ -183,6 +199,11 @@ for (const vp of [[1440, 900], [375, 812]]) {
   ok(await p.locator('#projGrid .card:not([hidden])').count() === total, 'unknown ?state shows everything');
   await p.context().close();
 
+  console.log(`\n# Net Zero project (${tag})`);
+  p = await open('/projects/apcpdcl-corporate-office-vijayawada/', vp);
+  ok((await p.textContent('.pd-grid .badge')).includes("Andhra Pradesh's first Net Zero Building") && (await p.title()).includes('Net Zero Building'), 'APCPDCL is marked as Andhra Pradesh\'s first Net Zero Building, also in its title');
+  await p.context().close();
+
   console.log(`\n# Project gallery (${tag})`);
   p = await open('/projects/jindal-corporate-tower-raigarh/', vp);
   await p.locator('.gal-b').first().scrollIntoViewIfNeeded(); await p.waitForTimeout(800);
@@ -221,11 +242,15 @@ for (const vp of [[1440, 900], [375, 812]]) {
 
   console.log(`\n# Team, clients and contact (${tag})`);
   p = await open('/team/', vp);
-  const people = JSON.parse(fs.readFileSync(path.join(root, 'src/data/team.json'), 'utf8')).groups.reduce((n, g) => n + g.people.length, 0);
-  ok(await p.locator('.pcard').count() === people && await p.locator('.pcard .face').first().textContent() === 'KM', `${people} team cards with initials avatars`);
-  for (const im of await p.locator('.pcard .face img').all()) await im.scrollIntoViewIfNeeded();
+  const members = JSON.parse(fs.readFileSync(path.join(root, 'src/data/team.json'), 'utf8')).members;
+  ok(JSON.stringify(await p.$$eval('.tcard', cs => cs.map(c => [c.querySelector('h3').textContent, c.querySelector('.role').textContent]))) === JSON.stringify(members.map(m => [m.name, m.designation])), `${members.length} team cards, in order, with designations`);
+  for (const im of await p.locator('.tcard img').all()) await im.scrollIntoViewIfNeeded();
   await p.waitForTimeout(800);
-  ok(await p.locator('.pcard .face img').count() === 7 &&await p.$$eval('.pcard .face img', is => is.every(i => i.complete && i.naturalWidth > 100)), 'seven team photos from the earlier site load');
+  ok(await p.$$eval('.tcard img', (is, ms) => is.length === ms.length && is.every((i, k) => i.complete && i.naturalWidth > 100 && i.alt === `${ms[k].name}, ${ms[k].designation}` && i.loading === 'lazy'), members), 'every team photo loads, lazily, with name and designation as alt text');
+  const frames = await p.$$eval('.tcard img', is => is.map(i => { const r = i.getBoundingClientRect(); return Math.round(r.width / r.height * 100); }));
+  ok(frames.every(f => f === 80), `team photos share one 4:5 frame (${[...new Set(frames)].join(', ')})`);
+  const perRow = await p.$$eval('.tcard', cs => cs.filter(c => Math.abs(c.getBoundingClientRect().top - cs[0].getBoundingClientRect().top) < 2).length);
+  ok(perRow === (vp[0] >= 1024 ? 5 : vp[0] >= 640 ? 3 : 2), `${perRow} team cards per row at ${vp[0]}px`);
   ok(await p.$eval('.portrait img', i => i.getAttribute('src').endsWith('/er-ca-prasad.webp') && i.naturalWidth === 640), "founder's new photo loads");
   ok(await p.locator('#director-experience .xp li').count() === 6 && await p.locator('#director-experience img').count() === 4, "Director's experience: 6 entries and 4 images, separate from projects");
   await p.context().close();
@@ -242,7 +267,8 @@ for (const vp of [[1440, 900], [375, 812]]) {
   const TECH = JSON.parse(fs.readFileSync(path.join(root, 'src/data/services.json'), 'utf8')).technologies.items;
   p = await open('/technologies/', vp);
   ok(await p.locator('#techBody .techsec').count() === TECH.length && await p.locator('#techIndex a').count() === TECH.length, `${TECH.length} technologies, each with its own section`);
-  ok(await p.locator('#precast .dg').count() === 1 && await p.locator('#monolithic .dg').count() === 1, 'precast and monolithic sections show how they are built');
+  ok(await p.$$eval('#techBody .techsec', ss => ss.every(s => s.querySelectorAll('.tech-fig .dg').length === 1)), 'every technology shows an animated diagram of how it is built');
+  ok(await p.locator('.banner [data-art="technologies"] .sway').count() === 1, 'technologies banner has its own drawing (crane), not the services one');
   const nPrecast = DATA.filter(d => (d.categories || []).includes('precast')).length;
   ok(await p.locator('#precast .tech-projects li').count() === nPrecast, `precast lists its ${nPrecast} projects`);
   ok(await p.$eval('#techIndex a[aria-current]', a => a.getAttribute('href')) === '#precast', 'first technology is marked on load');
@@ -291,7 +317,7 @@ for (const vp of [[1440, 900], [375, 812]]) {
   await p.fill('#f-email', 'test@example.com'); await p.selectOption('#f-service', { index: 2 });
   await p.click('#enquiry button[type=submit]');
   const links = await p.$$eval('#formStatus a', as => as.map(a => a.href));
-  ok(links.length === 2 && links[0].startsWith('mailto:designs@metey.in') && links[1].startsWith('https://wa.me/'), 'valid submit offers email + WhatsApp links');
+  ok(links.length === 2 && links[0].startsWith('mailto:bharat@metey.in?subject=') && !links[0].includes('cc=') && links[1].startsWith('https://wa.me/919494756526?'), 'valid submit offers email (to bharat@metey.in only) + WhatsApp (+91 94947 56526) links');
   ok(decodeURIComponent(links[0]).includes('Structural Consultancy') && decodeURIComponent(links[0]).includes('Test User'), 'email link carries the enquiry');
   ok(await attr(p, 'a[href$=".vcf"]', 'download') !== null, 'vCard download link');
   ok(!p.errors.length, 'no page errors ' + p.errors.join(';'));

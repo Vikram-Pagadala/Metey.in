@@ -2,7 +2,7 @@
   "name": "metey-website",
   "version": "1.0.0",
   "private": true,
-  "description": "Static METEY website and interactive 3D Engineering Lab",
+  "description": "Website of Metey Engineering & Consultancy (metey.in), generated from data by a dependency-free Node build",
   "engines": {
     "node": ">=18"
   },

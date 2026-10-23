@@ -98,7 +98,7 @@ const PAGES = [
     description: "METEY clients include DRDO, GHMC, APTIDCO, APCPDCL, Tata Projects, NTPC, Jindal Steel & Power, Numaligarh Refinery and IIT Patna." },
   { route: "team", src: "team", name: "Team",
     title: "Team | Architects &amp; Structural Engineers, Hyderabad | METEY",
-    description: "Er. C.A. Prasad, Director & Chief Structural Engineer with 48 years of experience, and METEY's architects, structural engineers and quantity surveyors." },
+    description: "Meet METEY's Hyderabad team: Er. C.A. Prasad, Director & Chief Structural Engineer (48 years), with architects, structural, design and site engineers." },
   { route: "insights", src: "insights", name: "Insights",
     title: "Precast &amp; Monolithic Construction Papers | METEY",
     description: "Technical papers by METEY on precast concrete connections, monolithic EWS housing and green building technologies for PMAY, and talks at national conferences." },
@@ -110,10 +110,11 @@ const PAGES = [
     description: `Contact Metey Engineering & Consultancy, New Nagole, Hyderabad: ${PHONE}, ${EMAIL}. Structural and architectural design across India.` }
 ];
 const shareImage = p => { const im = p.images.find(i => !i.lowRes && /\.jpe?g$/.test(i.src)) || p.images.find(i => !i.lowRes); return im ? im.src : null; };
-const projectTitle = t => [`${t} | METEY Projects`, `${t} | METEY`, t].find(x => x.length <= 70) || t;
+/* a project's tag (such as "Net Zero Building") goes into its title when it fits */
+const projectTitle = p => [p.tag && `${p.title} | ${p.tag} | METEY`, `${p.title} | METEY Projects`, `${p.title} | METEY`].find(x => x && x.length <= 70) || p.title;
 M.PROJECTS.forEach(p => PAGES.push({
   route: "project-" + p.slug, src: "project", nav: "projects", project: p, name: M.esc(p.title),
-  title: M.esc(projectTitle(p.title)),
+  title: M.esc(projectTitle(p)),
   description: fit([p.description, p.keyFacts && p.keyFacts.join(" · ") + ".", [p.client, p.location].filter(Boolean).join(", ") + ".",
     `${p.category || (p.sectors || []).map(M.sectorName).join(", ") || "A"} project by METEY, Hyderabad.`]),
   image: shareImage(p)
@@ -139,7 +140,7 @@ const BUSINESS = {
   url: SITE + "/",
   logo: SITE + C.logo.png,
   image: SITE + SHARE_IMAGE,
-  description: `Architecture and structural engineering consultants for projects across India, established in 2013 (earlier ${C.formerName}), head office in Hyderabad, designing with precast, monolithic, composite, insulated wall, light gauge steel and timber construction.`,
+  description: `Architecture and structural engineering consultants for projects across India, established in 2013 (earlier ${C.formerName}), head office in Hyderabad, designing with precast, monolithic, composite, insulated wall, light gauge steel, Perma form, polymer wall and timber construction.`,
   telephone: PHONE,
   email: EMAIL,
   foundingDate: "2013",
@@ -147,7 +148,7 @@ const BUSINESS = {
   founder: { "@type": "Person", name: DATA.team.founder.name, jobTitle: DATA.team.founder.role, image: SITE + DATA.team.founder.photo.src },
   sameAs: [C.facebook],
   areaServed: [{ "@type": "Country", name: "India" }].concat(M.statesWorked().map(s => ({ "@type": s.id === "delhi" ? "City" : "State", name: s.name }))),
-  knowsAbout: ["Architecture", "Structural engineering", "MEP design", "Interior design", "Peer review", "Value engineering", "Project management consultancy", "Precast concrete construction", "Monolithic (Mivan) construction", "Composite construction", "Insulated wall (EPS) construction", "Light gauge steel", "Government housing (PMAY, EWS)", "High-rise buildings", "Earthquake-resistant design"],
+  knowsAbout: ["Architecture", "Structural engineering", "MEP design", "Interior design", "Peer review", "Value engineering", "Project management consultancy", "Precast concrete construction", "Monolithic (Mivan) construction", "Composite construction", "Insulated wall (EPS) construction", "Light gauge steel", "Perma form (permanent formwork)", "Polymer wall construction", "Glulam and timber structures", "Net Zero buildings", "BIM modelling", "Quantity surveying", "Government housing (PMAY, EWS)", "High-rise buildings", "Earthquake-resistant design"],
   address: { "@type": "PostalAddress", streetAddress: C.address.street, addressLocality: C.address.city, addressRegion: C.address.region, postalCode: C.address.postalCode, addressCountry: "IN" },
   contactPoint: C.phones.map(p => ({ "@type": "ContactPoint", telephone: p.number, contactType: "customer service", areaServed: "IN" })),
   openingHoursSpecification: { "@type": "OpeningHoursSpecification", dayOfWeek: C.hours.days, opens: C.hours.opens, closes: C.hours.closes }
@@ -188,11 +189,12 @@ const COMMON = {
 /* content tokens in src/pages/*.html */
 const TOKENS = Object.assign({}, R, {
   companyName: M.esc(C.name),
-  typesRow: R.types, wm: () => read("src/map.svg").trim(),
+  wm: () => read("src/map.svg").trim(),
   carFrame: () => R.carFrame(0), carBody: () => R.carBody(0),
   projGrid: R.grid, projectCount: M.PROJECTS.length, stateCount,
   stateNames: () => JSON.stringify(M.STATE_NAMES),
-  endpoint: ENQUIRY_ENDPOINT, email: EMAIL, emailCc: (C.emails[1] || C.emails[0]).address, whatsapp: C.whatsapp, phone: PHONE, phoneLink: telLink(PHONE)
+  /* enquiries go to one address only (C.enquiryEmail, also NOTIFY_TO in the Apps Script) */
+  endpoint: ENQUIRY_ENDPOINT, email: EMAIL, enquiryEmail: C.enquiryEmail, whatsapp: C.whatsapp, phone: PHONE, phoneLink: telLink(PHONE)
 });
 
 /* ---------- build ---------- */
@@ -262,7 +264,7 @@ function lastChanged(files){
 }
 const sources = pg => pg.project ? ["src/pages/project.html", "src/data/projects.json"] : [`src/pages/${pg.src}.html`, "src/data", "assets/js/render.js"];
 const xml = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
-const images = pg => pg.project ? pg.project.images.map(im => SITE + encodeURI(im.src)) : pg.route === "home" ? [SITE + SHARE_IMAGE] : pg.route === "team" ? [SITE + DATA.team.founder.photo.src] : pg.route === "technologies" ? DATA.services.technologies.items.flatMap(t => (t.images || []).map(im => SITE + encodeURI(im.src))) : [];
+const images = pg => pg.project ? pg.project.images.map(im => SITE + encodeURI(im.src)) : pg.route === "home" ? [SITE + SHARE_IMAGE] : pg.route === "team" ? [DATA.team.founder.photo].concat(DATA.team.members.map(m => m.photo)).map(im => SITE + encodeURI(im.src)) : pg.route === "technologies" ? DATA.services.technologies.items.flatMap(t => (t.images || []).map(im => SITE + encodeURI(im.src))) : [];
 write("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 ${PAGES.map(pg => `  <url>
@@ -286,6 +288,11 @@ write("llms.txt", `# Metey Engineering & Consultancy
 ## Pages
 
 ${PAGES.filter(pg => !pg.project).map(pg => `- [${decode(pg.name)}](${SITE + M.href(pg.route)}): ${strip(decode(pg.description))}`).join("\n")}
+
+## Team
+
+- ${DATA.team.founder.name}: ${DATA.team.founder.role}
+${DATA.team.members.map(m => `- ${m.name}: ${m.designation}`).join("\n")}
 
 ## Projects
 

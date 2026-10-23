@@ -2,8 +2,7 @@
  * METEY website enquiries: saves each enquiry to this Google Sheet and emails the office.
  * Setup steps are in README.md next to this file.
  */
-const NOTIFY_TO = "info@metey.in";
-const NOTIFY_CC = "prasad@metey.in";
+const NOTIFY_TO = "bharat@metey.in";
 const SHEET_NAME = "Enquiries";
 const HEADERS = ["Received", "Reference", "Name", "Email", "Phone", "Service", "Message", "Page"];
 
@@ -42,7 +41,6 @@ function doPost(e) {
   try {
     MailApp.sendEmail({
       to: NOTIFY_TO,
-      cc: NOTIFY_CC,
       replyTo: d.email,
       name: "METEY website",
       subject: "New enquiry " + ref + ": " + d.service + " - " + d.name,

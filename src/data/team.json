@@ -16,36 +16,17 @@
       "Founder, Secretary and Past President, Pre-Engineered Structures Society of India (PSI)."
     ]
   },
-  "groups": [
-    { "id": "architects", "name": "Architects", "people": [
-      { "name": "Mr. K. Akhil Sai Mohan", "photo": { "src": "/assets/images/metey/team/k-akhil-sai-mohan.webp" }, "qualification": "B.Arch", "experience": "7 years", "about": "Interested in innovative designs and eager to gain knowledge beyond his own field." },
-      { "name": "Ms. Ch. Kamalalaya", "photo": { "src": "/assets/images/metey/team/ch-kamalalaya.webp" }, "qualification": "B.Arch", "experience": "6 years", "about": "Passionate about creating new conceptual designs and growing her skills all-round." },
-      { "name": "Ms. Durga", "qualification": "B.Arch", "experience": "2 years", "about": "Passionate about architectural design, arts, crafts, 3D modelling and sustainable environments. Software: AutoCAD 2D, Revit, SketchUp 3D, V-Ray, Lumion, Photoshop, MS Office." },
-      { "name": "Mr. Prudhvi", "photo": { "src": "/assets/images/metey/team/prudhvi.webp" }, "qualification": "B.Arch", "role": "Architect" },
-      { "name": "Mr. M. Raju", "qualification": "Diploma in Architecture", "experience": "18 years", "role": "Assistant Architect" }
-    ] },
-    { "id": "structural-engineers", "name": "Structural Engineers", "people": [
-      { "name": "Mr. M. Umeshchandra", "photo": { "src": "/assets/images/metey/team/m-umeshchandra.webp" }, "role": "Senior Structural Engineer", "qualification": "M.Tech (Structures)", "experience": "7 years", "about": "Structural modelling and analysis in ETABS and SAFE; certified AutoCAD professional for 2D structural plans." },
-      { "name": "Mr. P. Siva Bharath", "photo": { "src": "/assets/images/metey/team/p-siva-bharath.webp" }, "role": "Structural Engineer", "qualification": "M.Tech (Structures)", "experience": "7 years", "about": "Execution and design of structures; ETABS, SAFE, STAAD." },
-      { "name": "Ms. Akhila", "role": "Structural Engineer", "qualification": "M.Tech (Structures)", "experience": "6 years" },
-      { "name": "Mr. Sai Vardhan", "role": "Structural Engineer", "experience": "3 years" },
-      { "name": "Mr. Abhishek", "role": "Structural Engineer", "qualification": "M.Tech (Structures)", "experience": "2 years" },
-      { "name": "Ms. Kavya", "role": "Structural Engineer", "qualification": "M.Tech (Structures)" }
-    ] },
-    { "id": "design-engineers", "name": "Design Engineers — CAD Drafting", "people": [
-      { "name": "Ms. B. Bhavani", "photo": { "src": "/assets/images/metey/team/b-bhavani.webp" }, "qualification": "B.Tech (Civil)", "experience": "7 years", "work": "CAD drafting, engineering detailing" },
-      { "name": "Mr. Saiteja", "qualification": "B.Tech (Civil)", "experience": "7 years", "work": "CAD drafting, engineering detailing" },
-      { "name": "Mr. Ankamma", "qualification": "B.Tech", "experience": "4 years", "work": "CAD drafting, engineering detailing, QS work" },
-      { "name": "Ms. Sireesha", "qualification": "B.Tech", "experience": "2 years", "work": "CAD drafting, engineering detailing" },
-      { "name": "Ms. Jeevitha", "qualification": "B.Tech", "experience": "2 years", "work": "CAD drafting" }
-    ] },
-    { "id": "site-engineers", "name": "Site Engineers cum Quantity Surveyors", "people": [
-      { "name": "Mr. V. Narasimha Reddy", "photo": { "src": "/assets/images/metey/team/v-narasimha-reddy.webp" }, "role": "Manager / Senior Civil Engineer", "qualification": "B.Tech (Civil), K.N.R.R. College", "experience": "10 years", "about": "Site engineering, execution of structures, quantity surveying, project management." },
-      { "name": "Mr. Anjaneya Reddy", "role": "Quantity Surveyor", "qualification": "B.Tech (Civil)", "experience": "3 years", "about": "Site supervision; drafting drawings and details in AutoCAD." }
-    ] },
-    { "id": "administration", "name": "Administration", "people": [
-      { "name": "Dr. T. Hymavathi", "role": "HR & Administrative Officer", "about": "Doctorate from Kakatiya University, Warangal. 22 years of experience in office administration; handles HR and administrative affairs of the firm." }
-    ] }
+  "members": [
+    { "name": "Er. Chunduru Ankamma", "designation": "Design Engineer / BIM Modeller", "photo": { "src": "/assets/images/metey/team/chunduru-ankamma.jpg" } },
+    { "name": "Er. Anjaneya Reddy", "designation": "QS Engineer / BIM Modeller", "photo": { "src": "/assets/images/metey/team/anjaneya-reddy.jpg" } },
+    { "name": "Er. Varun Kumar", "designation": "Structural Engineer", "photo": { "src": "/assets/images/metey/team/varun-kumar.jpg" } },
+    { "name": "Er. Sireesha", "designation": "Design Engineer / CAD Engineer", "photo": { "src": "/assets/images/metey/team/sireesha.jpg" } },
+    { "name": "Er. Swathi", "designation": "Structural Engineer", "photo": { "src": "/assets/images/metey/team/swathi.jpg" } },
+    { "name": "Ar. Durga", "designation": "Architect", "photo": { "src": "/assets/images/metey/team/durga.jpg" } },
+    { "name": "Ar. Kamalalaya", "designation": "Sr. Architect", "photo": { "src": "/assets/images/metey/team/kamalalaya.jpg" } },
+    { "name": "Er. Prasanna", "designation": "Design Engineer / CAD Engineer", "photo": { "src": "/assets/images/metey/team/prasanna.jpg" } },
+    { "name": "Er. Shiva", "designation": "Site Engineer", "photo": { "src": "/assets/images/metey/team/shiva.jpg" } },
+    { "name": "Er. Akhila Suvartchala", "designation": "Structural Engineer", "photo": { "src": "/assets/images/metey/team/akhila-suvartchala.jpg" } }
   ],
   "directorExperience": {
     "note": "These were designed by Er. C.A. Prasad while working with Balfour Beatty, WS Atkins and Engineers Office in the Middle East (before Metey was founded).",
